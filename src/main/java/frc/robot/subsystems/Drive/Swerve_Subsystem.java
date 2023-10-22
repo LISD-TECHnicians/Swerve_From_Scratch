@@ -18,24 +18,28 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final Swerve_Module Swerve_1 = new Swerve_Module(
     Drive_Constants.Swerve_1_Drive_ID, 
     Drive_Constants.Swerve_1_Rotation_ID, 
-    Drive_Constants.Swerve_1_Rotation_Encoder_ID);
+    Drive_Constants.Swerve_1_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_1_Angle_Offset);
   private final Swerve_Module Swerve_2 = new Swerve_Module(
     Drive_Constants.Swerve_2_Drive_ID, 
     Drive_Constants.Swerve_2_Rotation_ID, 
-    Drive_Constants.Swerve_2_Rotation_Encoder_ID);
+    Drive_Constants.Swerve_2_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_2_Angle_Offset);
   private final Swerve_Module Swerve_3 = new Swerve_Module(    
     Drive_Constants.Swerve_3_Drive_ID, 
     Drive_Constants.Swerve_3_Rotation_ID, 
-    Drive_Constants.Swerve_3_Rotation_Encoder_ID);
+    Drive_Constants.Swerve_3_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_3_Angle_Offset);
   private final Swerve_Module Swerve_4 = new Swerve_Module(    
     Drive_Constants.Swerve_4_Drive_ID, 
     Drive_Constants.Swerve_4_Rotation_ID, 
-    Drive_Constants.Swerve_4_Rotation_Encoder_ID);
+    Drive_Constants.Swerve_4_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_4_Angle_Offset);
 
-  private final Translation2d Swerve_1_Location = new Translation2d(-0.25, 0.5);
-  private final Translation2d Swerve_2_Location = new Translation2d(0.25, 0.5);
-  private final Translation2d Swerve_3_Location = new Translation2d(-0.25, -0.5);
-  private final Translation2d Swerve_4_Location = new Translation2d(0.25, -0.5);
+  private final Translation2d Swerve_1_Location = new Translation2d(-0.25, 0.25);
+  private final Translation2d Swerve_2_Location = new Translation2d(0.25, 0.25);
+  private final Translation2d Swerve_3_Location = new Translation2d(-0.25, -0.25);
+  private final Translation2d Swerve_4_Location = new Translation2d(0.25, -0.25);
   
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics(
     Swerve_1_Location, 

@@ -17,12 +17,13 @@ public class Swerve_Module {
   private final CANSparkMax Rotation_Motor;
 
   private final CANcoder Rotation_Encoder;
+  private final Double Angle_Offset;
 
   private final SlewRateLimiter Drive_Limiter;
 
   private final PIDController Rotation_PID;
 
-  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID) {
+  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset) {
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
 
@@ -33,6 +34,7 @@ public class Swerve_Module {
     Rotation_Motor.setVoltage(Drive_Constants.Operating_Voltage);
 
     Rotation_Encoder = new CANcoder(Rotation_Encoder_ID, "rio");
+    this.Angle_Offset = Angle_Offset;
 
     Drive_Limiter = new SlewRateLimiter(Drive_Constants.Max_Drive_Set_Acceleration);
 
@@ -66,7 +68,7 @@ public class Swerve_Module {
     double Drive_Speed = Drive_Limiter.calculate(Swerve_Module_State.speedMetersPerSecond);
     Drive_Speed = Drive_Speed / Drive_Constants.Max_Drive_Speed;
 
-    double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians());
+    double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians() + Angle_Offset);
     Rotation_Speed = MathUtil.clamp(Rotation_Speed, -Drive_Constants.Max_Rotation_Motor_Set_Speed, Drive_Constants.Max_Rotation_Motor_Set_Speed);
 
     Drive_Motor.set(Drive_Speed);
