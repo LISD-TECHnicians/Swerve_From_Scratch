@@ -76,9 +76,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed);
 
     Swerve_1.Set_Swerve_State(Swerve_Module_States[0]);
-    Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
-    Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
-    Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
+    // Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
+    // Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
+    // Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
   public Rotation2d Get_Yaw_R2d() {
@@ -97,13 +97,13 @@ public class Swerve_Subsystem extends SubsystemBase {
     return Pigeon.getRoll();
   }
   
-  /*public Pose2d Get_Pose() {
-    return Swerve_Odometry.getPoseMeters();
-  }
+  // public Pose2d Get_Pose() {
+  //   return Swerve_Odometry.getPoseMeters();
+  // }
 
   @Override
   public void periodic() {
-    Swerve_1_Position.distanceMeters = Swerve_1.Get_Drive_Position();
+    /*Swerve_1_Position.distanceMeters = Swerve_1.Get_Drive_Position();
     Swerve_1_Position.angle = Swerve_1.Get_Swerve_State().angle;
     Swerve_Positions[0] = Swerve_1_Position;
     
@@ -119,9 +119,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_4_Position.angle = Swerve_4.Get_Swerve_State().angle;
     Swerve_Positions[3] = Swerve_4_Position;
 
-    Swerve_Odometry.update(Get_Yaw_R2d(), Swerve_Positions);
+    Swerve_Odometry.update(Get_Yaw_R2d(), Swerve_Positions);*/
   }
 
   @Override
-  public void simulationPeriodic() {}*/
+  public void simulationPeriodic() {}
 }
