@@ -31,7 +31,6 @@ public final class Constants {
     public static final double Max_Drive_Set_Acceleration = 5; // Max choosen m/s^2
 
     public static final double Max_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
-    public static final double Max_Rotation_Motor_Set_Speed = 0.25; // Max choosen m/s^2
 
     public static final double Drive_Gear_Ratio = 0.01;
     public static final double Rotation_Gear_Ratio = 0.01;

@@ -69,7 +69,7 @@ public class Swerve_Module {
     Drive_Speed = Drive_Speed / Drive_Constants.Max_Drive_Speed;
 
     double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians() + Angle_Offset);
-    Rotation_Speed = MathUtil.clamp(Rotation_Speed, -Drive_Constants.Max_Rotation_Motor_Set_Speed, Drive_Constants.Max_Rotation_Motor_Set_Speed);
+    Rotation_Speed = MathUtil.clamp(Rotation_Speed, -Drive_Constants.Rotation_Speed_Scale_Factor, Drive_Constants.Rotation_Speed_Scale_Factor);
 
     Drive_Motor.set(Drive_Speed);
     Rotation_Motor.set(Rotation_Speed);
