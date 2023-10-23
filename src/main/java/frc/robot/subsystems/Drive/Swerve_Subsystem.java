@@ -84,9 +84,9 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     // Set each Swerve State
     Swerve_1.Set_Swerve_State(Swerve_Module_States[0]);
-    // Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
-    // Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
-    // Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
+    Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
+    Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
+    Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
   public Rotation2d Get_Yaw_R2d() {
