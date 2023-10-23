@@ -15,6 +15,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import frc.robot.Constants.Drive_Constants;
 
 public class Swerve_Subsystem extends SubsystemBase {
+  // Declare all Swerve Modules
   private final Swerve_Module Swerve_1 = new Swerve_Module(
     Drive_Constants.Swerve_1_Drive_ID, 
     Drive_Constants.Swerve_1_Rotation_ID, 
@@ -36,21 +37,24 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Swerve_4_Rotation_Encoder_ID, 
     Drive_Constants.Swerve_4_Angle_Offset);
 
-  private final Translation2d Swerve_1_Location = new Translation2d(-0.25, 0.25);
+  // Declare location of Swerve Modules relative to robot center
+  private final Translation2d Swerve_1_Location = new Translation2d(-0.25, 0.25); 
   private final Translation2d Swerve_2_Location = new Translation2d(0.25, 0.25);
   private final Translation2d Swerve_3_Location = new Translation2d(-0.25, -0.25);
   private final Translation2d Swerve_4_Location = new Translation2d(0.25, -0.25);
   
+  // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics(
     Swerve_1_Location, 
     Swerve_2_Location, 
     Swerve_3_Location, 
     Swerve_4_Location);
 
-  private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds();
+  private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
 
-  private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID);
+  private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "rio"); // Declare IMU
 
+  //  Declare Swerve Module POsitions for SWerve Odometry
   /*private SwerveModulePosition Swerve_1_Position = new SwerveModulePosition(Swerve_1.Get_Drive_Position(), Swerve_1.Get_Swerve_State().angle);
   private SwerveModulePosition Swerve_2_Position = new SwerveModulePosition(Swerve_2.Get_Drive_Position(), Swerve_2.Get_Swerve_State().angle);
   private SwerveModulePosition Swerve_3_Position = new SwerveModulePosition(Swerve_3.Get_Drive_Position(), Swerve_3.Get_Swerve_State().angle);
@@ -58,6 +62,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private SwerveModulePosition[] Swerve_Positions = {Swerve_1_Position, Swerve_2_Position, Swerve_3_Position, Swerve_4_Position};
 
+  // Declare Swerve Odometry
   private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Get_Yaw_R2d(), Swerve_Positions);*/
 
   public Swerve_Subsystem() {
@@ -67,14 +72,17 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed) {
+    // Use given speeds to get Chassis Speed
     Swerve_Speeds.vxMetersPerSecond = X_Speed;
     Swerve_Speeds.vyMetersPerSecond = Y_Speed;
     Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
 
-    SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);
+    // List of Swerve States from desired Swerve Speeds
+    SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  
 
-    SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed);
+    SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
 
+    // Set each Swerve State
     Swerve_1.Set_Swerve_State(Swerve_Module_States[0]);
     // Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
     // Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
