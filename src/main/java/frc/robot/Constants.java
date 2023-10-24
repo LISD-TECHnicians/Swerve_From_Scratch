@@ -37,7 +37,7 @@ public final class Constants {
 
     public static final double Rotation_Speed_Scale_Factor = 0.25;
 
-    public static final double Rotation_P = 3.5;
+    public static final double Rotation_P = 1.0;
     public static final double Rotation_I = 0.0; 
     public static final double Rotation_D = 0.0;
   }

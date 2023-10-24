@@ -19,12 +19,14 @@ public class Swerve_Module {
   private final CANcoder Rotation_Encoder;
   private final double Angle_Offset;
 
-  private final SlewRateLimiter Drive_Limiter;
+  private final SlewRateLimiter Drive_Limiter = new SlewRateLimiter(Drive_Constants.Max_Drive_Set_Acceleration);
 
-  private final PIDController Rotation_PID;
+  private final PIDController Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);;
+
+  private SwerveModuleState Current_Swerve_Module_State;
 
   public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset) {
-    // Declare SWerve Module motors
+    // Declare Swerve Module motors
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
 
@@ -34,9 +36,6 @@ public class Swerve_Module {
     Rotation_Encoder = new CANcoder(Rotation_Encoder_ID, "rio");
     this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
 
-    Drive_Limiter = new SlewRateLimiter(Drive_Constants.Max_Drive_Set_Acceleration);
-
-    Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);
     Rotation_PID.enableContinuousInput(-Math.PI, Math.PI);
   }
 
@@ -57,7 +56,10 @@ public class Swerve_Module {
   }
 
   public SwerveModuleState Get_Swerve_State() {
-    return new SwerveModuleState(Get_Drive_Velcoity(), new Rotation2d(Get_Rotation_Position()));
+    Current_Swerve_Module_State.speedMetersPerSecond = Get_Drive_Velcoity();
+    Current_Swerve_Module_State.angle = Rotation2d.fromRadians(Get_Rotation_Position());
+
+    return Current_Swerve_Module_State;
   }
 
   public void Set_Swerve_State(SwerveModuleState Swerve_Module_State) {
@@ -71,5 +73,7 @@ public class Swerve_Module {
 
     Drive_Motor.set(Drive_Speed);
     Rotation_Motor.set(Rotation_Speed);
+
+    System.out.println("CANcoder" + Get_Rotation_Position());
   }
 }

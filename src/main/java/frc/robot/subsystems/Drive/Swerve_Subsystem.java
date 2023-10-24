@@ -38,10 +38,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Swerve_4_Angle_Offset);
 
   // Declare location of Swerve Modules relative to robot center
-  private final Translation2d Swerve_1_Location = new Translation2d(-0.25, 0.25); 
-  private final Translation2d Swerve_2_Location = new Translation2d(0.25, 0.25);
-  private final Translation2d Swerve_3_Location = new Translation2d(-0.25, -0.25);
-  private final Translation2d Swerve_4_Location = new Translation2d(0.25, -0.25);
+  private final Translation2d Swerve_1_Location = new Translation2d(-0.5, 0.5); 
+  private final Translation2d Swerve_2_Location = new Translation2d(0.5, 0.5);
+  private final Translation2d Swerve_3_Location = new Translation2d(-0.5, -0.5);
+  private final Translation2d Swerve_4_Location = new Translation2d(0.5, -0.5);
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics(
@@ -76,6 +76,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Speeds.vxMetersPerSecond = X_Speed;
     Swerve_Speeds.vyMetersPerSecond = Y_Speed;
     Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
+    // Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Get_Yaw_R2d());
 
     // List of Swerve States from desired Swerve Speeds
     SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  
@@ -84,13 +85,9 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     // Set each Swerve State
     Swerve_1.Set_Swerve_State(Swerve_Module_States[0]);
-    Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
-    Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
-    Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
-  }
-
-  public Rotation2d Get_Yaw_R2d() {
-    return Rotation2d.fromDegrees(Pigeon.getYaw());
+    // Swerve_2.Set_Swerve_State(Swerve_Module_States[1]);
+    // Swerve_3.Set_Swerve_State(Swerve_Module_States[2]);
+    // Swerve_4.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
   public double Get_Yaw() {
