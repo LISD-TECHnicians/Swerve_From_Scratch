@@ -24,7 +24,7 @@ public class Swerve_Module {
   private final PIDController Rotation_PID;
 
   public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset) {
-    // Delcare SWerve Module motors
+    // Declare SWerve Module motors
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
 

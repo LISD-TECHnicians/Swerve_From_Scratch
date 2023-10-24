@@ -52,7 +52,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
 
-  private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "rio"); // Declare IMU
+  private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
   //  Declare Swerve Module POsitions for SWerve Odometry
   /*private SwerveModulePosition Swerve_1_Position = new SwerveModulePosition(Swerve_1.Get_Drive_Position(), Swerve_1.Get_Swerve_State().angle);
