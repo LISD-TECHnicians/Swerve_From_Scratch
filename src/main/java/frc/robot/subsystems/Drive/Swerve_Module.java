@@ -31,8 +31,8 @@ public class Swerve_Module {
     Drive_Motor.configFactoryDefault();
     Rotation_Motor.restoreFactoryDefaults();
 
-    Drive_Motor.setVoltage(Drive_Constants.Operating_Voltage);
-    Rotation_Motor.setVoltage(Drive_Constants.Operating_Voltage);
+    // Drive_Motor.setVoltage(Drive_Constants.Operating_Voltage);
+    // Rotation_Motor.setVoltage(Drive_Constants.Operating_Voltage);
 
     Rotation_Encoder = new CANcoder(Rotation_Encoder_ID, "rio");
     this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
