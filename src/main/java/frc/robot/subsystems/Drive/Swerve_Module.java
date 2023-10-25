@@ -21,7 +21,7 @@ public class Swerve_Module {
 
   private final SlewRateLimiter Drive_Limiter = new SlewRateLimiter(Drive_Constants.Max_Drive_Set_Acceleration);
 
-  private final PIDController Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);;
+  private final PIDController Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);
 
   private SwerveModuleState Current_Swerve_Module_State;
 

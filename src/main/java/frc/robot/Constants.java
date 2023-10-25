@@ -23,7 +23,7 @@ public final class Constants {
 
     public static final int Pigeon_ID = 14;
 
-    public static final double Operating_Voltage = 12; // For more reliable and precise motors speeds
+    public static final double Nominal_Voltage = 12; // For more reliable and precise motor speeds
 
     public static final double Swerve_Radius = 1;
 
