@@ -63,7 +63,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   private SwerveModulePosition[] Swerve_Positions = {Swerve_1_Position, Swerve_2_Position, Swerve_3_Position, Swerve_4_Position};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Get_Yaw_R2d(), Swerve_Positions);*/
+  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();

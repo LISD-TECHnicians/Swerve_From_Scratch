@@ -48,7 +48,7 @@ public class Swerve_Module {
   }
 
   public double Get_Rotation_Position() {
-    return Rotation_Encoder.getAbsolutePosition().getValue() / Drive_Constants.Rotation_Gear_Ratio; // Returns radians
+    return Rotation_Encoder.getAbsolutePosition().getValue() / Drive_Constants.Rotation_Gear_Ratio + Angle_Offset; // Returns radians
   }
 
   public double Get_Rotation_Velocity() {
@@ -68,7 +68,7 @@ public class Swerve_Module {
     double Drive_Speed = Drive_Limiter.calculate(Swerve_Module_State.speedMetersPerSecond);
     Drive_Speed = Drive_Speed / Drive_Constants.Max_Drive_Speed;
 
-    double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians() + Angle_Offset);
+    double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians());
     Rotation_Speed = MathUtil.clamp(Rotation_Speed, -Drive_Constants.Rotation_Speed_Scale_Factor, Drive_Constants.Rotation_Speed_Scale_Factor);
 
     Drive_Motor.set(Drive_Speed);
