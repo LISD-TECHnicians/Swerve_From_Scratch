@@ -17,15 +17,18 @@ public class Swerve_Module {
   private final CANSparkMax Rotation_Motor;
 
   private final CANcoder Rotation_Encoder;
-  private final double Angle_Offset;
+  // private final double Angle_Offset;
+
+  // private final boolean Drive_Invert;
+  // private final boolean Rotation_Invert;
 
   private final SlewRateLimiter Drive_Limiter = new SlewRateLimiter(Drive_Constants.Max_Drive_Set_Acceleration);
 
   private final PIDController Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);
 
-  SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState(Get_Drive_Velcoity(), Rotation2d.fromRadians(Get_Rotation_Position()));
+  SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState();
 
-  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset) {
+  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID/*, double Angle_Offset, boolean Drive_Invert, boolean Rotation_Invert*/) {
     // Declare Swerve Module motors
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
@@ -33,8 +36,14 @@ public class Swerve_Module {
     Drive_Motor.configFactoryDefault();
     Rotation_Motor.restoreFactoryDefaults();
 
+    // this.Drive_Invert = Drive_Invert;
+    // this.Rotation_Invert = Rotation_Invert;
+
+    // Drive_Motor.setInverted(Drive_Invert);
+    // Rotation_Motor.setInverted(Rotation_Invert);
+
     Rotation_Encoder = new CANcoder(Rotation_Encoder_ID, "rio");
-    this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
+    // this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
 
     Rotation_PID.enableContinuousInput(-Math.PI, Math.PI);
   }
@@ -48,11 +57,11 @@ public class Swerve_Module {
   }
 
   public double Get_Rotation_Position() {
-    return Rotation_Encoder.getAbsolutePosition().getValue() / Drive_Constants.Rotation_Gear_Ratio + Angle_Offset; // Returns radians
+    return (Rotation_Encoder.getAbsolutePosition().getValue() / Drive_Constants.Rotation_Gear_Ratio/* + Angle_Offset*/)/* * (Rotation_Invert ? -1 : 1)*/; // Returns radians
   }
 
   public double Get_Rotation_Velocity() {
-    return Rotation_Encoder.getVelocity().getValue() * 10 / Drive_Constants.Rotation_Gear_Ratio; // Returns radians per second
+    return (Rotation_Encoder.getVelocity().getValue() * 10 / Drive_Constants.Rotation_Gear_Ratio)/* * (Rotation_Invert ? -1 : 1)*/; // Returns radians per second
   }
 
   public SwerveModuleState Get_Swerve_State() {
@@ -74,6 +83,6 @@ public class Swerve_Module {
     Drive_Motor.set(Drive_Speed);
     Rotation_Motor.set(Rotation_Speed);
 
-    System.out.println("CANcoder" + Get_Rotation_Position());
+    System.out.println("CANcoder " + Get_Rotation_Position());
   }
 }

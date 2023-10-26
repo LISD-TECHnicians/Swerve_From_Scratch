@@ -6,7 +6,7 @@ import frc.robot.subsystems.Drive.Swerve_Subsystem;
 import java.util.function.DoubleSupplier;
 
 public class Swerve_Velocity_Cmd extends CommandBase {
-  public final Swerve_Subsystem SwerveSubsystem;
+  private final Swerve_Subsystem SwerveSubsystem;
 
   private final DoubleSupplier X_Speed; // m/s
   private final DoubleSupplier Y_Speed; // m/s
@@ -28,7 +28,7 @@ public class Swerve_Velocity_Cmd extends CommandBase {
   public void execute() {
     SwerveSubsystem.Run_Swerve(X_Speed.getAsDouble(), Y_Speed.getAsDouble(), Rotation_Speed.getAsDouble());
 
-    System.out.println("Set Speeds; " + X_Speed.getAsDouble() + "--" + Y_Speed.getAsDouble() + "--" + Rotation_Speed.getAsDouble());
+    System.out.println("Set Speeds; " + X_Speed.getAsDouble() + " -- " + Y_Speed.getAsDouble() + " -- " + Rotation_Speed.getAsDouble());
   }
 
   @Override
