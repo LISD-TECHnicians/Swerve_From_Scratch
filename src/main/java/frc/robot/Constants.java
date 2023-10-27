@@ -44,7 +44,6 @@ public final class Constants {
     public static final double Max_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
 
     public static final double Drive_Gear_Ratio = 1/5;
-    public static final double Rotation_Gear_Ratio = 1/18;
 
     public static final double Rotation_Speed_Scale_Factor = 0.25;
 
