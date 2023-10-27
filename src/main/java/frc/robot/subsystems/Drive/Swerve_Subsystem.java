@@ -21,29 +21,33 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Swerve_1_Rotation_ID, 
     Drive_Constants.Swerve_1_Rotation_Encoder_ID/*, 
     Drive_Constants.Swerve_1_Angle_Offset,
-    Drive_Constants.Swerve_1_Drive_Invert,
-    Drive_Constants.SWerve_1_Rotation_Invert*/);
+    Drive_Constants.Swerve_1_Drive_Motor_Invert,
+    Drive_Constants.SWerve_1_Rotation_Motor_Invert,
+    Drive_Constants.Swerve_1_Rotation_Encoder_Invert*/);
   private final Swerve_Module Swerve_2 = new Swerve_Module(
     Drive_Constants.Swerve_2_Drive_ID, 
     Drive_Constants.Swerve_2_Rotation_ID, 
     Drive_Constants.Swerve_2_Rotation_Encoder_ID/*, 
     Drive_Constants.Swerve_2_Angle_Offset,
-    Drive_Constants.Swerve_2_Drive_Invert,
-    Drive_Constants.SWerve_2_Rotation_Invert*/);
+    Drive_Constants.Swerve_2_Drive_Motor_Invert,
+    Drive_Constants.Swerve_2_Rotation_Motor_Invert,
+    Drive_Constants.Swerve_2_Rotation_Encoder_Invert*/);
   private final Swerve_Module Swerve_3 = new Swerve_Module(    
     Drive_Constants.Swerve_3_Drive_ID, 
     Drive_Constants.Swerve_3_Rotation_ID, 
     Drive_Constants.Swerve_3_Rotation_Encoder_ID/*, 
     Drive_Constants.Swerve_3_Angle_Offset/*,
-    Drive_Constants.Swerve_3_Drive_Invert,
-    Drive_Constants.Swerve_3_Rotation_Invert*/);
+    Drive_Constants.Swerve_3_Drive_Motor_Invert,
+    Drive_Constants.Swerve_3_Rotation_Motor_Invert,
+    Drive_Constants.Swerve_3_Rotation_Encoder_Invert*/);
   private final Swerve_Module Swerve_4 = new Swerve_Module(    
     Drive_Constants.Swerve_4_Drive_ID, 
     Drive_Constants.Swerve_4_Rotation_ID, 
     Drive_Constants.Swerve_4_Rotation_Encoder_ID/*, 
     Drive_Constants.Swerve_4_Angle_Offset,
-    Drive_Constants.Swerve_4_Drive_Invert,
-    Drive_Constants.Swerve_4_Rotation_Invert*/);
+    Drive_Constants.Swerve_4_Drive_Motor_Invert,
+    Drive_Constants.Swerve_4_Rotation_Motor_Invert,
+    Drive_Constants.Swerve_4_Rotation_Encoder_Invert*/);
 
   // Declare location of Swerve Modules relative to robot center
   private final Translation2d Swerve_1_Location = new Translation2d(-0.5, 0.5); 
@@ -99,15 +103,15 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public double Get_Yaw() {
-    return Pigeon.getYaw();
+    return Pigeon.getYaw() * (Math.PI/180);
   }
 
   public double Get_Pitch() {
-    return Pigeon.getPitch();
+    return Pigeon.getPitch() * (Math.PI/180);
   }
 
   public double Get_Roll() {
-    return Pigeon.getRoll();
+    return Pigeon.getRoll() * (Math.PI/180);
   }
   
   // public Pose2d Get_Pose() {
