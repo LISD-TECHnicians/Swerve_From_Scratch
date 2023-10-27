@@ -8,7 +8,7 @@ import frc.robot.Constants.Drive_Constants;
 import frc.robot.commands.Swerve_Velocity_Cmd;
 
 public class RobotContainer {
-  private final CommandPS4Controller Controller = new CommandPS4Controller(0);
+  private final CommandPS4Controller Controller = new CommandPS4Controller(3);
 
   public final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
 
