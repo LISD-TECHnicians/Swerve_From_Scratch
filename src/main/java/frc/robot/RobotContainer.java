@@ -2,15 +2,19 @@ package frc.robot;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
-
+import frc.robot.subsystems.Pneumatics_Subsystem;
 import frc.robot.subsystems.Drive.Swerve_Subsystem;
 import frc.robot.Constants.Drive_Constants;
 import frc.robot.commands.Swerve_Velocity_Cmd;
+import frc.robot.commands.Toggle_Solenoid_Cmd;
 
 public class RobotContainer {
   private final CommandPS4Controller Controller = new CommandPS4Controller(3);
 
-  public final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
+  private final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
+  private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();
+
+  private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
 
   private final Swerve_Velocity_Cmd JoystickSwerve = new Swerve_Velocity_Cmd(
     SwerveSubsystem, 
@@ -25,6 +29,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
+    Controller.L1().onTrue(ToggleSolenoid);
 
   }
 
