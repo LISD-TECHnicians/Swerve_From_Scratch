@@ -13,7 +13,7 @@ public final class Constants {
     public static final int Swerve_2_Drive_ID = 7;
     public static final int Swerve_2_Rotation_ID = 11;
     public static final int Swerve_2_Rotation_Encoder_ID = 3;
-    public static final double Swerve_2_Angle_Offset = 2.014116774493847;
+    public static final double Swerve_2_Angle_Offset = 2.014;
     public static final boolean Swerve_2_Drive_Motor_Invert = false;
     public static final boolean Swerve_2_Rotation_Motor_Invert = false;
     public static final boolean Swerve_2_Rotation_Encoder_Invert = false;
