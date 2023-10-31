@@ -49,8 +49,8 @@ public final class Constants {
 
     public static final double Rotation_Speed_Scale_Factor = 0.25;
 
-    public static final double Rotation_P = 1.433;
+    public static final double Rotation_P = 0.05;
     public static final double Rotation_I = 0.0; 
-    public static final double Rotation_D = 0.021628;
+    public static final double Rotation_D = 0.0;
   }
 }
