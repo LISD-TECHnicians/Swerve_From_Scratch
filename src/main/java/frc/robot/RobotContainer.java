@@ -19,7 +19,8 @@ public class RobotContainer {
     SwerveSubsystem, 
     () -> Controller.getLeftX() * Drive_Constants.Max_Drive_Speed, 
     () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
-    () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor);
+    () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor/*,
+    Controller.L1() */);
 
   public RobotContainer() {
     configureBindings();
@@ -28,7 +29,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    Controller.L1().onTrue(ToggleSolenoid);
+    Controller.L3().onTrue(ToggleSolenoid);
   }
 
   public Command getAutonomousCommand() {

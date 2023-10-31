@@ -85,12 +85,16 @@ public class Swerve_Subsystem extends SubsystemBase {
     Pigeon.configMountPose(0, 0, 0);
   }
 
-  public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed) {
+  public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed/*, boolean Field_Oriented*/) {
     // Use given speeds to get Chassis Speed
-    // Swerve_Speeds.vxMetersPerSecond = X_Speed;
-    // Swerve_Speeds.vyMetersPerSecond = Y_Speed;
-    // Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
-    Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
+    if (false /*Field_Oriented*/) {
+      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
+    }
+    else {
+      Swerve_Speeds.vxMetersPerSecond = X_Speed;
+      Swerve_Speeds.vyMetersPerSecond = Y_Speed;
+      Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
+    }
 
     // List of Swerve States from desired Swerve Speeds
     SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  

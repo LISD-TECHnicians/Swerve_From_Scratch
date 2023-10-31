@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 
 import frc.robot.subsystems.Drive.Swerve_Subsystem;
 
+import java.util.function.BooleanSupplier;
 import java.util.function.DoubleSupplier;
 
 public class Swerve_Velocity_Cmd extends CommandBase {
@@ -13,11 +14,15 @@ public class Swerve_Velocity_Cmd extends CommandBase {
   private final DoubleSupplier Y_Speed; // m/s
   private final DoubleSupplier Rotation_Speed; // rad/s
 
-  public Swerve_Velocity_Cmd(Swerve_Subsystem SwerveSubsystem, DoubleSupplier X_Speed, DoubleSupplier Y_Speed, DoubleSupplier Rotation_Speed) {
+  // private final BooleanSupplier Field_Oriented;
+
+  public Swerve_Velocity_Cmd(Swerve_Subsystem SwerveSubsystem, DoubleSupplier X_Speed, DoubleSupplier Y_Speed, DoubleSupplier Rotation_Speed/*, BooleanSupplier Field_Oriented*/) {
     this.SwerveSubsystem = SwerveSubsystem;
     this.X_Speed = X_Speed;
     this.Y_Speed = Y_Speed;
     this.Rotation_Speed = Rotation_Speed;
+
+    // this.Field_Oriented = Field_Oriented;
 
     addRequirements(SwerveSubsystem);
   }
@@ -27,7 +32,7 @@ public class Swerve_Velocity_Cmd extends CommandBase {
 
   @Override
   public void execute() {
-    SwerveSubsystem.Run_Swerve(X_Speed.getAsDouble(), Y_Speed.getAsDouble(), Rotation_Speed.getAsDouble());
+    SwerveSubsystem.Run_Swerve(X_Speed.getAsDouble(), Y_Speed.getAsDouble(), Rotation_Speed.getAsDouble()/*, Field_Oriented.getAsBoolean()*/);
   }
 
   @Override
