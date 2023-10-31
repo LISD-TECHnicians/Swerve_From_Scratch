@@ -21,7 +21,7 @@ public class Swerve_Module {
   private final CANSparkMax Rotation_Motor;
 
   private final CANCoder Rotation_Encoder;
-  // private final double Angle_Offset;
+  private final double Angle_Offset;
 
   // private final boolean Drive_Motor_Invert;
   // private final boolean Rotation_Motor_Invert;
@@ -33,7 +33,7 @@ public class Swerve_Module {
 
   SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState();
 
-  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID/*, double Angle_Offset, boolean Drive_Motor_Invert, boolean Rotation_Motor_Invert, boolean Rotation_Encoder_Invert*/) {
+  public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset/*, boolean Drive_Motor_Invert, boolean Rotation_Motor_Invert, boolean Rotation_Encoder_Invert*/) {
     // Declare Swerve Module motors
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
@@ -55,7 +55,7 @@ public class Swerve_Module {
     // Drive_Motor.setInverted(Drive_Motor_Invert);
     // Rotation_Motor.setInverted(Rotation_Motor_Invert);
 
-    // this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
+    this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
 
     Rotation_PID.enableContinuousInput(-Math.PI, Math.PI);
   }
@@ -69,7 +69,7 @@ public class Swerve_Module {
   }
 
   public double Get_Rotation_Position() {
-    return (Units.degreesToRadians(Rotation_Encoder.getAbsolutePosition())/* + Angle_Offset*/)/* * (Rotation_Encoder_Invert ? -1 : 1)*/; // Returns radians
+    return (Units.degreesToRadians(Rotation_Encoder.getAbsolutePosition()) - Angle_Offset)/* * (Rotation_Encoder_Invert ? -1 : 1)*/; // Returns radians
   }
 
   public double Get_Rotation_Velocity() {

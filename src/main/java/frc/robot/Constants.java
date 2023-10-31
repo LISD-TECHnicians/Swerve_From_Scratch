@@ -5,7 +5,7 @@ public final class Constants {
     public static final int Swerve_1_Drive_ID = 6;
     public static final int Swerve_1_Rotation_ID = 10;
     public static final int Swerve_1_Rotation_Encoder_ID = 2;
-    public static final double Swerve_1_Angle_Offset = 102; // In radians
+    public static final double Swerve_1_Angle_Offset = 3.034; // In radians
     public static final boolean Swerve_1_Drive_Motor_Invert = false;
     public static final boolean Swerve_1_Rotation_Motor_Invert = false;
     public static final boolean Swerve_1_Rotation_Encoder_Invert = false;
@@ -13,7 +13,7 @@ public final class Constants {
     public static final int Swerve_2_Drive_ID = 7;
     public static final int Swerve_2_Rotation_ID = 11;
     public static final int Swerve_2_Rotation_Encoder_ID = 3;
-    public static final double Swerve_2_Angle_Offset = 32;
+    public static final double Swerve_2_Angle_Offset = 2.014116774493847;
     public static final boolean Swerve_2_Drive_Motor_Invert = false;
     public static final boolean Swerve_2_Rotation_Motor_Invert = false;
     public static final boolean Swerve_2_Rotation_Encoder_Invert = false;
@@ -21,7 +21,7 @@ public final class Constants {
     public static final int Swerve_3_Drive_ID = 8;
     public static final int Swerve_3_Rotation_ID = 12;
     public static final int Swerve_3_Rotation_Encoder_ID = 4;
-    public static final double Swerve_3_Angle_Offset = 32;
+    public static final double Swerve_3_Angle_Offset = 4.987;
     public static final boolean Swerve_3_Drive_Motor_Invert = false;
     public static final boolean Swerve_3_Rotation_Motor_Invert = false;
     public static final boolean Swerve_3_Rotation_Encoder_Invert = false;
@@ -29,14 +29,14 @@ public final class Constants {
     public static final int Swerve_4_Drive_ID = 9;
     public static final int Swerve_4_Rotation_ID = 13;
     public static final int Swerve_4_Rotation_Encoder_ID = 5;
-    public static final double Swerve_4_Angle_Offset = 32;
+    public static final double Swerve_4_Angle_Offset = 5.556;
     public static final boolean Swerve_4_Drive_Motor_Invert = false;
     public static final boolean Swerve_4_Rotation_Motor_Invert = false;
     public static final boolean Swerve_4_Rotation_Encoder_Invert = false;
 
     public static final int Pigeon_ID = 14;
 
-    public static final double Nominal_Voltage = 12;
+    public static final double Nominal_Voltage = 11.5;
 
     public static final double Swerve_Radius = 0.44; // m
 
@@ -49,8 +49,8 @@ public final class Constants {
 
     public static final double Rotation_Speed_Scale_Factor = 0.25;
 
-    public static final double Rotation_P = 0.05;
+    public static final double Rotation_P = 1.433;
     public static final double Rotation_I = 0.0; 
-    public static final double Rotation_D = 0.0;
+    public static final double Rotation_D = 0.021628;
   }
 }

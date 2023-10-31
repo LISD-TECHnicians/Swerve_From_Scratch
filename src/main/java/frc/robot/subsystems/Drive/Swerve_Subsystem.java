@@ -20,23 +20,23 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final Swerve_Module Swerve_1 = new Swerve_Module(
     Drive_Constants.Swerve_1_Drive_ID, 
     Drive_Constants.Swerve_1_Rotation_ID, 
-    Drive_Constants.Swerve_1_Rotation_Encoder_ID/*, 
-    Drive_Constants.Swerve_1_Angle_Offset,
+    Drive_Constants.Swerve_1_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_1_Angle_Offset/*,
     Drive_Constants.Swerve_1_Drive_Motor_Invert,
     Drive_Constants.SWerve_1_Rotation_Motor_Invert,
     Drive_Constants.Swerve_1_Rotation_Encoder_Invert*/);
   private final Swerve_Module Swerve_2 = new Swerve_Module(
     Drive_Constants.Swerve_2_Drive_ID, 
     Drive_Constants.Swerve_2_Rotation_ID, 
-    Drive_Constants.Swerve_2_Rotation_Encoder_ID/*, 
-    Drive_Constants.Swerve_2_Angle_Offset,
+    Drive_Constants.Swerve_2_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_2_Angle_Offset/*,
     Drive_Constants.Swerve_2_Drive_Motor_Invert,
     Drive_Constants.Swerve_2_Rotation_Motor_Invert,
     Drive_Constants.Swerve_2_Rotation_Encoder_Invert*/);
   private final Swerve_Module Swerve_3 = new Swerve_Module(    
     Drive_Constants.Swerve_3_Drive_ID, 
     Drive_Constants.Swerve_3_Rotation_ID, 
-    Drive_Constants.Swerve_3_Rotation_Encoder_ID/*, 
+    Drive_Constants.Swerve_3_Rotation_Encoder_ID, 
     Drive_Constants.Swerve_3_Angle_Offset/*,
     Drive_Constants.Swerve_3_Drive_Motor_Invert,
     Drive_Constants.Swerve_3_Rotation_Motor_Invert,
@@ -44,8 +44,8 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final Swerve_Module Swerve_4 = new Swerve_Module(    
     Drive_Constants.Swerve_4_Drive_ID, 
     Drive_Constants.Swerve_4_Rotation_ID, 
-    Drive_Constants.Swerve_4_Rotation_Encoder_ID/*, 
-    Drive_Constants.Swerve_4_Angle_Offset,
+    Drive_Constants.Swerve_4_Rotation_Encoder_ID, 
+    Drive_Constants.Swerve_4_Angle_Offset/*,
     Drive_Constants.Swerve_4_Drive_Motor_Invert,
     Drive_Constants.Swerve_4_Rotation_Motor_Invert,
     Drive_Constants.Swerve_4_Rotation_Encoder_Invert*/);
@@ -86,10 +86,10 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed) {
     // Use given speeds to get Chassis Speed
-    Swerve_Speeds.vxMetersPerSecond = X_Speed;
-    Swerve_Speeds.vyMetersPerSecond = Y_Speed;
-    Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
-    // Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
+    // Swerve_Speeds.vxMetersPerSecond = X_Speed;
+    // Swerve_Speeds.vyMetersPerSecond = Y_Speed;
+    // Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
+    Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
 
     // List of Swerve States from desired Swerve Speeds
     SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  
@@ -139,10 +139,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
 
-    System.out.println("1" + Swerve_1.Get_Rotation_Position());
-    System.out.println("2" + Swerve_2.Get_Rotation_Position());
-    System.out.println("3" + Swerve_3.Get_Rotation_Position());
-    System.out.println("4" + Swerve_4.Get_Rotation_Position());
+    System.out.println("1 " + Swerve_1.Get_Rotation_Position());
   }
 
   @Override
