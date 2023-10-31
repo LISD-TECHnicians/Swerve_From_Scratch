@@ -14,6 +14,7 @@ import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
 import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
+import edu.wpi.first.math.util.Units;
 
 public class Swerve_Subsystem extends SubsystemBase {
   // Declare all Swerve Modules
@@ -104,15 +105,15 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public double Get_Yaw() {
-    return Pigeon.getYaw() * (Math.PI/180);
+    return Units.degreesToRadians(Pigeon.getYaw());
   }
 
   public double Get_Pitch() {
-    return Pigeon.getPitch() * (Math.PI/180);
+    return Units.degreesToRadians(Pigeon.getPitch());
   }
 
   public double Get_Roll() {
-    return Pigeon.getRoll() * (Math.PI/180);
+    return Units.degreesToRadians(Pigeon.getRoll());
   }
   
   // public Pose2d Get_Pose() {
@@ -139,7 +140,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
 
-    System.out.println("1 " + Swerve_1.Get_Rotation_Position());
+    System.out.println("Pigeon; " + Get_Yaw());
   }
 
   @Override
