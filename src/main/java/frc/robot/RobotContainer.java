@@ -15,7 +15,6 @@ public class RobotContainer {
   private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();
 
   private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
-
   private final Swerve_Velocity_Cmd JoystickSwerve = new Swerve_Velocity_Cmd(
     SwerveSubsystem, 
     () -> Controller.getLeftX() * Drive_Constants.Max_Drive_Speed, 
@@ -30,7 +29,6 @@ public class RobotContainer {
 
   private void configureBindings() {
     Controller.L1().onTrue(ToggleSolenoid);
-
   }
 
   public Command getAutonomousCommand() {
