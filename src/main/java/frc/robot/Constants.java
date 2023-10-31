@@ -36,14 +36,16 @@ public final class Constants {
 
     public static final int Pigeon_ID = 14;
 
-    public static final double Swerve_Radius = 0.5; // m
+    public static final double Nominal_Voltage = 12;
 
-    public static final double Max_Drive_Speed = 5; // Max possible m/s
+    public static final double Swerve_Radius = 0.44; // m
+
+    public static final double Max_Drive_Speed = 4.97; // Max possible m/s
     public static final double Max_Drive_Set_Acceleration = 5; // Max choosen m/s^2
 
     public static final double Max_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
 
-    public static final double Drive_Gear_Ratio = 1/5;
+    public static final double Drive_Gear_Ratio = 6.75;
 
     public static final double Rotation_Speed_Scale_Factor = 0.25;
 

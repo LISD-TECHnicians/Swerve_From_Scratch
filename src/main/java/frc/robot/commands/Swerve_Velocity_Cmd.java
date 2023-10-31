@@ -28,8 +28,6 @@ public class Swerve_Velocity_Cmd extends CommandBase {
   @Override
   public void execute() {
     SwerveSubsystem.Run_Swerve(X_Speed.getAsDouble(), Y_Speed.getAsDouble(), Rotation_Speed.getAsDouble());
-
-    System.out.println("Set Speeds; " + X_Speed.getAsDouble() + " -- " + Y_Speed.getAsDouble() + " -- " + Rotation_Speed.getAsDouble());
   }
 
   @Override

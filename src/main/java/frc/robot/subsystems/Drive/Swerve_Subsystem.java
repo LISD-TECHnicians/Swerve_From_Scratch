@@ -51,10 +51,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Swerve_4_Rotation_Encoder_Invert*/);
 
   // Declare location of Swerve Modules relative to robot center
-  private final Translation2d Swerve_1_Location = new Translation2d(-0.5, 0.5); 
-  private final Translation2d Swerve_2_Location = new Translation2d(0.5, 0.5);
-  private final Translation2d Swerve_3_Location = new Translation2d(-0.5, -0.5);
-  private final Translation2d Swerve_4_Location = new Translation2d(0.5, -0.5);
+  private final Translation2d Swerve_1_Location = new Translation2d(-0.31, 0.31); 
+  private final Translation2d Swerve_2_Location = new Translation2d(0.31, 0.31);
+  private final Translation2d Swerve_3_Location = new Translation2d(-0.31, -0.31);
+  private final Translation2d Swerve_4_Location = new Translation2d(0.31, -0.31);
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics(
@@ -138,6 +138,11 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Positions[3] = Swerve_4_Position;
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
+
+    System.out.println("1" + Swerve_1.Get_Rotation_Position());
+    System.out.println("2" + Swerve_2.Get_Rotation_Position());
+    System.out.println("3" + Swerve_3.Get_Rotation_Position());
+    System.out.println("4" + Swerve_4.Get_Rotation_Position());
   }
 
   @Override

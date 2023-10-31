@@ -45,6 +45,9 @@ public class Swerve_Module {
 
     Rotation_Encoder.configFactoryDefault();
 
+    Drive_Motor.configVoltageCompSaturation(Drive_Constants.Nominal_Voltage);
+    Rotation_Motor.enableVoltageCompensation(Drive_Constants.Nominal_Voltage);
+
     // this.Drive_Motor_Invert = Drive_Motor_Invert;
     // this.Rotation_Motor_Invert = Rotation_Motor_Invert;
     // this.Rotation_Encoder_Invert = Rotation_Encoder_Invert;
@@ -58,11 +61,11 @@ public class Swerve_Module {
   }
 
   public double Get_Drive_Position() {
-    return Drive_Motor.getSelectedSensorPosition() / Drive_Constants.Drive_Gear_Ratio; // Returns meters
+    return Drive_Motor.getSelectedSensorPosition() * Drive_Constants.Drive_Gear_Ratio; // Returns meters
   }
 
   public double Get_Drive_Velcoity() {
-    return Drive_Motor.getSelectedSensorVelocity() * 10 / Drive_Constants.Drive_Gear_Ratio; // Returns meters per second
+    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio; // Returns meters per second
   }
 
   public double Get_Rotation_Position() {
@@ -91,7 +94,5 @@ public class Swerve_Module {
 
     Drive_Motor.set(Drive_Speed);
     Rotation_Motor.set(Rotation_Speed);
-
-    System.out.println("CANcoder " + Get_Rotation_Position());
   }
 }
