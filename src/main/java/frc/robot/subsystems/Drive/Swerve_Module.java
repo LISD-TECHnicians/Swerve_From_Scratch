@@ -5,10 +5,12 @@ import frc.robot.Constants.Drive_Constants;
 import edu.wpi.first.math.util.Units;
 import edu.wpi.first.math.MathUtil;
 
+import com.ctre.phoenix.motorcontrol.NeutralMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonFX;
 import com.ctre.phoenix.sensors.CANCoder;
 
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMax.IdleMode;
 import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -47,6 +49,9 @@ public class Swerve_Module {
 
     Drive_Motor.configVoltageCompSaturation(Drive_Constants.Nominal_Voltage);
     Rotation_Motor.enableVoltageCompensation(Drive_Constants.Nominal_Voltage);
+
+    Drive_Motor.setNeutralMode(NeutralMode.Coast);
+    Rotation_Motor.setIdleMode(IdleMode.kCoast);
 
     // this.Drive_Motor_Invert = Drive_Motor_Invert;
     // this.Rotation_Motor_Invert = Rotation_Motor_Invert;
