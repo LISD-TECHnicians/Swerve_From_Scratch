@@ -61,11 +61,11 @@ public class Swerve_Module {
   }
 
   public double Get_Drive_Position() {
-    return Drive_Motor.getSelectedSensorPosition() * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference * (1/Drive_Constants.Ticks_Per_Revolution_Falcon); // Returns meters
+    return Drive_Motor.getSelectedSensorPosition() * (1/Drive_Constants.Ticks_Per_Revolution_Falcon) * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference; // Returns meters
   }
 
   public double Get_Drive_Velcoity() {
-    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference * (1/Drive_Constants.Ticks_Per_Revolution_Falcon); // Returns meters per second
+    return Drive_Motor.getSelectedSensorVelocity() * 10 * (1/Drive_Constants.Ticks_Per_Revolution_Falcon) * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference; // Returns meters per second
   }
 
   public double Get_Rotation_Position() {
