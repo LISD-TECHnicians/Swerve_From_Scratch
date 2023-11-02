@@ -143,6 +143,12 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Positions[3] = Swerve_4_Position;
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
+
+    // To get CANcoder Inverts
+    // System.out.println("Cancoder 1; " + Swerve_1.Get_Rotation_Position());
+    // System.out.println("Cancoder 2; " + Swerve_2.Get_Rotation_Position());
+    // System.out.println("Cancoder 3; " + Swerve_3.Get_Rotation_Position());
+    // System.out.println("Cancoder 4; " + Swerve_4.Get_Rotation_Position());
   }
 
   @Override

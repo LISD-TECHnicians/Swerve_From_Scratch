@@ -61,11 +61,11 @@ public class Swerve_Module {
   }
 
   public double Get_Drive_Position() {
-    return Drive_Motor.getSelectedSensorPosition() * Drive_Constants.Drive_Gear_Ratio * 0.638 / 2048; // Returns meters
+    return Drive_Motor.getSelectedSensorPosition() * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference * (1/Drive_Constants.Ticks_Per_Revolution_Falcon); // Returns meters
   }
 
   public double Get_Drive_Velcoity() {
-    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio * 0.638 / 2048; // Returns meters per second
+    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio * Drive_Constants.Wheel_Circumference * (1/Drive_Constants.Ticks_Per_Revolution_Falcon); // Returns meters per second
   }
 
   public double Get_Rotation_Position() {
@@ -92,7 +92,13 @@ public class Swerve_Module {
     double Rotation_Speed = Rotation_PID.calculate(Get_Rotation_Position(), Swerve_Module_State.angle.getRadians());
     Rotation_Speed = MathUtil.clamp(Rotation_Speed, -Drive_Constants.Rotation_Speed_Scale_Factor, Drive_Constants.Rotation_Speed_Scale_Factor);
 
-    Drive_Motor.set(Drive_Speed);
-    Rotation_Motor.set(Rotation_Speed);
+    // Drive_Motor.set(Drive_Speed);
+    // Rotation_Motor.set(Rotation_Speed);
+
+    // To get rotation motor inverts
+    // Rotation_Motor.set(.2); Drive_Motor.set(0);
+
+    // To get drive motor inverts
+    // Drive_Motor.set(.2); Rotation_Motor.set(0);
   }
 }
