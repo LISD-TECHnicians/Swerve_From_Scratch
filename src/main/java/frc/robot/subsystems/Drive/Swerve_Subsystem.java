@@ -143,8 +143,6 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Positions[3] = Swerve_4_Position;
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
-
-    System.out.println("Pigeon; " + Get_Yaw());
   }
 
   @Override
