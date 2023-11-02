@@ -69,7 +69,7 @@ public class Swerve_Module {
     return Drive_Motor.getSelectedSensorPosition() * Drive_Constants.Drive_Motor_Position_To_Meters; // Returns meters
   }
 
-  public double Get_Drive_Velcoity() {
+  public double Get_Drive_Velocity() {
     return Drive_Motor.getSelectedSensorVelocity() * Drive_Constants.Drive_Motor_Velcoity_to_Meters_Second; // Returns meters per second
   }
 
@@ -82,7 +82,7 @@ public class Swerve_Module {
   }
 
   public SwerveModuleState Get_Swerve_State() {
-    Current_Swerve_Module_State.speedMetersPerSecond = Get_Drive_Velcoity();
+    Current_Swerve_Module_State.speedMetersPerSecond = Get_Drive_Velocity();
     Current_Swerve_Module_State.angle = Rotation2d.fromRadians(Get_Rotation_Position());
 
     return Current_Swerve_Module_State;
