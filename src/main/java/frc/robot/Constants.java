@@ -39,10 +39,13 @@ public final class Constants {
     public static final double Nominal_Voltage = 12.0;
 
     public static final double Swerve_Radius = 0.44; // m
-    public static final double Wheel_Circumference = 0.319;
+    public static final double Wheel_Circumference = 4 * Math.PI;
 
-    public static final double Ticks_Per_Revolution_Falcon = 2048;
+    public static final double Revolutions_Per_Tick_Falcon = 1/2048;
     public static final double Drive_Gear_Ratio = 1/6.75;
+
+    public static final double Drive_Motor_Position_To_Meters = Revolutions_Per_Tick_Falcon * Drive_Gear_Ratio * Wheel_Circumference;
+    public static final double Drive_Motor_Velcoity_to_Meters_Second = 10 * Revolutions_Per_Tick_Falcon * Drive_Gear_Ratio * Wheel_Circumference;
 
     public static final double Max_Drive_Speed = 4.97; // Max possible m/s
     public static final double Max_Drive_Set_Acceleration = 5; // Max choosen m/s^2
