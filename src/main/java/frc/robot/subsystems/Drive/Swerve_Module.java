@@ -65,7 +65,7 @@ public class Swerve_Module {
   }
 
   public double Get_Drive_Velcoity() {
-    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio * 2 * 0.0508 * Math.PI / 2048; // Returns meters per second
+    return Drive_Motor.getSelectedSensorVelocity() * 10 * Drive_Constants.Drive_Gear_Ratio * 0.638 / 2048; // Returns meters per second
   }
 
   public double Get_Rotation_Position() {
