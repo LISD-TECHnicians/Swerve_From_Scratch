@@ -40,7 +40,7 @@ public final class Constants {
 
     public static final double Swerve_Radius = 0.44; // m
 
-    public static final double Wheel_Diameter = 4;
+    public static final double Wheel_Diameter = 0.102;
     public static final double Wheel_Circumference = Wheel_Diameter * Math.PI;
 
     public static final double Ticks_Per_Revolution_Falcon = 2048;
