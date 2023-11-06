@@ -29,7 +29,7 @@ public class RobotContainer {
   }
 
   private void configureBindings() {
-    Controller.L3().onTrue(ToggleSolenoid);
+    Controller.L2().onTrue(ToggleSolenoid);
   }
 
   public Command getAutonomousCommand() {

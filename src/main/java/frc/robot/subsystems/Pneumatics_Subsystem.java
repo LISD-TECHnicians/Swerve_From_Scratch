@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class Pneumatics_Subsystem extends SubsystemBase {
-  private final Solenoid LaBimba = new Solenoid(PneumaticsModuleType.REVPH, 2);
+  private final Solenoid LaBimba = new Solenoid(PneumaticsModuleType.REVPH, 0);
 
   public Pneumatics_Subsystem() {
   }

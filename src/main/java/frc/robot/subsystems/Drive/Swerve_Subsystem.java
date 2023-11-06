@@ -52,10 +52,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Swerve_4_Rotation_Encoder_Invert);
 
   // Declare location of Swerve Modules relative to robot center
-  private final Translation2d Swerve_1_Location = new Translation2d(-0.31, 0.31); 
-  private final Translation2d Swerve_2_Location = new Translation2d(0.31, 0.31);
-  private final Translation2d Swerve_3_Location = new Translation2d(-0.31, -0.31);
-  private final Translation2d Swerve_4_Location = new Translation2d(0.31, -0.31);
+  private final Translation2d Swerve_4_Location = new Translation2d(0.31, -0.31); 
+  private final Translation2d Swerve_3_Location = new Translation2d(0.31, 0.31);
+  private final Translation2d Swerve_2_Location = new Translation2d(-0.31, 0.31);
+  private final Translation2d Swerve_1_Location = new Translation2d(-0.31, -0.31);
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics(
