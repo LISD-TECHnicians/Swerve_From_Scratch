@@ -70,7 +70,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
   //  Declare Swerve Module Positions for SWerve Odometry
-  /*private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left_Swerve.Get_Drive_Position(), Front_Left_Swerve.Get_Swerve_State().angle);
+  /* private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left_Swerve.Get_Drive_Position(), Front_Left_Swerve.Get_Swerve_State().angle);
   private SwerveModulePosition Front_Right_Position = new SwerveModulePosition(Front_Right_Swerve.Get_Drive_Position(), Front_Right_Swerve.Get_Swerve_State().angle);
   private SwerveModulePosition Rear_Right_Position = new SwerveModulePosition(Rear_Right_Swerve.Get_Drive_Position(), Rear_Right_Swerve.Get_Swerve_State().angle);
   private SwerveModulePosition Rear_Left_Position = new SwerveModulePosition(Rear_Left_Swerve.Get_Drive_Position(), Rear_Left_Swerve.Get_Swerve_State().angle);
@@ -78,7 +78,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   private SwerveModulePosition[] Swerve_Positions = {Front_Left_Position, Front_Right_Position, Rear_Right_Position, Rear_Left_Position};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
+  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions); */
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();
@@ -127,24 +127,24 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    /*
-    Front_Left_Position.distanceMeters = Front_Left.Get_Drive_Position();
-    Front_Left_Position.angle = Front_Left.Get_Swerve_State().angle;
-    Swerve_Positions[2] = Front_Left_Position;
+    
+    /* Front_Left_Position.distanceMeters = Front_Left_Swerve.Get_Drive_Position();
+    Front_Left_Position.angle = Front_Left_Swerve.Get_Swerve_State().angle;
+    Swerve_Positions[0] = Front_Left_Position;
 
-    Front_Right_Position.distanceMeters = Front_Right.Get_Drive_Position();
-    Front_Right_Position.angle = Front_Right.Get_Swerve_State().angle;
+    Front_Right_Position.distanceMeters = Front_Right_Swerve.Get_Drive_Position();
+    Front_Right_Position.angle = Front_Right_Swerve.Get_Swerve_State().angle;
     Swerve_Positions[1] = Front_Right_Position;
 
-    Rear_Right_Position.distanceMeters = Rear_Right.Get_Drive_Position();
-    Rear_Right_Position.angle = Rear_Right.Get_Swerve_State().angle;
-    Swerve_Positions[0] = Rear_Right_Position;
+    Rear_Right_Position.distanceMeters = Rear_Right_Swerve.Get_Drive_Position();
+    Rear_Right_Position.angle = Rear_Right_Swerve.Get_Swerve_State().angle;
+    Swerve_Positions[2] = Rear_Right_Position;
     
-    Rear_Left_Position.distanceMeters = Rear_Left.Get_Drive_Position();
-    Rear_Left_Position.angle = Rear_Left.Get_Swerve_State().angle;
+    Rear_Left_Position.distanceMeters = Rear_Left_Swerve.Get_Drive_Position();
+    Rear_Left_Position.angle = Rear_Left_Swerve.Get_Swerve_State().angle;
     Swerve_Positions[3] = Rear_Left_Position;
 
-    Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
+    Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions); */
 
     // System.out.println("Cancoder FL; " + Front_Left_Swerve.Get_Rotation_Position());
     // System.out.println("Cancoder FR; " + Front_Right_Swerve.Get_Rotation_Position());

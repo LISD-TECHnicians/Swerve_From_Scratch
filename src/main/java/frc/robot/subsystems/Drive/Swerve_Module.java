@@ -31,7 +31,7 @@ public class Swerve_Module {
 
   private final PIDController Rotation_PID = new PIDController(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D);
 
-  SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState();
+  private SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState();
 
   public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset, boolean Drive_Motor_Invert, boolean Rotation_Motor_Invert, boolean Rotation_Encoder_Invert) {
     // Declare Swerve Module motors
