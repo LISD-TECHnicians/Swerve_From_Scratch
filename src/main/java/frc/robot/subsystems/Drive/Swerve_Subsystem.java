@@ -52,14 +52,13 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Rear_Left_Rotation_Encoder_Invert);
 
   // Declare location of Swerve Modules relative to robot center 
+  // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
   private final Translation2d Front_Left_Location = new Translation2d(0.31, 0.31);
   private final Translation2d Front_Right_Location = new Translation2d(0.31, -0.31);
   private final Translation2d Rear_Right_Location = new Translation2d(-0.31, -0.31);
   private final Translation2d Rear_Left_Location = new Translation2d(-0.31, 0.31);
   
   // Declare Swerve Kinematics using Swerve Module locations
-  // MUST PASS MODULES CLOCKWISE FROM FRONT LEFT
-  // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics( 
     Front_Left_Location, 
     Front_Right_Location, 
