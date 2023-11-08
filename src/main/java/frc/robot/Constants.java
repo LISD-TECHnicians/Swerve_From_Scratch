@@ -2,13 +2,13 @@ package frc.robot;
 
 public final class Constants {
   public final class Drive_Constants {
-    public static final int Rear_Right_Drive_ID = 6;
-    public static final int Rear_Right_Rotation_ID = 10;
-    public static final int Rear_Right_Rotation_Encoder_ID = 2;
-    public static final double Rear_Right_Angle_Offset = 3.034 + Math.PI/2; // In radians
-    public static final boolean Rear_Right_Drive_Motor_Invert = false;
-    public static final boolean Rear_Right_Rotation_Motor_Invert = false;
-    public static final boolean Rear_Right_Rotation_Encoder_Invert = true;
+    public static final int Front_Left_Drive_ID = 8;
+    public static final int Front_Left_Rotation_ID = 12;
+    public static final int Front_Left_Rotation_Encoder_ID = 4;
+    public static final double Front_Left_Angle_Offset = 4.987 + Math.PI/2;
+    public static final boolean Front_Left_Drive_Motor_Invert = false;
+    public static final boolean Front_Left_Rotation_Motor_Invert = false;
+    public static final boolean Front_Left_Rotation_Encoder_Invert = true;
 
     public static final int Front_Right_Drive_ID = 7;
     public static final int Front_Right_Rotation_ID = 11;
@@ -17,14 +17,14 @@ public final class Constants {
     public static final boolean Front_Right_Drive_Motor_Invert = false;
     public static final boolean Front_Right_Rotation_Motor_Invert = false;
     public static final boolean Front_Right_Rotation_Encoder_Invert = true;
-    
-    public static final int Front_Left_Drive_ID = 8;
-    public static final int Front_Left_Rotation_ID = 12;
-    public static final int Front_Left_Rotation_Encoder_ID = 4;
-    public static final double Front_Left_Angle_Offset = 4.987 + Math.PI/2;
-    public static final boolean Front_Left_Drive_Motor_Invert = false;
-    public static final boolean Front_Left_Rotation_Motor_Invert = false;
-    public static final boolean Front_Left_Rotation_Encoder_Invert = true;
+
+    public static final int Rear_Right_Drive_ID = 6;
+    public static final int Rear_Right_Rotation_ID = 10;
+    public static final int Rear_Right_Rotation_Encoder_ID = 2;
+    public static final double Rear_Right_Angle_Offset = 3.034 + Math.PI/2; // In radians
+    public static final boolean Rear_Right_Drive_Motor_Invert = false;
+    public static final boolean Rear_Right_Rotation_Motor_Invert = false;
+    public static final boolean Rear_Right_Rotation_Encoder_Invert = true;
 
     public static final int Rear_Left_Drive_ID = 9;
     public static final int Rear_Left_Rotation_ID = 13;

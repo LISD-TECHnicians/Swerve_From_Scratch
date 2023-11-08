@@ -70,13 +70,13 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
-  //  Declare Swerve Module POsitions for SWerve Odometry
-  /*private SwerveModulePosition Rear_Right_Position = new SwerveModulePosition(Rear_Right.Get_Drive_Position(), Rear_Right.Get_Swerve_State().angle);
-  private SwerveModulePosition Front_Right_Position = new SwerveModulePosition(Front_Right.Get_Drive_Position(), Front_Right.Get_Swerve_State().angle);
-  private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left.Get_Drive_Position(), Front_Left.Get_Swerve_State().angle);
-  private SwerveModulePosition Rear_Left_Position = new SwerveModulePosition(Rear_Left.Get_Drive_Position(), Rear_Left.Get_Swerve_State().angle);
+  //  Declare Swerve Module Positions for SWerve Odometry
+  /*private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left_Swerve.Get_Drive_Position(), Front_Left_Swerve.Get_Swerve_State().angle);
+  private SwerveModulePosition Front_Right_Position = new SwerveModulePosition(Front_Right_Swerve.Get_Drive_Position(), Front_Right_Swerve.Get_Swerve_State().angle);
+  private SwerveModulePosition Rear_Right_Position = new SwerveModulePosition(Rear_Right_Swerve.Get_Drive_Position(), Rear_Right_Swerve.Get_Swerve_State().angle);
+  private SwerveModulePosition Rear_Left_Position = new SwerveModulePosition(Rear_Left_Swerve.Get_Drive_Position(), Rear_Left_Swerve.Get_Swerve_State().angle);
 
-  private SwerveModulePosition[] Swerve_Positions = {Rear_Right_Position, Front_Right_Position, Front_Left_Position, Rear_Left_Position};
+  private SwerveModulePosition[] Swerve_Positions = {Front_Left_Position, Front_Right_Position, Rear_Right_Position, Rear_Left_Position};
 
   // Declare Swerve Odometry
   private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
@@ -104,9 +104,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
 
     // Set each Swerve State
-    Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[0]);
+    Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]);
     Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
-    Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
+    Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
     Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
@@ -128,17 +128,18 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    /*Rear_Right_Position.distanceMeters = Rear_Right.Get_Drive_Position();
-    Rear_Right_Position.angle = Rear_Right.Get_Swerve_State().angle;
-    Swerve_Positions[0] = Rear_Right_Position;
-    
-    Front_Right_Position.distanceMeters = Front_Right.Get_Drive_Position();
-    Front_Right_Position.angle = Front_Right.Get_Swerve_State().angle;
-    Swerve_Positions[1] = Front_Right_Position;
-    
+    /*
     Front_Left_Position.distanceMeters = Front_Left.Get_Drive_Position();
     Front_Left_Position.angle = Front_Left.Get_Swerve_State().angle;
     Swerve_Positions[2] = Front_Left_Position;
+
+    Front_Right_Position.distanceMeters = Front_Right.Get_Drive_Position();
+    Front_Right_Position.angle = Front_Right.Get_Swerve_State().angle;
+    Swerve_Positions[1] = Front_Right_Position;
+
+    Rear_Right_Position.distanceMeters = Rear_Right.Get_Drive_Position();
+    Rear_Right_Position.angle = Rear_Right.Get_Swerve_State().angle;
+    Swerve_Positions[0] = Rear_Right_Position;
     
     Rear_Left_Position.distanceMeters = Rear_Left.Get_Drive_Position();
     Rear_Left_Position.angle = Rear_Left.Get_Swerve_State().angle;
@@ -146,10 +147,10 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);*/
 
-    // System.out.println("Cancoder 1; " + Rear_Right.Get_Rotation_Position());
-    // System.out.println("Cancoder 2; " + Front_Right.Get_Rotation_Position());
-    // System.out.println("Cancoder 3; " + Front_Left.Get_Rotation_Position());
-    // System.out.println("Cancoder 4; " + Rear_Left.Get_Rotation_Position());
+    // System.out.println("Cancoder FL; " + Front_Left_Swerve.Get_Rotation_Position());
+    // System.out.println("Cancoder FR; " + Front_Right_Swerve.Get_Rotation_Position());
+    // System.out.println("Cancoder RR; " + Rear_Right_Swerve.Get_Rotation_Position());
+    // System.out.println("Cancoder RL; " + Rear_Left_Swerve.Get_Rotation_Position());
   }
 
   @Override
