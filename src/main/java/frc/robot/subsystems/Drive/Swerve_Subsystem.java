@@ -102,11 +102,11 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
 
-    // Set each Swerve State
+    // Set each Swerve State // Inverse of way locations were passed through SWerve Kinematics
     Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]);
-    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
+    Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
     Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
-    Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
+    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
   public double Get_Yaw() {
