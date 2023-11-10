@@ -94,7 +94,7 @@ public class Swerve_Subsystem extends SubsystemBase {
       Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
     }
     else {
-      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(-Get_Yaw()));
+      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
     }
 
     // List of Swerve States from desired Swerve Speeds
@@ -110,7 +110,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public double Get_Yaw() {
-    return Units.degreesToRadians(Pigeon.getYaw());
+    return -Units.degreesToRadians(Pigeon.getYaw()); // Negative makes clockwise positive
   }
 
   public double Get_Pitch() {
