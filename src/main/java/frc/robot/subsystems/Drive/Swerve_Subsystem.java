@@ -88,13 +88,13 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed, boolean Robot_Oriented) {
     // Use given speeds to get Chassis Speed
-    if (!Robot_Oriented) {
-      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(-Get_Yaw()));
-    }
-    else {
+    if (Robot_Oriented) {
       Swerve_Speeds.vxMetersPerSecond = X_Speed;
       Swerve_Speeds.vyMetersPerSecond = Y_Speed;
       Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
+    }
+    else {
+      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(-Get_Yaw()));
     }
 
     // List of Swerve States from desired Swerve Speeds
