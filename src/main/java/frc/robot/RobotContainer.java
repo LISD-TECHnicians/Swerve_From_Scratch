@@ -19,8 +19,8 @@ public class RobotContainer {
     SwerveSubsystem, 
     () -> Controller.getLeftX() * Drive_Constants.Max_Drive_Speed, 
     () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
-    () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor/*,
-    Controller.L1() */);
+    () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
+    Controller.L1());
 
   public RobotContainer() {
     configureBindings();
