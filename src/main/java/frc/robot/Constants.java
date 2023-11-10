@@ -60,4 +60,8 @@ public final class Constants {
     public static final double Rotation_I = 0.0; 
     public static final double Rotation_D = 0.0;
   }
+
+  public final class Pneumatics_Constants {
+    public static final int LaBimba_Port = 0;
+  }
 }
