@@ -85,7 +85,7 @@ public class Swerve_Module {
   }
 
   public void Set_Swerve_State(SwerveModuleState Swerve_Module_State) {
-    // Swerve_Module_State = SwerveModuleState.optimize(Swerve_Module_State, Get_Swerve_State().angle);
+    Swerve_Module_State = SwerveModuleState.optimize(Swerve_Module_State, Get_Swerve_State().angle);
 
     double Drive_Speed = Drive_Limiter.calculate(Swerve_Module_State.speedMetersPerSecond);
     Drive_Speed = Drive_Speed / Drive_Constants.Max_Drive_Speed;
