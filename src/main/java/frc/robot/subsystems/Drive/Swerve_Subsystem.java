@@ -77,7 +77,8 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private SwerveModulePosition[] Swerve_Positions = {Front_Left_Position, Front_Right_Position, Rear_Right_Position, Rear_Left_Position};
 
-  private final Pose2d Empty_Pose2d = new Pose2d();
+  // private final Pose2d Initial_Pose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0));
+  private final Pose2d Empty_Pose = new Pose2d();
 
   // Declare Swerve Odometry
   private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
@@ -128,7 +129,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public void Reset_Pose() {
-    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Empty_Pose2d);
+    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Empty_Pose);
   }
 
   @Override
