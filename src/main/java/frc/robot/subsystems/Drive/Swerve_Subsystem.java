@@ -77,6 +77,8 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private SwerveModulePosition[] Swerve_Positions = {Front_Left_Position, Front_Right_Position, Rear_Right_Position, Rear_Left_Position};
 
+  private final Pose2d Empty_Pose2d = new Pose2d();
+
   // Declare Swerve Odometry
   private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
@@ -125,6 +127,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     return Swerve_Odometry.getPoseMeters();
   }
 
+  public void Reset_Pose() {
+    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Empty_Pose2d);
+  }
+
   @Override
   public void periodic() {
     
@@ -146,7 +152,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
-    System.out.println(Get_Pose());
+    // System.out.println(Get_Pose());
 
     // System.out.println("Cancoder FL; " + Front_Left_Swerve.Get_Rotation_Position());
     // System.out.println("Cancoder FR; " + Front_Right_Swerve.Get_Rotation_Position());

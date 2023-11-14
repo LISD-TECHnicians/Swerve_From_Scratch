@@ -10,6 +10,7 @@ import frc.robot.subsystems.Drive.Swerve_Subsystem;
 
 import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
+import frc.robot.commands.Reset_Pose_Cmd;
 
 public class RobotContainer {
   private final CommandPS4Controller Controller = new CommandPS4Controller(3);
@@ -24,6 +25,7 @@ public class RobotContainer {
     () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
     () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
     Controller.L1());
+  private final Reset_Pose_Cmd ResetPose = new Reset_Pose_Cmd(SwerveSubsystem);
 
   public RobotContainer() {
     configureBindings();
@@ -33,6 +35,8 @@ public class RobotContainer {
 
   private void configureBindings() {
     Controller.L2().onTrue(ToggleSolenoid);
+
+    Controller.R1().onTrue(ResetPose);
   }
 
   public Command getAutonomousCommand() {
