@@ -1,6 +1,10 @@
 package frc.robot;
 
 public final class Constants {
+  public final class Controller_Constants {
+    public static final int Controller_Port = 3;
+  }
+
   public final class Drive_Constants {
     public static final int Front_Left_Drive_ID = 8;
     public static final int Front_Left_Rotation_ID = 12;

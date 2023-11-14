@@ -3,6 +3,7 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
+import frc.robot.Constants.Controller_Constants;
 import frc.robot.Constants.Drive_Constants;
 
 import frc.robot.subsystems.Pneumatics_Subsystem;
@@ -13,7 +14,7 @@ import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Reset_Pose_Cmd;
 
 public class RobotContainer {
-  private final CommandPS4Controller Controller = new CommandPS4Controller(3);
+  private final CommandPS4Controller Controller = new CommandPS4Controller(Controller_Constants.Controller_Port);
 
   private final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
   private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();

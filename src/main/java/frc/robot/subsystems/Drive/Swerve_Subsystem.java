@@ -134,7 +134,6 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    
     Front_Left_Position.distanceMeters = Front_Left_Swerve.Get_Drive_Position();
     Front_Left_Position.angle = Front_Left_Swerve.Get_Swerve_State().angle;
     Swerve_Positions[0] = Front_Left_Position;
@@ -153,8 +152,9 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
+    // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
-
+  
     // System.out.println("Cancoder FL; " + Front_Left_Swerve.Get_Rotation_Position());
     // System.out.println("Cancoder FR; " + Front_Right_Swerve.Get_Rotation_Position());
     // System.out.println("Cancoder RR; " + Rear_Right_Swerve.Get_Rotation_Position());
