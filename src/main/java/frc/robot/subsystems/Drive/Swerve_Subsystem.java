@@ -66,6 +66,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     Rear_Left_Location);
 
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
+  
+  private final Pose2d Initial_Pose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
+  private final Pose2d Empty_Pose = new Pose2d();
 
   //  Declare Swerve Module Positions for SWerve Odometry
   private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left_Swerve.Get_Drive_Position(), Front_Left_Swerve.Get_Swerve_State().angle);
@@ -76,10 +79,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   private SwerveModulePosition[] Swerve_Positions = {Front_Left_Position, Front_Right_Position, Rear_Right_Position, Rear_Left_Position};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(0.0), Swerve_Positions);
-
-  // private final Pose2d Initial_Pose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
-  private final Pose2d Empty_Pose = new Pose2d();
+  private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(0.0), Swerve_Positions, Initial_Pose);
 
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
@@ -129,7 +129,7 @@ public class Swerve_Subsystem extends SubsystemBase {
   }
 
   public void Reset_Pose() {
-    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Empty_Pose);
+    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(0.0), Swerve_Positions, Empty_Pose);
   }
 
   @Override
