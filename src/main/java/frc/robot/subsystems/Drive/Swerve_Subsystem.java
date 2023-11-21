@@ -1,5 +1,6 @@
 package frc.robot.subsystems.Drive;
 
+import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.Drive_Constants;
@@ -17,6 +18,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
 import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.path.PathPlannerPath;
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
@@ -138,6 +140,14 @@ public class Swerve_Subsystem extends SubsystemBase {
     Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
     Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
   }
+  
+  public Pose2d Get_Pose() {
+    return Swerve_Odometry.getPoseMeters();
+  }
+
+  public void Reset_Pose(Pose2d Empty_Pose) {
+    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(0.0), Swerve_Positions, Empty_Pose);
+  }
 
   public double Get_Yaw() {
     return -Units.degreesToRadians(Pigeon.getYaw()); // Negative makes clockwise positive
@@ -150,13 +160,11 @@ public class Swerve_Subsystem extends SubsystemBase {
   public double Get_Roll() {
     return Units.degreesToRadians(Pigeon.getRoll());
   }
-  
-  public Pose2d Get_Pose() {
-    return Swerve_Odometry.getPoseMeters();
-  }
 
-  public void Reset_Pose(Pose2d Empty_Pose) {
-    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(0.0), Swerve_Positions, Empty_Pose);
+  public Command Follow_Test_Path() {
+    PathPlannerPath Path = PathPlannerPath.fromPathFile("Test_Path");
+
+    return AutoBuilder.followPathWithEvents(Path);
   }
 
   @Override
