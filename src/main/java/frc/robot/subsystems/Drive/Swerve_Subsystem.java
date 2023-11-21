@@ -98,7 +98,7 @@ public class Swerve_Subsystem extends SubsystemBase {
       this::Get_Pose, // Robot pose supplier
       this::Reset_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
       this::Get_Current_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      this::Run_Swerve_ChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+      this::Run_Swerve, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
       new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
         new PIDConstants(0.1, 0.1, 0.0), // Translation PID constants
         new PIDConstants(0.1, 0.1, 0.0), // Rotation PID constants
@@ -110,25 +110,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     );
   }
 
-  public ChassisSpeeds Get_Current_ChassisSpeeds() {
-    return Swerve_Speeds;
-  }
-
-  public void Run_Swerve_ChassisSpeeds(ChassisSpeeds Swerve_Speeds) {
-    Run_Swerve(Swerve_Speeds.vxMetersPerSecond, Swerve_Speeds.vyMetersPerSecond, Swerve_Speeds.omegaRadiansPerSecond, true);
-  }
-
-  public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed, boolean Robot_Oriented) {
-    // Use given speeds to get Chassis Speed
-    if (Robot_Oriented) {
-      Swerve_Speeds.vxMetersPerSecond = X_Speed;
-      Swerve_Speeds.vyMetersPerSecond = Y_Speed;
-      Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed;
-    }
-    else {
-      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed, Y_Speed, Rotation_Speed, Rotation2d.fromRadians(Get_Yaw()));
-    }
-
+  public void Run_Swerve(ChassisSpeeds Swerve_Speeds) {
     // List of Swerve States from desired Swerve Speeds
     SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  
 
@@ -139,6 +121,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
     Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
     Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
+  }
+
+  public ChassisSpeeds Get_Current_ChassisSpeeds() {
+    return Swerve_Speeds;
   }
   
   public Pose2d Get_Pose() {
