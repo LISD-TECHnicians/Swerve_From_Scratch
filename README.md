@@ -1,3 +1,3 @@
 # Swerve_From_Scratch
 
-No Additional Swerve Libraries. This code uses only WPI and standard vendor hardware libraries. We are figuring out the kinematics and odometry for swerve. We hope to use this learn how to use path planner and, if given enough time, how to use more complicated Limelight features and localization. The pneumatic subysystem was added to teach new people and since the base plate of the physical build will possibly become a trainer in the future.
+No additional swerve libraries to construct the swerve drive. We are figuring out swerve kinematics and odometry, PathPlanner, RPi camera, Elastic, and localization. The pneumatic subysystem was added to teach new people and since the base plate of the  build will likely become a trainer in the future.
