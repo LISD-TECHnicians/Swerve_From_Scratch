@@ -43,7 +43,11 @@ public class Swerve_Velocity_Cmd extends CommandBase {
       Swerve_Speeds.omegaRadiansPerSecond = Rotation_Speed.getAsDouble();
     }
     else {
-      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(X_Speed.getAsDouble(), Y_Speed.getAsDouble(), Rotation_Speed.getAsDouble(), Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
+      Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
+        X_Speed.getAsDouble(), 
+        Y_Speed.getAsDouble(), 
+        Rotation_Speed.getAsDouble(), 
+        Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
     }
 
     SwerveSubsystem.Run_Swerve(Swerve_Speeds);

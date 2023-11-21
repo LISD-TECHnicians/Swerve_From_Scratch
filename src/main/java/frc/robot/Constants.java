@@ -60,8 +60,16 @@ public final class Constants {
 
     public static final double Rotation_Speed_Scale_Factor = 0.75;
 
-    public static final double Rotation_P = 0.1;
-    public static final double Rotation_I = 0.1; 
+    public static final double Motor_Rotation_P = 0.1;
+    public static final double Motor_Rotation_I = 0.1; 
+    public static final double Motor_Rotation_D = 0.0;
+
+    public static final double Translation_P = 5.0;
+    public static final double Translation_I = 0.0; 
+    public static final double Translation_D = 0.0;
+
+    public static final double Rotation_P = 5.0;
+    public static final double Rotation_I = 0.0; 
     public static final double Rotation_D = 0.0;
   }
 
