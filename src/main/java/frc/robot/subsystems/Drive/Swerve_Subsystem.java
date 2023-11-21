@@ -5,10 +5,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants.Drive_Constants;
 
 import com.ctre.phoenix.sensors.Pigeon2;
-import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
-import com.pathplanner.lib.util.PIDConstants;
-import com.pathplanner.lib.util.ReplanningConfig;
 
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
@@ -19,6 +15,11 @@ import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
+
+import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
 
 public class Swerve_Subsystem extends SubsystemBase {
   // Declare all Swerve Modules
@@ -72,7 +73,6 @@ public class Swerve_Subsystem extends SubsystemBase {
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
   private final Pose2d Initial_Pose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
-  private final Pose2d Empty_Pose = new Pose2d();
 
   //  Declare Swerve Module Positions for SWerve Odometry
   private SwerveModulePosition Front_Left_Position = new SwerveModulePosition(Front_Left_Swerve.Get_Drive_Position(), Front_Left_Swerve.Get_Swerve_State().angle);
@@ -95,8 +95,8 @@ public class Swerve_Subsystem extends SubsystemBase {
     AutoBuilder.configureHolonomic(
       this::Get_Pose, // Robot pose supplier
       this::Reset_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
-      this::getRobotRelativeSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      this::driveRobotRelative, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+      this::Get_Current_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+      this::Run_Swerve_ChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
       new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
         new PIDConstants(0.0, 0.0, 0.0), // Translation PID constants
         new PIDConstants(0.0, 0.0, 0.0), // Rotation PID constants
@@ -106,6 +106,14 @@ public class Swerve_Subsystem extends SubsystemBase {
       ),
       this // Reference to this subsystem to set requirements
     );
+  }
+
+  public ChassisSpeeds Get_Current_ChassisSpeeds() {
+    return Swerve_Speeds;
+  }
+
+  public void Run_Swerve_ChassisSpeeds(ChassisSpeeds Swerve_Speeds) {
+    Run_Swerve(Swerve_Speeds.vxMetersPerSecond, Swerve_Speeds.vyMetersPerSecond, Swerve_Speeds.omegaRadiansPerSecond, true);
   }
 
   public void Run_Swerve(double X_Speed, double Y_Speed, double Rotation_Speed, boolean Robot_Oriented) {
@@ -147,7 +155,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     return Swerve_Odometry.getPoseMeters();
   }
 
-  public void Reset_Pose() {
+  public void Reset_Pose(Pose2d Empty_Pose) {
     Swerve_Odometry.resetPosition(Rotation2d.fromRadians(0.0), Swerve_Positions, Empty_Pose);
   }
 
