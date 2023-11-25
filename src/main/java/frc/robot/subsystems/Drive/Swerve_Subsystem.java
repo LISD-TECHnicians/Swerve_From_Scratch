@@ -57,20 +57,13 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Rear_Left_Drive_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Encoder_Invert);
-
-  // Declare location of Swerve Modules relative to robot center 
-  // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
-  private final Translation2d Front_Left_Location = new Translation2d(0.31, 0.31);
-  private final Translation2d Front_Right_Location = new Translation2d(0.31, -0.31);
-  private final Translation2d Rear_Right_Location = new Translation2d(-0.31, -0.31);
-  private final Translation2d Rear_Left_Location = new Translation2d(-0.31, 0.31);
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics( 
-    Front_Left_Location, 
-    Front_Right_Location, 
-    Rear_Right_Location, 
-    Rear_Left_Location);
+    Drive_Constants.Front_Left_Location, 
+    Drive_Constants.Front_Right_Location, 
+    Drive_Constants.Rear_Right_Location, 
+    Drive_Constants.Rear_Left_Location);
 
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
@@ -99,13 +92,7 @@ public class Swerve_Subsystem extends SubsystemBase {
       this::Reset_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
       this::Get_Current_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
       this::Run_Swerve, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
-      new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-        new PIDConstants(Drive_Constants.Translation_P, Drive_Constants.Translation_I, Drive_Constants.Translation_D), // Translation PID constants
-        new PIDConstants(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D), // Rotation PID constants
-        Drive_Constants.Max_Drive_Speed, // Max module speed, in m/s
-        Drive_Constants.Swerve_Radius, // Drive base radius in meters. Distance from robot center to furthest module.
-        new ReplanningConfig() // Default path replanning config. See the API for the options here
-      ),
+      Drive_Constants.PathFolowConfig,
       this // Reference to this subsystem to set requirements
     );
   }

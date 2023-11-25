@@ -1,11 +1,17 @@
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Translation2d;
+
+import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
+import com.pathplanner.lib.util.PIDConstants;
+import com.pathplanner.lib.util.ReplanningConfig;
+
 public final class Constants {
   public final class Controller_Constants {
     public static final int Controller_Port = 3;
   }
 
-  public final class Drive_Constants {
+  public static final class Drive_Constants {
     public static final int Front_Left_Drive_ID = 8;
     public static final int Front_Left_Rotation_ID = 12;
     public static final int Front_Left_Rotation_Encoder_ID = 4;
@@ -37,6 +43,20 @@ public final class Constants {
     public static final boolean Rear_Left_Drive_Motor_Invert = true;
     public static final boolean Rear_Left_Rotation_Motor_Invert = false;
     public static final boolean Rear_Left_Rotation_Encoder_Invert = true;
+
+    // Declare location of Swerve Modules relative to robot center 
+    // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
+    public static final Translation2d Front_Left_Location = new Translation2d(0.31, 0.31);
+    public static final Translation2d Front_Right_Location = new Translation2d(0.31, -0.31);
+    public static final Translation2d Rear_Right_Location = new Translation2d(-0.31, -0.31);
+    public static final Translation2d Rear_Left_Location = new Translation2d(-0.31, 0.31);
+
+    public static final HolonomicPathFollowerConfig PathFolowConfig = new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
+      new PIDConstants(Drive_Constants.Translation_P, Drive_Constants.Translation_I, Drive_Constants.Translation_D), // Translation PID constants
+      new PIDConstants(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D), // Rotation PID constants
+      Drive_Constants.Max_Drive_Speed, // Max module speed, in m/s
+      Drive_Constants.Swerve_Radius, // Drive base radius in meters. Distance from robot center to furthest module.
+      new ReplanningConfig()); // Default path replanning config. See the API for the options here
 
     public static final int Pigeon_ID = 14;
 
