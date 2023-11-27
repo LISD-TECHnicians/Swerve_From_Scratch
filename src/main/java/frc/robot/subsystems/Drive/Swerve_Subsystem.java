@@ -1,6 +1,5 @@
 package frc.robot.subsystems.Drive;
 
-import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.Constants.Drive_Constants;
@@ -17,7 +16,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
 import com.pathplanner.lib.auto.AutoBuilder;
-import com.pathplanner.lib.path.PathPlannerPath;
 
 public class Swerve_Subsystem extends SubsystemBase {
   // Declare all Swerve Modules
@@ -128,12 +126,6 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   public double Get_Roll() {
     return Units.degreesToRadians(Pigeon.getRoll());
-  }
-
-  public Command Follow_Test_Path() {
-    PathPlannerPath Path = PathPlannerPath.fromPathFile("Test_Path");
-
-    return AutoBuilder.followPathWithEvents(Path);
   }
 
   @Override

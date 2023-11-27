@@ -13,6 +13,8 @@ import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Reset_Pose_Cmd;
 
+import com.pathplanner.lib.commands.PathPlannerAuto;
+
 public class RobotContainer {
   private final CommandPS4Controller Controller = new CommandPS4Controller(Controller_Constants.Controller_Port);
 
@@ -24,7 +26,7 @@ public class RobotContainer {
     SwerveSubsystem, 
     () -> Controller.getLeftX() * Drive_Constants.Max_Drive_Speed, 
     () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
-    () -> Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
+    () -> -Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
     Controller.L1());
   private final Reset_Pose_Cmd ResetPose = new Reset_Pose_Cmd(SwerveSubsystem);
 
@@ -41,6 +43,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return null;
+    return new PathPlannerAuto("Test_Auto");
   }
 }
