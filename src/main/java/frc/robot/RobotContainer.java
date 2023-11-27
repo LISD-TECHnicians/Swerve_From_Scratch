@@ -38,8 +38,6 @@ public class RobotContainer {
     Controller.L2().onTrue(ToggleSolenoid);
 
     Controller.R1().onTrue(ResetPose);
-
-    Controller.R2().onTrue(SwerveSubsystem.Follow_Test_Path());
   }
 
   public Command getAutonomousCommand() {
