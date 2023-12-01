@@ -34,17 +34,19 @@ public class Swerve_Module {
   private SwerveModuleState Current_Swerve_Module_State = new SwerveModuleState();
 
   public Swerve_Module(int Drive_Motor_ID, int Rotation_Motor_ID, int Rotation_Encoder_ID, double Angle_Offset, boolean Drive_Motor_Invert, boolean Rotation_Motor_Invert, boolean Rotation_Encoder_Invert) {
-    // Declare Swerve Module motors
+    // Declare swerve module componenets
     Drive_Motor = new WPI_TalonFX(Drive_Motor_ID, "rio");
     Rotation_Motor = new CANSparkMax(Rotation_Motor_ID, MotorType.kBrushless);
 
     Rotation_Encoder = new CANCoder(Rotation_Encoder_ID, "rio");
 
+    // Clear any left over settings from previous uses
     Drive_Motor.configFactoryDefault();
     Rotation_Motor.restoreFactoryDefaults();
 
     Rotation_Encoder.configFactoryDefault();
 
+    // Set max voltage to motors so 100% is the same regardless ofexact battery charge
     Drive_Motor.configVoltageCompSaturation(Drive_Constants.Nominal_Voltage);
     Rotation_Motor.enableVoltageCompensation(Drive_Constants.Nominal_Voltage);
 
@@ -58,6 +60,7 @@ public class Swerve_Module {
 
     this.Angle_Offset = Angle_Offset; // Offsets built in error from Absolute Encoder
 
+    // Pevents rotation motor from rotating more than 90 deg
     Rotation_PID.enableContinuousInput(-Math.PI, Math.PI);
   }
 
