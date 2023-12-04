@@ -132,19 +132,15 @@ public class Swerve_Subsystem extends SubsystemBase {
   public void periodic() {
     Front_Left_Position.distanceMeters = Front_Left_Swerve.Get_Drive_Position();
     Front_Left_Position.angle = Front_Left_Swerve.Get_Swerve_State().angle;
-    Swerve_Positions[0] = Front_Left_Position;
 
     Front_Right_Position.distanceMeters = Front_Right_Swerve.Get_Drive_Position();
     Front_Right_Position.angle = Front_Right_Swerve.Get_Swerve_State().angle;
-    Swerve_Positions[1] = Front_Right_Position;
 
     Rear_Right_Position.distanceMeters = Rear_Right_Swerve.Get_Drive_Position();
     Rear_Right_Position.angle = Rear_Right_Swerve.Get_Swerve_State().angle;
-    Swerve_Positions[2] = Rear_Right_Position;
     
     Rear_Left_Position.distanceMeters = Rear_Left_Swerve.Get_Drive_Position();
     Rear_Left_Position.angle = Rear_Left_Swerve.Get_Swerve_State().angle;
-    Swerve_Positions[3] = Rear_Left_Position;
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
