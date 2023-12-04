@@ -81,6 +81,7 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Pigeon.configMountPose(0, 0, 0);
     
+    // Allows PathPlanner to construct trajectories on its own
     AutoBuilder.configureHolonomic(
       this::Get_Pose, // Robot pose supplier
       this::Reset_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
