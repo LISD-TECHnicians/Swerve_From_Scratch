@@ -15,6 +15,10 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
+import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
+import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 
 public class Swerve_Subsystem extends SubsystemBase {
@@ -75,6 +79,10 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final SwerveDriveOdometry Swerve_Odometry = new SwerveDriveOdometry(Swerve, Rotation2d.fromRadians(0.0), Swerve_Positions, Initial_Pose);
 
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
+
+  private final ShuffleboardTab Gyro_Values = Shuffleboard.getTab("Gyro State"); //  Elastic Test
+
+  private final GenericEntry Yaw_Entry = Gyro_Values.add("Yaw", 0).getEntry(); //  Elastic Test
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();
@@ -144,6 +152,8 @@ public class Swerve_Subsystem extends SubsystemBase {
     Rear_Left_Position.angle = Rear_Left_Swerve.Get_Swerve_State().angle;
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
+
+    Yaw_Entry.setDouble(Get_Yaw()); //  Elastic Test
 
     // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
