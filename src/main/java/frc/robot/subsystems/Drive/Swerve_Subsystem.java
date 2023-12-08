@@ -80,9 +80,13 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
-  private final ShuffleboardTab Gyro_Values = Shuffleboard.getTab("Gyro State"); //  Elastic Test
+  private final ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot"); //  Elastic Test
 
-  private final GenericEntry Yaw_Entry = Gyro_Values.add("Yaw", 0).getEntry(); //  Elastic Test
+  private final GenericEntry Yaw_Entry = Robot_Status.add("Heading", 0).getEntry(); //  Elastic Test
+  private final GenericEntry X_Speed_Entry = Robot_Status.add("X_Speed", 0).getEntry();
+  private final GenericEntry Y_Speed_Entry = Robot_Status.add("Y_Speed", 0).getEntry();
+
+  private final GenericEntry Test_Value = Robot_Status.add("Test Value", 0).getEntry();
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();
@@ -100,8 +104,10 @@ public class Swerve_Subsystem extends SubsystemBase {
     );
   }
 
-  public void Run_Swerve(ChassisSpeeds Swerve_Speeds) {
+  public void Run_Swerve(ChassisSpeeds Chassis_Speeds) {
     // List of Swerve States from desired Swerve Speeds
+    Swerve_Speeds = Chassis_Speeds;
+
     SwerveModuleState[] Swerve_Module_States = Swerve.toSwerveModuleStates(Swerve_Speeds);  
 
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
@@ -153,7 +159,11 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
-    Yaw_Entry.setDouble(Get_Yaw()); //  Elastic Test
+    Yaw_Entry.setDouble(Get_Yaw()); 
+    X_Speed_Entry.setDouble(Get_Current_ChassisSpeeds().vxMetersPerSecond);
+    Y_Speed_Entry.setDouble(Get_Current_ChassisSpeeds().vyMetersPerSecond);
+
+    System.out.println(Test_Value.getBoolean(false)); // Needs Tested
 
     // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
