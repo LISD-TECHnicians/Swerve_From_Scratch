@@ -1,5 +1,7 @@
 package frc.robot;
 
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
@@ -13,7 +15,7 @@ import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Reset_Pose_Cmd;
 
-import com.pathplanner.lib.commands.PathPlannerAuto;
+// import com.pathplanner.lib.commands.PathPlannerAuto;
 
 public class RobotContainer {
   private final CommandPS4Controller Controller = new CommandPS4Controller(Controller_Constants.Controller_Port);
@@ -30,10 +32,20 @@ public class RobotContainer {
     Controller.L1());
   private final Reset_Pose_Cmd ResetPose = new Reset_Pose_Cmd(SwerveSubsystem);
 
+  private final String Auto_ToggleSolenoid = "Toggle Solenoid";
+  private final String Auto_ResetPose = "Reset Pose";
+
+  private final SendableChooser<String> Auto_Chooser = new SendableChooser<>();
+
   public RobotContainer() {
     configureBindings();
 
     SwerveSubsystem.setDefaultCommand(JoystickSwerve);
+
+    Auto_Chooser.setDefaultOption("Toggle Solenoid", Auto_ToggleSolenoid);
+    Auto_Chooser.addOption("Reset Pose", Auto_ResetPose);
+
+    SmartDashboard.putData(Auto_Chooser);
   }
 
   private void configureBindings() {
@@ -43,6 +55,14 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    return new PathPlannerAuto("Test_Auto");
+    // return new PathPlannerAuto("Test_Auto");
+    if (Auto_Chooser.getSelected() == Auto_ToggleSolenoid) {
+      return ToggleSolenoid;
+    }
+    else if (Auto_Chooser.getSelected() == Auto_ResetPose){
+      return ResetPose;
+    }
+    
+    return null;
   }
 }
