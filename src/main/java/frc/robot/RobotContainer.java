@@ -32,18 +32,15 @@ public class RobotContainer {
     Controller.L1());
   private final Reset_Pose_Cmd ResetPose = new Reset_Pose_Cmd(SwerveSubsystem);
 
-  private final String Auto_ToggleSolenoid = "Toggle Solenoid";
-  private final String Auto_ResetPose = "Reset Pose";
-
-  private final SendableChooser<String> Auto_Chooser = new SendableChooser<>();
+  private final SendableChooser<Command> Auto_Chooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureBindings();
 
     SwerveSubsystem.setDefaultCommand(JoystickSwerve);
 
-    Auto_Chooser.setDefaultOption("Toggle Solenoid", Auto_ToggleSolenoid);
-    Auto_Chooser.addOption("Reset Pose", Auto_ResetPose);
+    Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
+    Auto_Chooser.addOption("Reset Pose", ResetPose);
 
     SmartDashboard.putData(Auto_Chooser);
   }
@@ -56,13 +53,6 @@ public class RobotContainer {
 
   public Command getAutonomousCommand() {
     // return new PathPlannerAuto("Test_Auto");
-    if (Auto_Chooser.getSelected() == Auto_ToggleSolenoid) {
-      return ToggleSolenoid;
-    }
-    else if (Auto_Chooser.getSelected() == Auto_ResetPose){
-      return ResetPose;
-    }
-    
-    return null;
+    return Auto_Chooser.getSelected();
   }
 }
