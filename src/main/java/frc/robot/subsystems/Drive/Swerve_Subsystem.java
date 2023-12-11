@@ -1,8 +1,10 @@
 package frc.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
+import frc.robot.RobotContainer;
 import frc.robot.Constants.Drive_Constants;
+
+import java.util.Map;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
@@ -16,8 +18,7 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
-import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -80,13 +81,10 @@ public class Swerve_Subsystem extends SubsystemBase {
 
   private final Pigeon2 Pigeon = new Pigeon2(Drive_Constants.Pigeon_ID, "canivore"); // Declare IMU
 
-  private final ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot"); //  Elastic Test
+  private final GenericEntry Yaw_Entry = RobotContainer.Robot_Status.add("Heading", 0).getEntry(); //  Elastic Test
+  private final GenericEntry Speed_Entry = RobotContainer.Robot_Status.add("Speed", 0).getEntry();
 
-  private final GenericEntry Yaw_Entry = Robot_Status.add("Heading", 0).getEntry(); //  Elastic Test
-  private final GenericEntry X_Speed_Entry = Robot_Status.add("X_Speed", 0).getEntry();
-  private final GenericEntry Y_Speed_Entry = Robot_Status.add("Y_Speed", 0).getEntry();
-
-  private final GenericEntry Test_Value = Robot_Status.add("Test Value", 0).getEntry();
+  private final GenericEntry Slider = RobotContainer.Robot_Status.add("Slider", 0).getEntry();
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();
@@ -160,10 +158,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
     Yaw_Entry.setDouble(Get_Yaw()); 
-    X_Speed_Entry.setDouble(Get_Current_ChassisSpeeds().vxMetersPerSecond);
-    Y_Speed_Entry.setDouble(Get_Current_ChassisSpeeds().vyMetersPerSecond);
+    Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_Current_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_Current_ChassisSpeeds().vyMetersPerSecond, 2)));
 
-    System.out.println(Test_Value.getBoolean(false)); // Needs Tested
+    System.out.println(Slider.getDouble(0));
 
     // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
