@@ -12,7 +12,7 @@ import frc.robot.subsystems.Drive.Swerve_Subsystem;
 import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Reset_Pose_Cmd;
-import edu.wpi.first.networktables.GenericEntry;
+
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;

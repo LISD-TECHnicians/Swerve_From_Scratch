@@ -4,8 +4,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.Drive_Constants;
 
-import java.util.Map;
-
 import com.ctre.phoenix.sensors.Pigeon2;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -18,7 +16,6 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
 import edu.wpi.first.networktables.GenericEntry;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -160,7 +157,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Yaw_Entry.setDouble(Get_Yaw()); 
     Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_Current_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_Current_ChassisSpeeds().vyMetersPerSecond, 2)));
 
-    System.out.println(Slider.getDouble(0));
+    System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
 
     // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
