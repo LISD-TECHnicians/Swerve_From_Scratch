@@ -1,6 +1,7 @@
 package frc.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
+
 import frc.robot.RobotContainer;
 import frc.robot.Constants.Drive_Constants;
 
@@ -16,6 +17,8 @@ import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
 import edu.wpi.first.networktables.GenericEntry;
+import edu.wpi.first.wpilibj.smartdashboard.Field2d;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -82,6 +85,8 @@ public class Swerve_Subsystem extends SubsystemBase {
   private final GenericEntry Speed_Entry = RobotContainer.Robot_Status.add("Speed", 0).getEntry();
 
   private final GenericEntry Slider = RobotContainer.Robot_Status.add("Slider", 0).getEntry();
+
+  private final Field2d Field_Layout = new Field2d();
 
   public Swerve_Subsystem() {
     Pigeon.configFactoryDefault();
@@ -158,6 +163,9 @@ public class Swerve_Subsystem extends SubsystemBase {
     Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_Current_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_Current_ChassisSpeeds().vyMetersPerSecond, 2)));
 
     System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
+
+    Field_Layout.setRobotPose(Get_Pose()); // Test
+    SmartDashboard.putData("Field Layout", Field_Layout);
 
     // System.out.println(Front_Left_Swerve.Get_Drive_Position());
     // System.out.println(Get_Pose());
