@@ -56,6 +56,8 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Rear_Left_Drive_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Encoder_Invert);
+
+    private final Swerve_Module[] Swerve_Modules = {Front_Left_Swerve, Front_Right_Swerve, Rear_Right_Swerve, Rear_Left_Swerve};
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics( 
@@ -113,10 +115,14 @@ public class Swerve_Subsystem extends SubsystemBase {
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
 
     // Set each Swerve State, Inverse of the way locations were passed into Swerve Kinematic Object, Not sure why inverse order
-    Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]);
+    for(int i = 0; i < Swerve_Modules.length; i++) {
+      Swerve_Modules[i].Set_Swerve_State(Swerve_Module_States[i]);
+    }
+    
+    /* Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]); Can be removed if above code functions correctly
     Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
     Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
-    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
+    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]); */
   }
 
   public ChassisSpeeds Get_Current_ChassisSpeeds() {
