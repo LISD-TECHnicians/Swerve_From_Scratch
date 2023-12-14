@@ -127,8 +127,8 @@ public class Swerve_Subsystem extends SubsystemBase {
     return Swerve_Odometry.getPoseMeters();
   }
 
-  public void Reset_Pose(Pose2d Empty_Pose) {
-    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(0.0), Swerve_Positions, Empty_Pose);
+  public void Reset_Pose(Pose2d Pose) {
+    Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Pose);
   }
 
   public double Get_Yaw() {

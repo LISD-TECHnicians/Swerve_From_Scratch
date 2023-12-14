@@ -13,6 +13,8 @@ import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Reset_Pose_Cmd;
 
+import com.pathplanner.lib.auto.AutoBuilder;
+
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -36,15 +38,17 @@ public class RobotContainer {
 
   public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");
   
-  private final SendableChooser<Command> Auto_Chooser = new SendableChooser<>();
+  private SendableChooser<Command> Auto_Chooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureBindings();
 
     SwerveSubsystem.setDefaultCommand(JoystickSwerve);
 
-    Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
-    Auto_Chooser.addOption("Reset Pose", ResetPose);
+    // Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
+    // Auto_Chooser.addOption("Reset Pose", ResetPose);
+
+    Auto_Chooser = AutoBuilder.buildAutoChooser(); 
 
     Robot_Status.add(Auto_Chooser);  
   }
@@ -56,7 +60,6 @@ public class RobotContainer {
   }
 
   public Command getAutonomousCommand() {
-    // return new PathPlannerAuto("Test_Auto");
     return Auto_Chooser.getSelected();
   }
 }
