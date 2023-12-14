@@ -57,7 +57,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Rear_Left_Rotation_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Encoder_Invert);
 
-    private final Swerve_Module[] Swerve_Modules = {Front_Left_Swerve, Front_Right_Swerve, Rear_Right_Swerve, Rear_Left_Swerve};
+  private final Swerve_Module[] Swerve_Modules = {Front_Left_Swerve, Front_Right_Swerve, Rear_Right_Swerve, Rear_Left_Swerve};
   
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics( 
