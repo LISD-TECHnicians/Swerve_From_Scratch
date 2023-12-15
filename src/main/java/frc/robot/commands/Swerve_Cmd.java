@@ -13,7 +13,7 @@ import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 
-public class Swerve_Velocity_Cmd extends CommandBase {
+public class Swerve_Cmd extends CommandBase {
   private final Swerve_Subsystem SwerveSubsystem;
 
   private final DoubleSupplier X_Controller; // m/s
@@ -31,7 +31,7 @@ public class Swerve_Velocity_Cmd extends CommandBase {
 
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); 
 
-  public Swerve_Velocity_Cmd(Swerve_Subsystem SwerveSubsystem, DoubleSupplier X_Controller, DoubleSupplier Y_Controller, DoubleSupplier Rotation_Controller, BooleanSupplier Robot_Oriented, BooleanSupplier Rotation_Position_Control) {
+  public Swerve_Cmd(Swerve_Subsystem SwerveSubsystem, DoubleSupplier X_Controller, DoubleSupplier Y_Controller, DoubleSupplier Rotation_Controller, BooleanSupplier Robot_Oriented, BooleanSupplier Rotation_Position_Control) {
     this.SwerveSubsystem = SwerveSubsystem;
     this.X_Controller = X_Controller;
     this.Y_Controller = Y_Controller;

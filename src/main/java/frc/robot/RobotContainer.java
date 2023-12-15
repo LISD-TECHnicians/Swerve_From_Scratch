@@ -9,7 +9,7 @@ import frc.robot.Constants.Drive_Constants;
 import frc.robot.subsystems.Pneumatics_Subsystem;
 import frc.robot.subsystems.Drive.Swerve_Subsystem;
 
-import frc.robot.commands.Swerve_Velocity_Cmd;
+import frc.robot.commands.Swerve_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
 import frc.robot.commands.Set_Pose_Cmd;
 
@@ -26,7 +26,7 @@ public class RobotContainer {
   private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();
 
   private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
-  private final Swerve_Velocity_Cmd JoystickSwerve = new Swerve_Velocity_Cmd(
+  private final Swerve_Cmd JoystickSwerve = new Swerve_Cmd(
     SwerveSubsystem, 
     () -> Controller.getLeftX(), 
     () -> Controller.getLeftY(), 
