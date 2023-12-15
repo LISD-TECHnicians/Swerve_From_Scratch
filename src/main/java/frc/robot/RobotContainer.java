@@ -11,7 +11,7 @@ import frc.robot.subsystems.Drive.Swerve_Subsystem;
 
 import frc.robot.commands.Swerve_Velocity_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
-import frc.robot.commands.Reset_Pose_Cmd;
+import frc.robot.commands.Set_Pose_Cmd;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -32,7 +32,7 @@ public class RobotContainer {
     () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
     () -> -Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
     Controller.L1());
-  private final Reset_Pose_Cmd ResetPose = new Reset_Pose_Cmd(SwerveSubsystem);
+  private final Set_Pose_Cmd SetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
 
   public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");
   
@@ -54,7 +54,7 @@ public class RobotContainer {
   private void configureBindings() {
     Controller.L2().onTrue(ToggleSolenoid);
 
-    Controller.R1().onTrue(ResetPose);
+    Controller.R1().onTrue(SetPose);
   }
 
   public Command getAutonomousCommand() {

@@ -50,7 +50,7 @@ public class Swerve_Velocity_Cmd extends CommandBase {
         Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
     }
 
-    SwerveSubsystem.Run_Swerve(Swerve_Speeds);
+    SwerveSubsystem.Set_ChassisSpeeds(Swerve_Speeds);
   }
 
   @Override

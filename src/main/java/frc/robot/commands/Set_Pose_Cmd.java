@@ -6,20 +6,22 @@ import frc.robot.subsystems.Drive.Swerve_Subsystem;
 
 import edu.wpi.first.math.geometry.Pose2d;
 
-public class Reset_Pose_Cmd extends CommandBase {
+public class Set_Pose_Cmd extends CommandBase {
   private final Swerve_Subsystem SwerveSubsystem;
 
-  private final Pose2d Empty_Pose = new Pose2d();
+  private Pose2d Pose = new Pose2d();
 
-  public Reset_Pose_Cmd(Swerve_Subsystem SwerveSubsystem) {
+  public Set_Pose_Cmd(Swerve_Subsystem SwerveSubsystem, Pose2d Pose) {
     this.SwerveSubsystem = SwerveSubsystem;
+
+    this.Pose = Pose;
 
     addRequirements(SwerveSubsystem);
   }
 
   @Override
   public void initialize() {
-    SwerveSubsystem.Reset_Pose(Empty_Pose);
+    SwerveSubsystem.Set_Pose(Pose);
   }
 
   @Override

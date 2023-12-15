@@ -98,15 +98,15 @@ public class Swerve_Subsystem extends SubsystemBase {
     // Allows PathPlanner to construct trajectories on its own
     AutoBuilder.configureHolonomic(
       this::Get_Pose, // Robot pose supplier
-      this::Reset_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
-      this::Get_Current_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      this::Run_Swerve, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
+      this::Set_Pose, // Method to reset odometry (will be called if your auto has a starting pose)
+      this::Get_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
+      this::Set_ChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
       Drive_Constants.PathFolowConfig,
       this // Reference to this subsystem to set requirements
     );
   }
 
-  public void Run_Swerve(ChassisSpeeds Chassis_Speeds) {
+  public void Set_ChassisSpeeds(ChassisSpeeds Chassis_Speeds) {
     // List of Swerve States from desired Swerve Speeds
     Swerve_Speeds = Chassis_Speeds;
 
@@ -125,7 +125,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]); */
   }
 
-  public ChassisSpeeds Get_Current_ChassisSpeeds() {
+  public ChassisSpeeds Get_ChassisSpeeds() {
     return Swerve_Speeds;
   }
   
@@ -133,7 +133,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     return Swerve_Odometry.getPoseMeters();
   }
 
-  public void Reset_Pose(Pose2d Pose) {
+  public void Set_Pose(Pose2d Pose) {
     Swerve_Odometry.resetPosition(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions, Pose);
   }
 
@@ -166,7 +166,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Swerve_Odometry.update(Rotation2d.fromRadians(Get_Yaw()), Swerve_Positions);
 
     Yaw_Entry.setDouble(Get_Yaw()); 
-    Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_Current_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_Current_ChassisSpeeds().vyMetersPerSecond, 2)));
+    Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_ChassisSpeeds().vyMetersPerSecond, 2)));
 
     System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
 

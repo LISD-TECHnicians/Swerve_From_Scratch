@@ -1,5 +1,6 @@
 package frc.robot;
 
+import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
@@ -91,6 +92,8 @@ public final class Constants {
     public static final double Rotation_P = 5.0;
     public static final double Rotation_I = 0.0; 
     public static final double Rotation_D = 0.0;
+
+    public static final Pose2d Zero_Pose = new Pose2d();
   }
 
   public final class Pneumatics_Constants {
