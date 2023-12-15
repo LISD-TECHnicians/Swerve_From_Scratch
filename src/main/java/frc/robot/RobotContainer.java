@@ -28,10 +28,11 @@ public class RobotContainer {
   private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
   private final Swerve_Velocity_Cmd JoystickSwerve = new Swerve_Velocity_Cmd(
     SwerveSubsystem, 
-    () -> Controller.getLeftX() * Drive_Constants.Max_Drive_Speed, 
-    () -> Controller.getLeftY() * Drive_Constants.Max_Drive_Speed, 
-    () -> -Controller.getRightX() * Drive_Constants.Max_Rotation_Speed * Drive_Constants.Rotation_Speed_Scale_Factor,
-    Controller.L1());
+    () -> Controller.getLeftX(), 
+    () -> Controller.getLeftY(), 
+    () -> -Controller.getRightX(),
+    Controller.L1(),
+    Controller.R1());
   private final Set_Pose_Cmd SetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
 
   public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");

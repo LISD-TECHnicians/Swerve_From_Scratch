@@ -77,13 +77,19 @@ public final class Constants {
     public static final double Max_Drive_Speed = 4.97; // Max possible m/s
     public static final double Max_Drive_Set_Acceleration = 10; // Max choosen m/s^2
 
-    public static final double Max_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
+    public static final double Max_Possible_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
 
     public static final double Rotation_Speed_Scale_Factor = 0.75;
+
+    public static final double Max_Set_Rotation_Speed = Max_Possible_Rotation_Speed * Rotation_Speed_Scale_Factor;
 
     public static final double Motor_Rotation_P = 0.1;
     public static final double Motor_Rotation_I = 0.1; 
     public static final double Motor_Rotation_D = 0.0;
+
+    public static final double Rotation_Position_Control_P = 0.1;
+    public static final double Rotation_Position_Control_I = 0.1; 
+    public static final double Rotation_Position_Control_D = 0.0;    
 
     public static final double Translation_P = 5.0;
     public static final double Translation_I = 0.0; 
