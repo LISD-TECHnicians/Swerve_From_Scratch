@@ -102,8 +102,7 @@ public class Swerve_Subsystem extends SubsystemBase {
       this::Get_ChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
       this::Set_ChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
       Drive_Constants.PathFolowConfig,
-      this // Reference to this subsystem to set requirements
-    );
+      this); // Reference to this subsystem to set requirements
   }
 
   public void Set_ChassisSpeeds(ChassisSpeeds Chassis_Speeds) {

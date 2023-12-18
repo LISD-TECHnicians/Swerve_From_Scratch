@@ -23,11 +23,7 @@ public class Swerve_Cmd extends CommandBase {
   private final BooleanSupplier Robot_Oriented;
   private final BooleanSupplier Rotation_Position_Control;
 
-  private final PIDController Rotation_Position_PID = new PIDController(
-    Drive_Constants.Rotation_Position_Control_P, 
-    Drive_Constants.Rotation_Position_Control_I, 
-    Drive_Constants.Rotation_Position_Control_D
-  );
+  private final PIDController Rotation_Position_PID = new PIDController(Drive_Constants.Rotation_Position_Control_P, Drive_Constants.Rotation_Position_Control_I, Drive_Constants.Rotation_Position_Control_D);
 
   private ChassisSpeeds Swerve_Speeds = new ChassisSpeeds(); 
 
@@ -67,16 +63,14 @@ public class Swerve_Cmd extends CommandBase {
           X_Speed, 
           Y_Speed, 
           MathUtil.clamp(Rotation_Position_PID.calculate(SwerveSubsystem.Get_Yaw(), Rotation_Position), -Drive_Constants.Max_Set_Rotation_Speed, Drive_Constants.Max_Set_Rotation_Speed), 
-          Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw())
-        );
+          Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
       }
       else {
         Swerve_Speeds = ChassisSpeeds.fromFieldRelativeSpeeds(
           X_Speed, 
           Y_Speed, 
           Rotation_Speed, 
-          Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw())
-        );
+          Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
       }
     }
 
