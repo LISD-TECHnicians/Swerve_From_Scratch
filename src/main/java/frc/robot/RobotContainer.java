@@ -8,6 +8,7 @@ import frc.robot.Constants.Drive_Constants;
 
 import frc.robot.subsystems.Pneumatics_Subsystem;
 import frc.robot.subsystems.Drive.Swerve_Subsystem;
+import frc.robot.subsystems.Limelight_Subsystem;
 
 import frc.robot.commands.Swerve_Cmd;
 import frc.robot.commands.Toggle_Solenoid_Cmd;
@@ -24,6 +25,7 @@ public class RobotContainer {
 
   private final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
   private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();
+  private final Limelight_Subsystem LimelightSubsystem = new Limelight_Subsystem();
 
   private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
   private final Swerve_Cmd JoystickSwerve = new Swerve_Cmd(
@@ -33,7 +35,7 @@ public class RobotContainer {
     () -> -Controller.getRightX(),
     Controller.L1(),
     Controller.R1());
-  private final Set_Pose_Cmd SetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
+  private final Set_Pose_Cmd ResetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
 
   public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");
   
@@ -55,7 +57,7 @@ public class RobotContainer {
   private void configureBindings() {
     Controller.L2().onTrue(ToggleSolenoid);
 
-    Controller.R1().onTrue(SetPose);
+    Controller.R1().onTrue(ResetPose);
   }
 
   public Command getAutonomousCommand() {
