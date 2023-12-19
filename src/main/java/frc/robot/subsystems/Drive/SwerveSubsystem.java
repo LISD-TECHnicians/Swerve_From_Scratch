@@ -121,13 +121,13 @@ public class SwerveSubsystem extends SubsystemBase {
   public ChassisSpeeds getChassisSpeeds() {
     return swerveSpeeds;
   }
-  
-  public Pose2d getPose() {
-    return swerveOdometry.getPoseMeters();
-  }
 
   public void setPose(Pose2d pose) {
     swerveOdometry.resetPosition(Rotation2d.fromRadians(getYaw()), swervePositions, pose);
+  }
+  
+  public Pose2d getPose() {
+    return swerveOdometry.getPoseMeters();
   }
 
   public double getYaw() {
