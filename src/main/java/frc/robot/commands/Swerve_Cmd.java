@@ -50,7 +50,7 @@ public class Swerve_Cmd extends CommandBase {
     double Y_Speed = Y_Controller.getAsDouble() * Drive_Constants.Max_Drive_Speed;
 
     double Rotation_Speed = Rotation_Controller.getAsDouble() * Drive_Constants.Max_Set_Rotation_Speed;
-    double Rotation_Position = Rotation_Controller.getAsDouble() * Math.PI;
+    double Rotation_Position = -Rotation_Controller.getAsDouble() * Math.PI;
 
     if (Robot_Oriented.getAsBoolean()) {
       Swerve_Speeds.vxMetersPerSecond = X_Speed;
@@ -73,6 +73,9 @@ public class Swerve_Cmd extends CommandBase {
           Rotation2d.fromRadians(SwerveSubsystem.Get_Yaw()));
       }
     }
+
+    // System.out.println(MathUtil.clamp(Rotation_Position_PID.calculate(SwerveSubsystem.Get_Yaw(), Rotation_Position), -Drive_Constants.Max_Set_Rotation_Speed, Drive_Constants.Max_Set_Rotation_Speed));
+    System.out.println(Rotation_Position);
 
     SwerveSubsystem.Set_ChassisSpeeds(Swerve_Speeds);
   }

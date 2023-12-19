@@ -57,8 +57,6 @@ public class Swerve_Subsystem extends SubsystemBase {
     Drive_Constants.Rear_Left_Rotation_Motor_Invert,
     Drive_Constants.Rear_Left_Rotation_Encoder_Invert);
 
-  private final Swerve_Module[] Swerve_Modules = {Front_Left_Swerve, Front_Right_Swerve, Rear_Right_Swerve, Rear_Left_Swerve};
-  
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics Swerve = new SwerveDriveKinematics( 
     Drive_Constants.Front_Left_Location, 
@@ -113,15 +111,11 @@ public class Swerve_Subsystem extends SubsystemBase {
 
     SwerveDriveKinematics.desaturateWheelSpeeds(Swerve_Module_States, Drive_Constants.Max_Drive_Speed); // Keeps motor speeds in limits
 
-    // Set each Swerve State, Inverse of the way locations were passed into Swerve Kinematic Object, Not sure why inverse order
-    for(int i = 0; i < Swerve_Modules.length; i++) {
-      Swerve_Modules[i].Set_Swerve_State(Swerve_Module_States[i]);
-    }
-    
-    /* Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]); Can be removed if above code functions correctly
+    // Set each Swerve State, Inverse of the way locations were passed into Swerve Kinematic Object, Not sure why inverse order    
+    Front_Left_Swerve.Set_Swerve_State(Swerve_Module_States[0]); 
     Rear_Left_Swerve.Set_Swerve_State(Swerve_Module_States[1]);
     Rear_Right_Swerve.Set_Swerve_State(Swerve_Module_States[2]);
-    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]); */
+    Front_Right_Swerve.Set_Swerve_State(Swerve_Module_States[3]);
   }
 
   public ChassisSpeeds Get_ChassisSpeeds() {
@@ -167,7 +161,7 @@ public class Swerve_Subsystem extends SubsystemBase {
     Yaw_Entry.setDouble(Get_Yaw()); 
     Speed_Entry.setDouble(Math.sqrt(Math.pow(Get_ChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(Get_ChassisSpeeds().vyMetersPerSecond, 2)));
 
-    System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
+    // System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
 
     Field_Layout.setRobotPose(Get_Pose()); // Test
     SmartDashboard.putData("Field Layout", Field_Layout);

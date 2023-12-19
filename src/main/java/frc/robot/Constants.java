@@ -53,8 +53,8 @@ public final class Constants {
     public static final Translation2d Rear_Left_Location = new Translation2d(-0.31, 0.31);
 
     public static final HolonomicPathFollowerConfig PathFolowConfig = new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-      new PIDConstants(Drive_Constants.Translation_P, Drive_Constants.Translation_I, Drive_Constants.Translation_D), // Translation PID constants
-      new PIDConstants(Drive_Constants.Rotation_P, Drive_Constants.Rotation_I, Drive_Constants.Rotation_D), // Rotation PID constants
+      new PIDConstants(Drive_Constants.Path_Translation_P, Drive_Constants.Path_Translation_I, Drive_Constants.Path_Translation_D), // Translation PID constants
+      new PIDConstants(Drive_Constants.Path_Rotation_P, Drive_Constants.Path_Rotation_I, Drive_Constants.Path_Rotation_D), // Rotation PID constants
       Drive_Constants.Max_Drive_Speed, // Max module speed, in m/s
       Drive_Constants.Swerve_Radius, // Drive base radius in meters. Distance from robot center to furthest module.
       new ReplanningConfig()); // Default path replanning config. See the API for the options here
@@ -87,17 +87,17 @@ public final class Constants {
     public static final double Motor_Rotation_I = 0.1; 
     public static final double Motor_Rotation_D = 0.0;
 
-    public static final double Rotation_Position_Control_P = 0.1;
-    public static final double Rotation_Position_Control_I = 0.1; 
+    public static final double Rotation_Position_Control_P = 1.0; // Needs tuned
+    public static final double Rotation_Position_Control_I = 5.0; 
     public static final double Rotation_Position_Control_D = 0.0;    
 
-    public static final double Translation_P = 5.0;
-    public static final double Translation_I = 0.0; 
-    public static final double Translation_D = 0.0;
+    public static final double Path_Translation_P = 5.0;
+    public static final double Path_Translation_I = 0.0; 
+    public static final double Path_Translation_D = 0.0;
 
-    public static final double Rotation_P = 5.0;
-    public static final double Rotation_I = 0.0; 
-    public static final double Rotation_D = 0.0;
+    public static final double Path_Rotation_P = 5.0;
+    public static final double Path_Rotation_I = 0.0; 
+    public static final double Path_Rotation_D = 0.0;
 
     public static final Pose2d Zero_Pose = new Pose2d();
   }

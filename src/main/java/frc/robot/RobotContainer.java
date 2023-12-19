@@ -34,7 +34,7 @@ public class RobotContainer {
     () -> Controller.getLeftY(), 
     () -> -Controller.getRightX(),
     Controller.L1(),
-    Controller.R1());
+    Controller.L2());
   private final Set_Pose_Cmd ResetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
 
   public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");
@@ -46,10 +46,10 @@ public class RobotContainer {
 
     SwerveSubsystem.setDefaultCommand(JoystickSwerve);
 
-    // Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
-    // Auto_Chooser.addOption("Reset Pose", ResetPose);
+    Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
+    Auto_Chooser.addOption("Reset Pose", ResetPose);
 
-    Auto_Chooser = AutoBuilder.buildAutoChooser(); 
+    // Auto_Chooser = AutoBuilder.buildAutoChooser(); 
 
     Robot_Status.add(Auto_Chooser);  
   }
