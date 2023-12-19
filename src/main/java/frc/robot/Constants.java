@@ -8,101 +8,101 @@ import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
 
 public final class Constants {
-  public final class Controller_Constants {
-    public static final int Controller_Port = 3;
+  public final class ControllerConstants {
+    public static final int controllerPort = 3;
   }
 
-  public static final class Drive_Constants {
-    public static final int Front_Left_Drive_ID = 8;
-    public static final int Front_Left_Rotation_ID = 12;
-    public static final int Front_Left_Rotation_Encoder_ID = 4;
-    public static final double Front_Left_Angle_Offset = 4.987 + Math.PI/2;
-    public static final boolean Front_Left_Drive_Motor_Invert = false;
-    public static final boolean Front_Left_Rotation_Motor_Invert = false;
-    public static final boolean Front_Left_Rotation_Encoder_Invert = true;
+  public static final class DriveConstants {
+    public static final int frontLeftDriveID = 8;
+    public static final int frontLeftRotationID = 12;
+    public static final int frontLeftRotationEncoderID = 4;
+    public static final double frontLeftAngleOffset = 4.987 + Math.PI/2;
+    public static final boolean frontLeftDriveMotorInvert = false;
+    public static final boolean frontLeftRotationMotorInvert = false;
+    public static final boolean frontLeftRotationEncoderInvert = true;
 
-    public static final int Front_Right_Drive_ID = 7;
-    public static final int Front_Right_Rotation_ID = 11;
-    public static final int Front_Right_Rotation_Encoder_ID = 3;
-    public static final double Front_Right_Angle_Offset = 2.014 + Math.PI/2;
-    public static final boolean Front_Right_Drive_Motor_Invert = false;
-    public static final boolean Front_Right_Rotation_Motor_Invert = false;
-    public static final boolean Front_Right_Rotation_Encoder_Invert = true;
+    public static final int frontRightDriveID = 7;
+    public static final int frontRightRotationID = 11;
+    public static final int frontRightRotationEncoderID = 3;
+    public static final double frontRightAngleOffset = 2.014 + Math.PI/2;
+    public static final boolean frontRightDriveMotorInvert = false;
+    public static final boolean frontRightRotationMotorInvert = false;
+    public static final boolean frontRightRotationEncoderInvert = true;
 
-    public static final int Rear_Right_Drive_ID = 6;
-    public static final int Rear_Right_Rotation_ID = 10;
-    public static final int Rear_Right_Rotation_Encoder_ID = 2;
-    public static final double Rear_Right_Angle_Offset = 3.034 + Math.PI/2; // In radians
-    public static final boolean Rear_Right_Drive_Motor_Invert = false;
-    public static final boolean Rear_Right_Rotation_Motor_Invert = false;
-    public static final boolean Rear_Right_Rotation_Encoder_Invert = true;
+    public static final int rearRightDriveID = 6;
+    public static final int rearRightRotationID = 10;
+    public static final int rearRightRotationEncoderID = 2;
+    public static final double rearRightAngleOffset = 3.034 + Math.PI/2; // In radians
+    public static final boolean rearRightDriveMotorInvert = false;
+    public static final boolean rearRightRotationMotorInvert = false;
+    public static final boolean rearRightRotationEncoderInvert = true;
 
-    public static final int Rear_Left_Drive_ID = 9;
-    public static final int Rear_Left_Rotation_ID = 13;
-    public static final int Rear_Left_Rotation_Encoder_ID = 5;
-    public static final double Rear_Left_Angle_Offset = 5.556 + Math.PI/2;
-    public static final boolean Rear_Left_Drive_Motor_Invert = true;
-    public static final boolean Rear_Left_Rotation_Motor_Invert = false;
-    public static final boolean Rear_Left_Rotation_Encoder_Invert = true;
+    public static final int rearLeftDriveID = 9;
+    public static final int rearLeftRotationID = 13;
+    public static final int rearLeftRotationEncoderID = 5;
+    public static final double rearLeftAngleOffset = 5.556 + Math.PI/2;
+    public static final boolean rearLeftDriveMotorInvert = true;
+    public static final boolean rearLeftRotationMotorInvert = false;
+    public static final boolean rearLeftRotationEncoderInvert = true;
 
     // Declare location of Swerve Modules relative to robot center 
     // X AXIS TOWARDS FRONT, Y AXIS TOWARDS LEFT
-    public static final Translation2d Front_Left_Location = new Translation2d(0.31, 0.31);
-    public static final Translation2d Front_Right_Location = new Translation2d(0.31, -0.31);
-    public static final Translation2d Rear_Right_Location = new Translation2d(-0.31, -0.31);
-    public static final Translation2d Rear_Left_Location = new Translation2d(-0.31, 0.31);
+    public static final Translation2d frontLeftLocation = new Translation2d(0.31, 0.31);
+    public static final Translation2d frontRightLocation = new Translation2d(0.31, -0.31);
+    public static final Translation2d rearRightLocation = new Translation2d(-0.31, -0.31);
+    public static final Translation2d rearLeftLocation = new Translation2d(-0.31, 0.31);
 
     public static final HolonomicPathFollowerConfig PathFolowConfig = new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-      new PIDConstants(Drive_Constants.Path_Translation_P, Drive_Constants.Path_Translation_I, Drive_Constants.Path_Translation_D), // Translation PID constants
-      new PIDConstants(Drive_Constants.Path_Rotation_P, Drive_Constants.Path_Rotation_I, Drive_Constants.Path_Rotation_D), // Rotation PID constants
-      Drive_Constants.Max_Drive_Speed, // Max module speed, in m/s
-      Drive_Constants.Swerve_Radius, // Drive base radius in meters. Distance from robot center to furthest module.
+      new PIDConstants(DriveConstants.pathTranslationP, DriveConstants.pathTranslationI, DriveConstants.pathTranslationD), // Translation PID constants
+      new PIDConstants(DriveConstants.pathRotationP, DriveConstants.pathRotationI, DriveConstants.pathRotationD), // Rotation PID constants
+      DriveConstants.maxDriveSpeed, // Max module speed, in m/s
+      DriveConstants.swerveRadius, // Drive base radius in meters. Distance from robot center to furthest module.
       new ReplanningConfig()); // Default path replanning config. See the API for the options here
 
-    public static final int Pigeon_ID = 14;
+    public static final int pigeonID = 14;
 
-    public static final double Nominal_Voltage = 12.0;
+    public static final double nominalVoltage = 12.0;
 
-    public static final double Swerve_Radius = 0.44; // m
+    public static final double swerveRadius = 0.44; // m
 
-    public static final double Wheel_Diameter = 0.102;
-    public static final double Wheel_Circumference = Wheel_Diameter * Math.PI;
+    public static final double wheelDiameter = 0.102;
+    public static final double wheelCircumference = wheelDiameter * Math.PI;
 
-    public static final double Ticks_Per_Revolution_Falcon = 2048;
-    public static final double Drive_Gear_Ratio = 1/6.75;
+    public static final double ticksPerRevolutionFalcon = 2048;
+    public static final double driveGearRatio = 1/6.75;
 
-    public static final double Drive_Motor_Position_To_Meters = (1/Ticks_Per_Revolution_Falcon) * Drive_Gear_Ratio * Wheel_Circumference;
-    public static final double Drive_Motor_Velcoity_to_Meters_Second = 10 * (1/Ticks_Per_Revolution_Falcon) * Drive_Gear_Ratio * Wheel_Circumference;
+    public static final double driveMotorPositionToMeters = (1/ticksPerRevolutionFalcon) * driveGearRatio * wheelCircumference;
+    public static final double driveMotorVelcoityToMetersSecond = 10 * (1/ticksPerRevolutionFalcon) * driveGearRatio * wheelCircumference;
 
-    public static final double Max_Drive_Speed = 4.97; // Max possible m/s
-    public static final double Max_Drive_Set_Acceleration = 10; // Max choosen m/s^2
+    public static final double maxDriveSpeed = 4.97; // Max possible m/s
+    public static final double maxDriveSetAcceleration = 10; // Max choosen m/s^2
 
-    public static final double Max_Possible_Rotation_Speed = Max_Drive_Speed / Swerve_Radius;
+    public static final double maxPossibleRotationSpeed = maxDriveSpeed / swerveRadius;
 
-    public static final double Rotation_Speed_Scale_Factor = 0.75;
+    public static final double rotationSpeedScaleFactor = 0.75;
 
-    public static final double Max_Set_Rotation_Speed = Max_Possible_Rotation_Speed * Rotation_Speed_Scale_Factor;
+    public static final double maxSetRotationSpeed = maxPossibleRotationSpeed * rotationSpeedScaleFactor;
 
-    public static final double Motor_Rotation_P = 0.1;
-    public static final double Motor_Rotation_I = 0.1; 
-    public static final double Motor_Rotation_D = 0.0;
+    public static final double motorRotationP = 0.1;
+    public static final double motorRotationI = 0.1; 
+    public static final double motorRotationD = 0.0;
 
-    public static final double Rotation_Position_Control_P = 1.0; // Needs tuned
-    public static final double Rotation_Position_Control_I = 5.0; 
-    public static final double Rotation_Position_Control_D = 0.0;    
+    public static final double rotationPositionControlP = 1.0; // Needs tuned
+    public static final double rotationPositionControlI = 5.0; 
+    public static final double rotationPositionControlD = 0.0;    
 
-    public static final double Path_Translation_P = 5.0;
-    public static final double Path_Translation_I = 0.0; 
-    public static final double Path_Translation_D = 0.0;
+    public static final double pathTranslationP = 5.0;
+    public static final double pathTranslationI = 0.0; 
+    public static final double pathTranslationD = 0.0;
 
-    public static final double Path_Rotation_P = 5.0;
-    public static final double Path_Rotation_I = 0.0; 
-    public static final double Path_Rotation_D = 0.0;
+    public static final double pathRotationP = 5.0;
+    public static final double pathRotationI = 0.0; 
+    public static final double pathRotationD = 0.0;
 
-    public static final Pose2d Zero_Pose = new Pose2d();
+    public static final Pose2d zeroPose = new Pose2d();
   }
 
-  public final class Pneumatics_Constants {
-    public static final int LaBimba_Port = 0;
+  public final class PneumaticsConstants {
+    public static final int laBimbaPort = 0;
   }
 }

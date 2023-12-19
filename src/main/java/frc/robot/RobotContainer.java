@@ -3,16 +3,16 @@ package frc.robot;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
-import frc.robot.Constants.Controller_Constants;
-import frc.robot.Constants.Drive_Constants;
+import frc.robot.Constants.ControllerConstants;
+import frc.robot.Constants.DriveConstants;
 
-import frc.robot.subsystems.Pneumatics_Subsystem;
-import frc.robot.subsystems.Drive.Swerve_Subsystem;
-import frc.robot.subsystems.Limelight_Subsystem;
+import frc.robot.subsystems.PneumaticsSubsystem;
+import frc.robot.subsystems.Drive.SwerveSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 
-import frc.robot.commands.Swerve_Cmd;
-import frc.robot.commands.Toggle_Solenoid_Cmd;
-import frc.robot.commands.Set_Pose_Cmd;
+import frc.robot.commands.SwerveCmd;
+import frc.robot.commands.ToggleSolenoidCmd;
+import frc.robot.commands.SetPoseCmd;
 
 import com.pathplanner.lib.auto.AutoBuilder;
 
@@ -21,46 +21,46 @@ import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 
 public class RobotContainer {
-  private final CommandPS4Controller Controller = new CommandPS4Controller(Controller_Constants.Controller_Port);
+  private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.controllerPort);
 
-  private final Swerve_Subsystem SwerveSubsystem = new Swerve_Subsystem();
-  private final Pneumatics_Subsystem PneumaticSubsystem = new Pneumatics_Subsystem();
-  private final Limelight_Subsystem LimelightSubsystem = new Limelight_Subsystem();
+  private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+  private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
+  private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
 
-  private final Toggle_Solenoid_Cmd ToggleSolenoid = new Toggle_Solenoid_Cmd(PneumaticSubsystem);
-  private final Swerve_Cmd JoystickSwerve = new Swerve_Cmd(
-    SwerveSubsystem, 
-    () -> Controller.getLeftX(), 
-    () -> Controller.getLeftY(), 
-    () -> -Controller.getRightX(),
-    Controller.L1(),
-    Controller.L2());
-  private final Set_Pose_Cmd ResetPose = new Set_Pose_Cmd(SwerveSubsystem, Drive_Constants.Zero_Pose);
+  private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
+  private final SwerveCmd joystickSwerve = new SwerveCmd(
+    swerveSubsystem, 
+    () -> controller.getLeftX(), 
+    () -> controller.getLeftY(), 
+    () -> -controller.getRightX(),
+    controller.L1(),
+    controller.L2());
+  private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.zeroPose);
 
-  public static ShuffleboardTab Robot_Status = Shuffleboard.getTab("Robot");
+  public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
-  private SendableChooser<Command> Auto_Chooser = new SendableChooser<>();
+  private SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureBindings();
 
-    SwerveSubsystem.setDefaultCommand(JoystickSwerve);
+    swerveSubsystem.setDefaultCommand(joystickSwerve);
 
-    Auto_Chooser.setDefaultOption("Toggle Solenoid", ToggleSolenoid);
-    Auto_Chooser.addOption("Reset Pose", ResetPose);
+    autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
+    autoChooser.addOption("Reset Pose", resetPose);
 
-    // Auto_Chooser = AutoBuilder.buildAutoChooser(); 
+    // autoChooser = AutoBuilder.buildAutoChooser(); 
 
-    Robot_Status.add(Auto_Chooser);  
+    robotStatus.add(autoChooser);  
   }
 
   private void configureBindings() {
-    Controller.L2().onTrue(ToggleSolenoid);
+    controller.L2().onTrue(toggleSolenoid);
 
-    Controller.R1().onTrue(ResetPose);
+    controller.R1().onTrue(resetPose);
   }
 
   public Command getAutonomousCommand() {
-    return Auto_Chooser.getSelected();
+    return autoChooser.getSelected();
   }
 }
