@@ -158,8 +158,8 @@ public class SwerveSubsystem extends SubsystemBase {
 
     swerveOdometry.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
-    yawEntry.setDouble(getYaw()); 
-    speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(getChassisSpeeds().vyMetersPerSecond, 2)));
+    yawEntry.setDouble(Math.round(Units.radiansToDegrees(getYaw()))); 
+    speedEntry.setDouble(Math.round(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))));
 
     // System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
 
