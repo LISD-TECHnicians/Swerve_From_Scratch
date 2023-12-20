@@ -27,8 +27,6 @@ public class SwerveCmd extends CommandBase {
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); 
 
-  private double rotationInitial; // Should make current direction "home" position for rotation position control, needs tested
-
   public SwerveCmd(SwerveSubsystem swerveSubsystem, DoubleSupplier xController, DoubleSupplier yController, DoubleSupplier rotationController, BooleanSupplier robotOriented, BooleanSupplier rotationPositionControl) {
     this.swerveSubsystem = swerveSubsystem;
     this.xController = xController;
@@ -61,12 +59,10 @@ public class SwerveCmd extends CommandBase {
     }
     else {
       if (rotationPositionControl.getAsBoolean()) {
-        for (int i = 0; i < 1; i++) {rotationInitial = swerveSubsystem.getYaw();}
-
         swerveSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
           xSpeed, 
           ySpeed, 
-          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition + rotationInitial), -DriveConstants.maxSetRotationSpeed, DriveConstants.maxSetRotationSpeed), 
+          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition), -DriveConstants.maxSetRotationSpeed, DriveConstants.maxSetRotationSpeed), 
           Rotation2d.fromRadians(swerveSubsystem.getYaw()));
       }
       else {
