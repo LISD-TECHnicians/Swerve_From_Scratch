@@ -19,6 +19,7 @@ import com.pathplanner.lib.auto.AutoBuilder;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
   private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.controllerPort);
@@ -39,19 +40,19 @@ public class RobotContainer {
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
-  private SendableChooser<Command> autoChooser = new SendableChooser<>();
+  private SendableChooser<Command> autoChooser;
 
   public RobotContainer() {
     configureBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
 
-    autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
-    autoChooser.addOption("Reset Pose", resetPose);
+    // autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
+    // autoChooser.addOption("Reset Pose", resetPose);
 
-    // autoChooser = AutoBuilder.buildAutoChooser(); 
+    autoChooser = AutoBuilder.buildAutoChooser(); 
 
-    robotStatus.add(autoChooser);  
+    SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   private void configureBindings() {

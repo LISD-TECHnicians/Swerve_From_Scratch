@@ -66,7 +66,7 @@ public class SwerveSubsystem extends SubsystemBase {
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
-  private final Pose2d initialPose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
+  // private final Pose2d initialPose = new Pose2d(1.0, 1.0, Rotation2d.fromRadians(0.0));
 
   //  Declare Swerve Module Positions for SWerve Odometry
   private SwerveModulePosition frontLeftPosition = new SwerveModulePosition();
@@ -77,7 +77,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition[] swervePositions = {frontLeftPosition, frontRightPosition, rearRightPosition, rearLeftPosition};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), swervePositions, initialPose);
+  private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), swervePositions/*, initialPose*/);
 
   private final Pigeon2 pigeon = new Pigeon2(DriveConstants.pigeonID, "canivore"); // Declare IMU
 
