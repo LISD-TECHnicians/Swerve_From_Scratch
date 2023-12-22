@@ -10,8 +10,7 @@ import edu.wpi.first.wpilibj.Solenoid;
 public class PneumaticsSubsystem extends SubsystemBase {
   private final Solenoid laBimba = new Solenoid(PneumaticsModuleType.REVPH, PneumaticsConstants.laBimbaPort);
 
-  public PneumaticsSubsystem() {
-  }
+  public PneumaticsSubsystem() {}
 
   public void toggleSolenoid() {
     laBimba.toggle();
