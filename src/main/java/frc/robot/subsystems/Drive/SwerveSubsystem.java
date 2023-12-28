@@ -74,7 +74,8 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition rearRightPosition = new SwerveModulePosition();
   private SwerveModulePosition rearLeftPosition = new SwerveModulePosition();
 
-  private SwerveModulePosition[] swervePositions = {frontLeftPosition, frontRightPosition, rearRightPosition, rearLeftPosition};
+  // Inverting order might give ododmetry correct axis orientation. Needs tested
+  private SwerveModulePosition[] swervePositions = {frontLeftPosition, rearLeftPosition, rearRightPosition, frontRightPosition};
 
   // Declare Swerve Odometry
   private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), swervePositions/*, initialPose*/);
