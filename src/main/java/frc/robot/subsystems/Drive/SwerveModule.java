@@ -28,9 +28,9 @@ public class SwerveModule {
 
   private final boolean rotationEncoderInvert;
 
-  private final SlewRateLimiter driveLimiter = new SlewRateLimiter(DriveConstants.maxDriveSetAcceleration);
+  private final SlewRateLimiter driveLimiter = new SlewRateLimiter(DriveConstants.MAX_DRIVE_SET_ACCELERATION);
 
-  private final PIDController rotationPID = new PIDController(DriveConstants.motorRotationP, DriveConstants.motorRotationI, DriveConstants.motorRotationD);
+  private final PIDController rotationPID = new PIDController(DriveConstants.MOTOR_ROTATION_P, DriveConstants.MOTOR_ROTATION_I, DriveConstants.MOTOR_ROTATION_D);
 
   private SwerveModuleState currentSwerveModuleState = new SwerveModuleState();
 
@@ -48,8 +48,8 @@ public class SwerveModule {
     rotationEncoder.configFactoryDefault();
 
     // Set max voltage to motors so 100% is the same regardless ofexact battery charge
-    driveMotor.configVoltageCompSaturation(DriveConstants.nominalVoltage);
-    rotationMotor.enableVoltageCompensation(DriveConstants.nominalVoltage);
+    driveMotor.configVoltageCompSaturation(DriveConstants.NOMINAL_VOLTAGE);
+    rotationMotor.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
 
     driveMotor.setNeutralMode(NeutralMode.Coast);
     rotationMotor.setIdleMode(IdleMode.kBrake);
@@ -66,11 +66,11 @@ public class SwerveModule {
   }
 
   public double getDrivePosition() {
-    return driveMotor.getSelectedSensorPosition() * DriveConstants.driveMotorPositionToMeters; // Returns meters
+    return driveMotor.getSelectedSensorPosition() * DriveConstants.DRIVE_MOTOR_POSITION_TO_METERS; // Returns meters
   }
 
   public double getDriveVelocity() {
-    return driveMotor.getSelectedSensorVelocity() * DriveConstants.driveMotorVelcoityToMetersSecond; // Returns meters per second
+    return driveMotor.getSelectedSensorVelocity() * DriveConstants.DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND; // Returns meters per second
   }
 
   public double getRotationPosition() {
@@ -92,10 +92,10 @@ public class SwerveModule {
     swerveModuleState = SwerveModuleState.optimize(swerveModuleState, getSwerveState().angle);
 
     double driveSpeed = driveLimiter.calculate(swerveModuleState.speedMetersPerSecond);
-    driveSpeed = driveSpeed / DriveConstants.maxDriveSpeed;
+    driveSpeed = driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
 
     double rotationSpeed = rotationPID.calculate(getRotationPosition(), swerveModuleState.angle.getRadians());
-    rotationSpeed = MathUtil.clamp(rotationSpeed, -DriveConstants.rotationSpeedScaleFactor, DriveConstants.rotationSpeedScaleFactor);
+    rotationSpeed = MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
 
     driveMotor.set(driveSpeed);
     rotationMotor.set(rotationSpeed);

@@ -25,44 +25,44 @@ import com.pathplanner.lib.auto.AutoBuilder;
 public class SwerveSubsystem extends SubsystemBase {
   // Declare all Swerve Modules
   private final SwerveModule frontLeftSwerve = new SwerveModule(    
-    DriveConstants.frontLeftDriveID, 
-    DriveConstants.frontLeftRotationID, 
-    DriveConstants.frontLeftRotationEncoderID, 
-    DriveConstants.frontLeftAngleOffset,
-    DriveConstants.frontLeftDriveMotorInvert,
-    DriveConstants.frontLeftRotationMotorInvert,
-    DriveConstants.frontLeftRotationEncoderInvert);
+    DriveConstants.FRONT_LEFT_DRIVE_ID, 
+    DriveConstants.FRONT_LEFT_ROTATION_ID, 
+    DriveConstants.FRONT_LEFT_ROTATION_ENCODER_ID, 
+    DriveConstants.FRONT_LEFT_ANGLE_OFFSET,
+    DriveConstants.FRONT_LEFT_DRIVE_MOTOR_INVERT,
+    DriveConstants.FRONT_LEFT_ROTATION_MOTOR_INVERT,
+    DriveConstants.FRONT_LEFT_ROTATION_ENCODER_INVERT);
   private final SwerveModule frontRightSwerve = new SwerveModule(
-    DriveConstants.frontRightDriveID, 
-    DriveConstants.frontRightRotationID, 
-    DriveConstants.frontRightRotationEncoderID, 
-    DriveConstants.frontRightAngleOffset,
-    DriveConstants.frontRightDriveMotorInvert,
-    DriveConstants.frontRightRotationMotorInvert,
-    DriveConstants.frontRightRotationEncoderInvert);
+    DriveConstants.FRONT_RIGHT_DRIVE_ID, 
+    DriveConstants.FRONT_RIGHT_ROTATION_ID, 
+    DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_ID, 
+    DriveConstants.FRONT_RIGHT_ANGLE_OFFSET,
+    DriveConstants.FRONT_RIGHT_DRIVE_MOTOR_INVERT,
+    DriveConstants.FRONT_RIGHT_ROTATION_MOTOR_INVERT,
+    DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_INVERT);
   private final SwerveModule rearRightSwerve = new SwerveModule(
-    DriveConstants.rearRightDriveID, 
-    DriveConstants.rearRightRotationID, 
-    DriveConstants.rearRightRotationEncoderID, 
-    DriveConstants.rearRightAngleOffset,
-    DriveConstants.rearRightDriveMotorInvert,
-    DriveConstants.rearRightRotationMotorInvert,
-    DriveConstants.rearRightRotationEncoderInvert);
+    DriveConstants.REAR_RIGHT_DRIVE_ID, 
+    DriveConstants.REAR_RIGHT_ROTATION_ID, 
+    DriveConstants.REAR_RIGHT_ROTATION_ENCODER_ID, 
+    DriveConstants.REAR_RIGHT_ANGLE_OFFSET,
+    DriveConstants.REAR_RIGHT_DRIVE_MOTOR_INVERT,
+    DriveConstants.REAR_RIGHT_ROTATION_MOTOR_INVERT,
+    DriveConstants.REAR_RIGHT_ROTATION_ENCODER_INVERT);
   private final SwerveModule rearLeftSwerve = new SwerveModule(    
-    DriveConstants.rearLeftDriveID, 
-    DriveConstants.rearLeftRotationID, 
-    DriveConstants.rearLeftRotationEncoderID, 
-    DriveConstants.rearLeftAngleOffset,
-    DriveConstants.rearLeftDriveMotorInvert,
-    DriveConstants.rearLeftRotationMotorInvert,
-    DriveConstants.rearLeftRotationEncoderInvert);
+    DriveConstants.REAR_LEFT_DRIVE_ID, 
+    DriveConstants.REAR_LEFT_ROTATION_ID, 
+    DriveConstants.REAR_LEFT_ROTATION_ENCODER_ID, 
+    DriveConstants.REAR_LEFT_ANGLE_OFFSET,
+    DriveConstants.REAR_LEFT_DRIVE_MOTOR_INVERT,
+    DriveConstants.REAR_LEFT_ROTATION_MOTOR_INVERT,
+    DriveConstants.REAR_LEFT_ROTATION_ENCODER_INVERT);
 
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics swerve = new SwerveDriveKinematics( 
-    DriveConstants.frontLeftLocation, 
-    DriveConstants.frontRightLocation, 
-    DriveConstants.rearRightLocation, 
-    DriveConstants.rearLeftLocation);
+    DriveConstants.FRONT_LEFT_LOCATION, 
+    DriveConstants.FRONT_RIGHT_LOCATION, 
+    DriveConstants.REAR_RIGHT_LOCATION, 
+    DriveConstants.REAR_LEFT_LOCATION);
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
@@ -80,7 +80,7 @@ public class SwerveSubsystem extends SubsystemBase {
   // Declare Swerve Odometry
   private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), swervePositions/*, initialPose*/);
 
-  private final Pigeon2 pigeon = new Pigeon2(DriveConstants.pigeonID, "canivore"); // Declare IMU
+  private final Pigeon2 pigeon = new Pigeon2(DriveConstants.PIGEON_ID, "canivore"); // Declare IMU
 
   private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); //  Elastic Test
   private final GenericEntry speedEntry = RobotContainer.robotStatus.add("Speed", 0).getEntry();
@@ -100,7 +100,7 @@ public class SwerveSubsystem extends SubsystemBase {
       this::setPose, // Method to reset odometry (will be called if your auto has a starting pose)
       this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
       this::setChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
-      DriveConstants.PathFolowConfig,
+      DriveConstants.PATH_FOLLOW_CONFIG,
       this); // Reference to this subsystem to set requirements
   }
 
@@ -108,7 +108,7 @@ public class SwerveSubsystem extends SubsystemBase {
     // List of Swerve States from desired Swerve Speeds
     SwerveModuleState[] swerveModuleStates = swerve.toSwerveModuleStates(chassisSpeeds);  
 
-    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DriveConstants.maxDriveSpeed); // Keeps motor speeds in limits
+    SwerveDriveKinematics.desaturateWheelSpeeds(swerveModuleStates, DriveConstants.MAX_DRIVE_SPEED); // Keeps motor speeds in limits
 
     swerveSpeeds = swerve.toChassisSpeeds(swerveModuleStates);
 

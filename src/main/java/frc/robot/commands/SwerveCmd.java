@@ -23,7 +23,7 @@ public class SwerveCmd extends CommandBase {
   private final BooleanSupplier robotOriented;
   private final BooleanSupplier rotationPositionControl;
 
-  private final PIDController rotationPositionPID = new PIDController(DriveConstants.rotationPositionControlP, DriveConstants.rotationPositionControlI, DriveConstants.rotationPositionControlD);
+  private final PIDController rotationPositionPID = new PIDController(DriveConstants.ROTATION_POSITION_CONTROL_P, DriveConstants.ROTATION_POSITION_CONTROL_I, DriveConstants.ROTATION_POSITION_CONTROL_D);
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); 
 
@@ -46,10 +46,10 @@ public class SwerveCmd extends CommandBase {
 
   @Override
   public void execute() {
-    double xSpeed = xController.getAsDouble() * DriveConstants.maxDriveSpeed;
-    double ySpeed = yController.getAsDouble() * DriveConstants.maxDriveSpeed;
+    double xSpeed = xController.getAsDouble() * DriveConstants.MAX_DRIVE_SPEED;
+    double ySpeed = yController.getAsDouble() * DriveConstants.MAX_DRIVE_SPEED;
 
-    double rotationSpeed = rotationController.getAsDouble() * DriveConstants.maxSetRotationSpeed;
+    double rotationSpeed = rotationController.getAsDouble() * DriveConstants.MAX_SET_ROTATION_SPEED;
     double rotationPosition = -rotationController.getAsDouble() * Math.PI;
 
     if (robotOriented.getAsBoolean()) {
@@ -62,7 +62,7 @@ public class SwerveCmd extends CommandBase {
         swerveSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
           xSpeed, 
           ySpeed, 
-          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition), -DriveConstants.maxSetRotationSpeed, DriveConstants.maxSetRotationSpeed), 
+          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition), -DriveConstants.MAX_SET_ROTATION_SPEED, DriveConstants.MAX_SET_ROTATION_SPEED), 
           Rotation2d.fromRadians(swerveSubsystem.getYaw()));
       }
       else {

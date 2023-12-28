@@ -22,7 +22,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
-  private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.controllerPort);
+  private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.CONTROLLER_PORT);
 
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
@@ -36,7 +36,7 @@ public class RobotContainer {
     () -> -controller.getRightX(),
     controller.L1(),
     controller.L2());
-  private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.zeroPose);
+  private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.ZERO_POSE);
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
