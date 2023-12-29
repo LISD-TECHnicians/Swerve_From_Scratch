@@ -85,7 +85,12 @@ public class SwerveSubsystem extends SubsystemBase {
   private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); //  Elastic Test
   private final GenericEntry speedEntry = RobotContainer.robotStatus.add("Speed", 0).getEntry();
 
-  private final GenericEntry slider = RobotContainer.robotStatus.add("Slider", 0).getEntry();
+  private final GenericEntry slider = RobotContainer.robotStatus
+    .add("Slider", 0)
+    .withWidget("Number Slider")
+    .withPosition(1, 1)
+    .withSize(2, 1)
+    .getEntry();
 
   private final Field2d fieldLayout = new Field2d();
 
@@ -162,7 +167,7 @@ public class SwerveSubsystem extends SubsystemBase {
     yawEntry.setDouble(Math.round(Units.radiansToDegrees(getYaw()))); 
     speedEntry.setDouble(Math.round(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))));
 
-    // System.out.println(Slider.getDouble(0)); // Doesn't return Slider value
+    System.out.println(slider.getDouble(0)); // Doesn't return Slider value, test again
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);
