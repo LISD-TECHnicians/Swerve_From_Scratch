@@ -12,6 +12,8 @@ import frc.robot.subsystems.LimelightSubsystem;
 
 import frc.robot.commands.SwerveCmd;
 import frc.robot.commands.ToggleSolenoidCmd;
+import frc.robot.commands.SetDriveBrakeCmd;
+import frc.robot.commands.SetDriveCoastCmd;
 import frc.robot.commands.SetPoseCmd;
 
 import com.pathplanner.lib.auto.AutoBuilder;
@@ -37,6 +39,8 @@ public class RobotContainer {
     controller.L1(),
     controller.L2());
   private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.ZERO_POSE);
+  private final SetDriveBrakeCmd setDriveBrake = new SetDriveBrakeCmd(swerveSubsystem);
+  private final SetDriveCoastCmd setDriveCoast = new SetDriveCoastCmd(swerveSubsystem);
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
@@ -59,6 +63,9 @@ public class RobotContainer {
     controller.L2().onTrue(toggleSolenoid);
 
     controller.R1().onTrue(resetPose);
+
+    controller.button(0).onTrue(setDriveBrake);
+    controller.button(1).onTrue(setDriveCoast);
   }
 
   public Command getAutonomousCommand() {

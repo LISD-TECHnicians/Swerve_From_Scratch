@@ -148,6 +148,14 @@ public class SwerveSubsystem extends SubsystemBase {
     return Units.degreesToRadians(pigeon.getRoll());
   }
 
+  public void setDriveBrake() {
+    frontLeftSwerve.setDriveBrake(); frontRightSwerve.setDriveBrake(); rearRightSwerve.setDriveBrake(); rearLeftSwerve.setDriveBrake();
+  }
+
+  public void setDriveCoast() {
+    frontLeftSwerve.setDriveCoast(); frontRightSwerve.setDriveCoast(); rearRightSwerve.setDriveCoast(); rearLeftSwerve.setDriveCoast();
+  }
+
   @Override
   public void periodic() {
     frontLeftPosition.distanceMeters = frontLeftSwerve.getDrivePosition();

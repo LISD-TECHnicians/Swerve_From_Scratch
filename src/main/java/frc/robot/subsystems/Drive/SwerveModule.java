@@ -100,4 +100,12 @@ public class SwerveModule {
     driveMotor.set(driveSpeed);
     rotationMotor.set(rotationSpeed);
   }
+
+  public void setDriveBrake() {
+    driveMotor.setNeutralMode(NeutralMode.Brake);
+  }
+
+  public void setDriveCoast() {
+    driveMotor.setNeutralMode(NeutralMode.Coast);
+  }
 }
