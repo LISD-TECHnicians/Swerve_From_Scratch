@@ -16,6 +16,8 @@ import frc.robot.commands.SetDriveBrakeCmd;
 import frc.robot.commands.SetDriveCoastCmd;
 import frc.robot.commands.SetPoseCmd;
 
+import frc.robot.commandgroups.SolenoidPoseCmdGrp;
+
 import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -42,6 +44,8 @@ public class RobotContainer {
   private final SetDriveBrakeCmd setDriveBrake = new SetDriveBrakeCmd(swerveSubsystem);
   private final SetDriveCoastCmd setDriveCoast = new SetDriveCoastCmd(swerveSubsystem);
 
+  private final SolenoidPoseCmdGrp solenoidPose = new SolenoidPoseCmdGrp(swerveSubsystem, pneumaticSubsystem);
+
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
   private SendableChooser<Command> autoChooser;
@@ -66,6 +70,8 @@ public class RobotContainer {
 
     controller.button(0).onTrue(setDriveBrake);
     controller.button(1).onTrue(setDriveCoast);
+
+    controller.button(2).onTrue(solenoidPose);
   }
 
   public Command getAutonomousCommand() {
