@@ -52,9 +52,12 @@ public final class Constants {
     public static final Translation2d REAR_RIGHT_LOCATION = new Translation2d(-0.31, -0.31);
     public static final Translation2d REAR_LEFT_LOCATION = new Translation2d(-0.31, 0.31);
 
-    public static final HolonomicPathFollowerConfig PATH_FOLLOW_CONFIG = new HolonomicPathFollowerConfig( // HolonomicPathFollowerConfig, this should likely live in your Constants class
-      new PIDConstants(DriveConstants.PATH_TRANSLATION_P, DriveConstants.PATH_TRANSLATION_I, DriveConstants.PATH_TRANSLATION_D), // Translation PID constants
-      new PIDConstants(DriveConstants.PATH_ROTATION_P, DriveConstants.PATH_ROTATION_I, DriveConstants.PATH_ROTATION_D), // Rotation PID constants
+    public static final HolonomicPathFollowerConfig PATH_FOLLOW_CONFIG = new HolonomicPathFollowerConfig( 
+        // HolonomicPathFollowerConfig, this should likely live in your Constants class
+      new PIDConstants(DriveConstants.PATH_TRANSLATION_P, DriveConstants.PATH_TRANSLATION_I, DriveConstants.PATH_TRANSLATION_D), 
+          // Translation PID constants
+      new PIDConstants(DriveConstants.PATH_ROTATION_P, DriveConstants.PATH_ROTATION_I, DriveConstants.PATH_ROTATION_D), 
+          // Rotation PID constants
       DriveConstants.MAX_DRIVE_SPEED, // Max module speed, in m/s
       DriveConstants.SWERVE_RADIUS, // Drive base radius in meters. Distance from robot center to furthest module.
       new ReplanningConfig()); // Default path replanning config. See the API for the options here
@@ -71,8 +74,10 @@ public final class Constants {
     public static final double TICKS_PER_REVOLUTION_FALCON = 2048;
     public static final double DRIVE_GEAR_RATIO = 1/6.75;
 
-    public static final double DRIVE_MOTOR_POSITION_TO_METERS = (1/TICKS_PER_REVOLUTION_FALCON) * DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
-    public static final double DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND = 10 * (1/TICKS_PER_REVOLUTION_FALCON) * DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
+    public static final double DRIVE_MOTOR_POSITION_TO_METERS = (1/TICKS_PER_REVOLUTION_FALCON) * 
+        DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
+    public static final double DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND = 10 * (1/TICKS_PER_REVOLUTION_FALCON) * 
+        DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
 
     public static final double MAX_DRIVE_SPEED = 4.97; // Max possible m/s
     public static final double MAX_DRIVE_SET_ACCELERATION = 10; // Max choosen m/s^2

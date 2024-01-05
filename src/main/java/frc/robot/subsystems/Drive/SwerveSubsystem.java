@@ -78,11 +78,12 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition[] swervePositions = {frontLeftPosition, rearLeftPosition, rearRightPosition, frontRightPosition};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), swervePositions/*, initialPose*/);
+  private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), 
+      swervePositions/*, initialPose*/);
 
   private final Pigeon2 pigeon = new Pigeon2(DriveConstants.PIGEON_ID, "canivore"); // Declare IMU
 
-  private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); //  Elastic Test
+  private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); 
   private final GenericEntry speedEntry = RobotContainer.robotStatus.add("Speed", 0).getEntry();
 
   private final GenericEntry slider = RobotContainer.robotStatus
@@ -149,11 +150,17 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public void setDriveBrake() {
-    frontLeftSwerve.setDriveBrake(); frontRightSwerve.setDriveBrake(); rearRightSwerve.setDriveBrake(); rearLeftSwerve.setDriveBrake();
+    frontLeftSwerve.setDriveBrake(); 
+    frontRightSwerve.setDriveBrake(); 
+    rearRightSwerve.setDriveBrake(); 
+    rearLeftSwerve.setDriveBrake();
   }
 
   public void setDriveCoast() {
-    frontLeftSwerve.setDriveCoast(); frontRightSwerve.setDriveCoast(); rearRightSwerve.setDriveCoast(); rearLeftSwerve.setDriveCoast();
+    frontLeftSwerve.setDriveCoast(); 
+    frontRightSwerve.setDriveCoast(); 
+    rearRightSwerve.setDriveCoast(); 
+    rearLeftSwerve.setDriveCoast();
   }
 
   @Override
@@ -173,7 +180,8 @@ public class SwerveSubsystem extends SubsystemBase {
     swerveOdometry.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
     yawEntry.setDouble(Math.round(Units.radiansToDegrees(getYaw()))); 
-    speedEntry.setDouble(Math.round(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))));
+    speedEntry.setDouble(Math.round(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
+        Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))));
 
     System.out.println(slider.getDouble(0)); // Doesn't return Slider value, test again
 

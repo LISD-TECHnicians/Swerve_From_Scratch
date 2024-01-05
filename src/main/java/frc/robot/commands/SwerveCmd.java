@@ -23,11 +23,13 @@ public class SwerveCmd extends CommandBase {
   private final BooleanSupplier robotOriented;
   private final BooleanSupplier rotationPositionControl;
 
-  private final PIDController rotationPositionPID = new PIDController(DriveConstants.ROTATION_POSITION_CONTROL_P, DriveConstants.ROTATION_POSITION_CONTROL_I, DriveConstants.ROTATION_POSITION_CONTROL_D);
+  private final PIDController rotationPositionPID = new PIDController(DriveConstants.ROTATION_POSITION_CONTROL_P, 
+      DriveConstants.ROTATION_POSITION_CONTROL_I, DriveConstants.ROTATION_POSITION_CONTROL_D);
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); 
 
-  public SwerveCmd(SwerveSubsystem swerveSubsystem, DoubleSupplier xController, DoubleSupplier yController, DoubleSupplier rotationController, BooleanSupplier robotOriented, BooleanSupplier rotationPositionControl) {
+  public SwerveCmd(SwerveSubsystem swerveSubsystem, DoubleSupplier xController, DoubleSupplier yController, 
+      DoubleSupplier rotationController, BooleanSupplier robotOriented, BooleanSupplier rotationPositionControl) {
     this.swerveSubsystem = swerveSubsystem;
     this.xController = xController;
     this.yController = yController;
@@ -62,7 +64,8 @@ public class SwerveCmd extends CommandBase {
         swerveSpeeds = ChassisSpeeds.fromFieldRelativeSpeeds(
           xSpeed, 
           ySpeed, 
-          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition), -DriveConstants.MAX_SET_ROTATION_SPEED, DriveConstants.MAX_SET_ROTATION_SPEED), 
+          MathUtil.clamp(rotationPositionPID.calculate(swerveSubsystem.getYaw(), rotationPosition), 
+              -DriveConstants.MAX_SET_ROTATION_SPEED, DriveConstants.MAX_SET_ROTATION_SPEED), 
           Rotation2d.fromRadians(swerveSubsystem.getYaw()));
       }
       else {

@@ -30,11 +30,13 @@ public class SwerveModule {
 
   private final SlewRateLimiter driveLimiter = new SlewRateLimiter(DriveConstants.MAX_DRIVE_SET_ACCELERATION);
 
-  private final PIDController rotationPID = new PIDController(DriveConstants.MOTOR_ROTATION_P, DriveConstants.MOTOR_ROTATION_I, DriveConstants.MOTOR_ROTATION_D);
+  private final PIDController rotationPID = new PIDController(DriveConstants.MOTOR_ROTATION_P, DriveConstants.MOTOR_ROTATION_I, 
+      DriveConstants.MOTOR_ROTATION_D);
 
   private SwerveModuleState currentSwerveModuleState = new SwerveModuleState();
 
-  public SwerveModule(int driveMotorID, int rotationMotorID, int rotationEncoderID, double angleOffset, boolean driveMotorInvert, boolean rotationMotorInvert, boolean rotationEncoderInvert) {
+  public SwerveModule(int driveMotorID, int rotationMotorID, int rotationEncoderID, double angleOffset, 
+      boolean driveMotorInvert, boolean rotationMotorInvert, boolean rotationEncoderInvert) {
     // Declare swerve module componenets
     driveMotor = new WPI_TalonFX(driveMotorID, "rio");
     rotationMotor = new CANSparkMax(rotationMotorID, MotorType.kBrushless);
@@ -65,20 +67,20 @@ public class SwerveModule {
     rotationPID.enableContinuousInput(-Math.PI, Math.PI);
   }
 
-  public double getDrivePosition() {
-    return driveMotor.getSelectedSensorPosition() * DriveConstants.DRIVE_MOTOR_POSITION_TO_METERS; // Returns meters
+  public double getDrivePosition() { // Returns meters
+    return driveMotor.getSelectedSensorPosition() * DriveConstants.DRIVE_MOTOR_POSITION_TO_METERS;
   }
 
-  public double getDriveVelocity() {
-    return driveMotor.getSelectedSensorVelocity() * DriveConstants.DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND; // Returns meters per second
+  public double getDriveVelocity() { // Returns meters per second
+    return driveMotor.getSelectedSensorVelocity() * DriveConstants.DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND; 
   }
 
-  public double getRotationPosition() {
-    return (Units.degreesToRadians(rotationEncoder.getAbsolutePosition()) - angleOffset) * (rotationEncoderInvert ? -1 : 1); // Returns radians
+  public double getRotationPosition() { // Returns radians
+    return (Units.degreesToRadians(rotationEncoder.getAbsolutePosition()) - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
   }
 
-  public double getRotationVelocity() {
-    return Units.degreesToRadians(rotationEncoder.getVelocity()) * (rotationEncoderInvert ? -1 : 1); // Returns radians per second
+  public double getRotationVelocity() { // Returns radians per second
+    return Units.degreesToRadians(rotationEncoder.getVelocity()) * (rotationEncoderInvert ? -1 : 1);
   }
 
   public SwerveModuleState getSwerveState() {
@@ -95,7 +97,8 @@ public class SwerveModule {
     driveSpeed = driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
 
     double rotationSpeed = rotationPID.calculate(getRotationPosition(), swerveModuleState.angle.getRadians());
-    rotationSpeed = MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
+    rotationSpeed = MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
+        DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
 
     driveMotor.set(driveSpeed);
     rotationMotor.set(rotationSpeed);
