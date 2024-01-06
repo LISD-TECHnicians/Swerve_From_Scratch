@@ -39,7 +39,6 @@ public class LimelightSubsystem extends SubsystemBase {
     tyEntryLL1.setDouble(getTy(LL1));
     taEntryLL1.setDouble(getTa(LL1));
 
-    System.out.println(getPose(LL1));
   }
 
   @Override

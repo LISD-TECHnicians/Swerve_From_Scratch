@@ -48,19 +48,19 @@ public class RobotContainer {
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
-  private SendableChooser<Command> autoChooser;
+  private SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
 
-    // autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
-    // autoChooser.addOption("Reset Pose", resetPose);
+    autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
+    autoChooser.addOption("Reset Pose", resetPose);
 
-    autoChooser = AutoBuilder.buildAutoChooser(); 
+    // autoChooser = AutoBuilder.buildAutoChooser(); 
 
-    SmartDashboard.putData("Auto Chooser", autoChooser);
+    robotStatus.add("Auto Chooser", autoChooser);
   }
 
   private void configureBindings() {
@@ -68,10 +68,10 @@ public class RobotContainer {
 
     controller.R1().onTrue(resetPose);
 
-    controller.button(0).onTrue(setDriveBrake);
-    controller.button(1).onTrue(setDriveCoast);
+    controller.button(1).onTrue(setDriveBrake);
+    controller.button(2).onTrue(setDriveCoast);
 
-    controller.button(2).onTrue(solenoidPose);
+    controller.button(3).onTrue(solenoidPose);
   }
 
   public Command getAutonomousCommand() {

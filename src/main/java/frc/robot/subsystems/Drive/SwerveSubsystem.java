@@ -101,13 +101,13 @@ public class SwerveSubsystem extends SubsystemBase {
     pigeon.configMountPose(0, 0, 0);
     
     // Allows PathPlanner to construct trajectories on its own
-    AutoBuilder.configureHolonomic(
+    /*AutoBuilder.configureHolonomic(
       this::getPose, // Robot pose supplier
       this::setPose, // Method to reset odometry (will be called if your auto has a starting pose)
       this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
       this::setChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
       DriveConstants.PATH_FOLLOW_CONFIG,
-      this); // Reference to this subsystem to set requirements
+      this); // Reference to this subsystem to set requirements*/
   }
 
   public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
@@ -179,11 +179,11 @@ public class SwerveSubsystem extends SubsystemBase {
 
     swerveOdometry.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
-    yawEntry.setDouble(Math.round(Units.radiansToDegrees(getYaw()))); 
-    speedEntry.setDouble(Math.round(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
-        Math.pow(getChassisSpeeds().vyMetersPerSecond, 2))));
+    yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
+    speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
+        Math.pow(getChassisSpeeds().vyMetersPerSecond, 2)));
 
-    System.out.println(slider.getDouble(0)); // Doesn't return Slider value, test again
+    System.out.println(slider.getDouble(0));
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);

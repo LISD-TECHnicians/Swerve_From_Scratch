@@ -10,7 +10,7 @@ public class SetDriveBrakeCmd extends CommandBase {
   public SetDriveBrakeCmd(SwerveSubsystem swerveSubsystem) {
     this.swerveSubsystem = swerveSubsystem;
 
-    addRequirements(swerveSubsystem);
+    // addRequirements(swerveSubsystem);
   }
 
   @Override

@@ -10,7 +10,7 @@ public class SetDriveCoastCmd extends CommandBase {
   public SetDriveCoastCmd(SwerveSubsystem swerveSubsystem) {
     this.swerveSubsystem = swerveSubsystem;
 
-    addRequirements(swerveSubsystem);
+    // addRequirements(swerveSubsystem);
   }
 
   @Override
