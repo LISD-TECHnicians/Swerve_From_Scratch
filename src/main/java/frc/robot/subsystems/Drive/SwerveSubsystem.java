@@ -20,7 +20,7 @@ import edu.wpi.first.networktables.GenericEntry;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.pathplanner.lib.auto.AutoBuilder;
+// import com.pathplanner.lib.auto.AutoBuilder;
 
 public class SwerveSubsystem extends SubsystemBase {
   // Declare all Swerve Modules
@@ -75,7 +75,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition rearLeftPosition = new SwerveModulePosition();
 
   // Inverting order might give ododmetry correct axis orientation. Needs tested
-  private SwerveModulePosition[] swervePositions = {frontLeftPosition, rearLeftPosition, rearRightPosition, frontRightPosition};
+  private SwerveModulePosition[] swervePositions = {frontLeftPosition, frontRightPosition, rearRightPosition, rearLeftPosition};
 
   // Declare Swerve Odometry
   private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), 

@@ -8,7 +8,7 @@ import frc.robot.Constants.DriveConstants;
 
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
-import frc.robot.subsystems.LimelightSubsystem;
+// import frc.robot.subsystems.LimelightSubsystem;
 
 import frc.robot.commands.SwerveCmd;
 import frc.robot.commands.ToggleSolenoidCmd;
@@ -18,19 +18,18 @@ import frc.robot.commands.SetPoseCmd;
 
 import frc.robot.commandgroups.SolenoidPoseCmdGrp;
 
-import com.pathplanner.lib.auto.AutoBuilder;
+// import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
   private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.CONTROLLER_PORT);
 
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
-  private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
+  // private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
 
   private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
   private final SwerveCmd joystickSwerve = new SwerveCmd(
@@ -68,6 +67,7 @@ public class RobotContainer {
 
     controller.R1().onTrue(resetPose);
 
+    // Following buttons do not work
     controller.button(1).onTrue(setDriveBrake);
     controller.button(2).onTrue(setDriveCoast);
 
