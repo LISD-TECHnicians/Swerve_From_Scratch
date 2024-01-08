@@ -67,7 +67,6 @@ public class RobotContainer {
 
     controller.R1().onTrue(resetPose);
 
-    // Following buttons do not work
     controller.button(1).onTrue(setDriveBrake);
     controller.button(2).onTrue(setDriveCoast);
 
