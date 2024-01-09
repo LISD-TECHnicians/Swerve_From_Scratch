@@ -107,6 +107,10 @@ public final class Constants {
     public static final Pose2d ZERO_POSE = new Pose2d();
   }
 
+  public static class LimelightConstants {
+    public static final String llone = "llone";
+  }
+
   public final class PneumaticsConstants {
     public static final int LA_BIMBA_PORT = 0;
   }

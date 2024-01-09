@@ -11,25 +11,27 @@ import edu.wpi.first.wpilibj.DriverStation.Alliance;
 public class LimelightSubsystem extends SubsystemBase {
   private Alliance alliance;
 
-  private NetworkTable lloneTable = NetworkTableInstance.getDefault().getTable("llone");
+  private NetworkTable networkTable;
 
-  public LimelightSubsystem() {
-    alliance = DriverStation.getAlliance();
+  public LimelightSubsystem(String limelightName) {
+    this.alliance = DriverStation.getAlliance();
+
+    this.networkTable = NetworkTableInstance.getDefault().getTable(limelightName);
   }
 
-  public double getTx(NetworkTable networkTable) {
+  public double getTx() {
     return networkTable.getEntry("tx").getDouble(0);
   }
 
-  public double getTy(NetworkTable networkTable) {
+  public double getTy() {
     return networkTable.getEntry("ty").getDouble(0);
   }
 
-  public double getTa(NetworkTable networkTable) {
+  public double getTa() {
     return networkTable.getEntry("ta").getDouble(0);
   }
 
-  public double[] getPose(NetworkTable networkTable) {
+  public double[] getPose() {
     if (alliance == Alliance.Blue) {
       return networkTable.getEntry("botpose_wpiblue").getDoubleArray(new double[7]);
     }
@@ -41,7 +43,11 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    System.out.println(getTx(lloneTable));
+    System.out.println(getTx());
+
+    /* for (int i = 0; i < getPose().length; i++) {
+      System.out.println(getPose()[i]);
+    } */
   }
 
   @Override

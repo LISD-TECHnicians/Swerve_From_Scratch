@@ -5,10 +5,11 @@ import edu.wpi.first.wpilibj2.command.button.CommandPS4Controller;
 
 import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
+import frc.robot.Constants.LimelightConstants;
 
 import frc.robot.subsystems.PneumaticsSubsystem;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
-// import frc.robot.subsystems.LimelightSubsystem;
+import frc.robot.subsystems.LimelightSubsystem;
 
 import frc.robot.commands.SwerveCmd;
 import frc.robot.commands.ToggleSolenoidCmd;
@@ -29,7 +30,7 @@ public class RobotContainer {
 
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
-  // private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
+  private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem(LimelightConstants.llone);
 
   private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
   private final SwerveCmd joystickSwerve = new SwerveCmd(
