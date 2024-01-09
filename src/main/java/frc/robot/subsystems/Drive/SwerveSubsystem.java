@@ -183,7 +183,7 @@ public class SwerveSubsystem extends SubsystemBase {
     speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
         Math.pow(getChassisSpeeds().vyMetersPerSecond, 2)));
 
-    System.out.println(slider.getDouble(0));
+    // System.out.println(slider.getDouble(0));
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);

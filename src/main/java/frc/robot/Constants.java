@@ -108,7 +108,7 @@ public final class Constants {
   }
 
   public static class LimelightConstants {
-    public static final String llone = "llone";
+    public static final String llone = "limelight-llone";
   }
 
   public final class PneumaticsConstants {
