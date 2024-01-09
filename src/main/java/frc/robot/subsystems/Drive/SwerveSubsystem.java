@@ -1,7 +1,6 @@
 package frc.robot.subsystems.Drive;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
-
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
@@ -16,11 +15,12 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
+// import com.pathplanner.lib.auto.AutoBuilder;
+
 import edu.wpi.first.networktables.GenericEntry;
+// import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-// import com.pathplanner.lib.auto.AutoBuilder;
 
 public class SwerveSubsystem extends SubsystemBase {
   // Declare all Swerve Modules
@@ -86,28 +86,35 @@ public class SwerveSubsystem extends SubsystemBase {
   private final GenericEntry yawEntry = RobotContainer.robotStatus.add("Heading", 0).getEntry(); 
   private final GenericEntry speedEntry = RobotContainer.robotStatus.add("Speed", 0).getEntry();
 
-  private final GenericEntry slider = RobotContainer.robotStatus
+  /* private final GenericEntry slider = RobotContainer.robotStatus
     .add("Slider", 0)
     .withWidget("Number Slider")
     .withPosition(1, 1)
     .withSize(2, 1)
-    .getEntry();
+    .getEntry(); */
 
   private final Field2d fieldLayout = new Field2d();
 
   public SwerveSubsystem() {
+    /* AutoBuilder.configureHolonomic(
+      this::getPose, 
+      this::setPose, 
+      this::getChassisSpeeds, 
+      this::setChassisSpeeds, 
+      Constants.DriveConstants.pathFollowerConfig,
+      () -> {
+          // Boolean supplier that controls when the path will be mirrored for the red alliance
+          // This will flip the path being followed to the red side of the field.
+          // THE ORIGIN WILL REMAIN ON THE BLUE SIDE
+
+          return DriverStation.getAlliance() == DriverStation.Alliance.Red;
+      },
+      this
+    ); */
+
     pigeon.configFactoryDefault();
 
     pigeon.configMountPose(0, 0, 0);
-    
-    // Allows PathPlanner to construct trajectories on its own
-    /*AutoBuilder.configureHolonomic(
-      this::getPose, // Robot pose supplier
-      this::setPose, // Method to reset odometry (will be called if your auto has a starting pose)
-      this::getChassisSpeeds, // ChassisSpeeds supplier. MUST BE ROBOT RELATIVE
-      this::setChassisSpeeds, // Method that will drive the robot given ROBOT RELATIVE ChassisSpeeds
-      DriveConstants.PATH_FOLLOW_CONFIG,
-      this); // Reference to this subsystem to set requirements*/
   }
 
   public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
@@ -182,8 +189,6 @@ public class SwerveSubsystem extends SubsystemBase {
     yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
     speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
         Math.pow(getChassisSpeeds().vyMetersPerSecond, 2)));
-
-    // System.out.println(slider.getDouble(0));
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);

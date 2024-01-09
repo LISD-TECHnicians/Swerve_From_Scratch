@@ -24,6 +24,7 @@ import frc.robot.commandgroups.SolenoidPoseCmdGrp;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
+// import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class RobotContainer {
   private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.CONTROLLER_PORT);
@@ -58,9 +59,10 @@ public class RobotContainer {
     autoChooser.setDefaultOption("Toggle Solenoid", toggleSolenoid);
     autoChooser.addOption("Reset Pose", resetPose);
 
-    // autoChooser = AutoBuilder.buildAutoChooser(); 
+    // autoChooser = AutoBuilder.buildAutoChooser();
 
     robotStatus.add("Auto Chooser", autoChooser);
+    // SmartDashboard.putData("Auto Mode", autoChooser);
   }
 
   private void configureBindings() {

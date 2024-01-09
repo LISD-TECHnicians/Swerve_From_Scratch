@@ -1,11 +1,11 @@
 package frc.robot;
 
-import edu.wpi.first.math.geometry.Pose2d;
-import edu.wpi.first.math.geometry.Translation2d;
-
 import com.pathplanner.lib.util.HolonomicPathFollowerConfig;
 import com.pathplanner.lib.util.PIDConstants;
 import com.pathplanner.lib.util.ReplanningConfig;
+
+import edu.wpi.first.math.geometry.Pose2d;
+import edu.wpi.first.math.geometry.Translation2d;
 
 public final class Constants {
   public final class ControllerConstants {
@@ -52,16 +52,6 @@ public final class Constants {
     public static final Translation2d REAR_RIGHT_LOCATION = new Translation2d(-0.31, -0.31);
     public static final Translation2d REAR_LEFT_LOCATION = new Translation2d(-0.31, 0.31);
 
-    public static final HolonomicPathFollowerConfig PATH_FOLLOW_CONFIG = new HolonomicPathFollowerConfig( 
-        // HolonomicPathFollowerConfig, this should likely live in your Constants class
-      new PIDConstants(DriveConstants.PATH_TRANSLATION_P, DriveConstants.PATH_TRANSLATION_I, DriveConstants.PATH_TRANSLATION_D), 
-          // Translation PID constants
-      new PIDConstants(DriveConstants.PATH_ROTATION_P, DriveConstants.PATH_ROTATION_I, DriveConstants.PATH_ROTATION_D), 
-          // Rotation PID constants
-      DriveConstants.MAX_DRIVE_SPEED, // Max module speed, in m/s
-      DriveConstants.SWERVE_RADIUS, // Drive base radius in meters. Distance from robot center to furthest module.
-      new ReplanningConfig()); // Default path replanning config. See the API for the options here
-
     public static final int PIGEON_ID = 14;
 
     public static final double NOMINAL_VOLTAGE = 12.0;
@@ -103,6 +93,14 @@ public final class Constants {
     public static final double PATH_ROTATION_P = 5.0;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
+
+    public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
+      new PIDConstants(PATH_TRANSLATION_P, PATH_TRANSLATION_I, PATH_TRANSLATION_D), // Translation constants 
+      new PIDConstants(PATH_ROTATION_P, PATH_ROTATION_I, PATH_ROTATION_D), // Rotation constants 
+      MAX_DRIVE_SPEED, 
+      SWERVE_RADIUS, // Drive base radius (distance from center to furthest module) 
+      new ReplanningConfig()
+    );
 
     public static final Pose2d ZERO_POSE = new Pose2d();
   }
