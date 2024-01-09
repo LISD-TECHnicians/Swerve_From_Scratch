@@ -9,9 +9,11 @@ import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.DriverStation.Alliance;
 
 public class LimelightSubsystem extends SubsystemBase {
-  private Alliance alliance;
+  private final Alliance alliance;
 
-  private NetworkTable networkTable;
+  private final NetworkTable networkTable;
+
+  private final double[] emptyArray = new double[7]; 
 
   public LimelightSubsystem(String limelightName) {
     this.alliance = DriverStation.getAlliance();
@@ -33,10 +35,10 @@ public class LimelightSubsystem extends SubsystemBase {
 
   public double[] getPose() {
     if (alliance == Alliance.Blue) {
-      return networkTable.getEntry("botpose_wpiblue").getDoubleArray(new double[7]);
+      return networkTable.getEntry("botpose_wpiblue").getDoubleArray(emptyArray);
     }
     else {
-      return networkTable.getEntry("botpose_wpired").getDoubleArray(new double[7]);
+      return networkTable.getEntry("botpose_wpired").getDoubleArray(emptyArray);
     }
     
   }
