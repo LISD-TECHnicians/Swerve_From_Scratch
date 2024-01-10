@@ -52,6 +52,16 @@ public final class Constants {
     public static final Translation2d REAR_RIGHT_LOCATION = new Translation2d(-0.31, -0.31);
     public static final Translation2d REAR_LEFT_LOCATION = new Translation2d(-0.31, 0.31);
 
+    public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
+      // Translation constants
+      new PIDConstants(DriveConstants.PATH_TRANSLATION_P, DriveConstants.PATH_TRANSLATION_I, DriveConstants.PATH_TRANSLATION_D),  
+      // Rotation constants
+      new PIDConstants(DriveConstants.PATH_ROTATION_P, DriveConstants.PATH_ROTATION_I, DriveConstants.PATH_ROTATION_D),  
+      DriveConstants.MAX_DRIVE_SPEED, 
+      DriveConstants.SWERVE_RADIUS, // Drive base radius (distance from center to furthest module) 
+      new ReplanningConfig()
+    );
+
     public static final int PIGEON_ID = 14;
 
     public static final double NOMINAL_VOLTAGE = 12.0;
@@ -93,14 +103,6 @@ public final class Constants {
     public static final double PATH_ROTATION_P = 5.0;
     public static final double PATH_ROTATION_I = 0.0; 
     public static final double PATH_ROTATION_D = 0.0;
-
-    public static final HolonomicPathFollowerConfig pathFollowerConfig = new HolonomicPathFollowerConfig(
-      new PIDConstants(PATH_TRANSLATION_P, PATH_TRANSLATION_I, PATH_TRANSLATION_D), // Translation constants 
-      new PIDConstants(PATH_ROTATION_P, PATH_ROTATION_I, PATH_ROTATION_D), // Rotation constants 
-      MAX_DRIVE_SPEED, 
-      SWERVE_RADIUS, // Drive base radius (distance from center to furthest module) 
-      new ReplanningConfig()
-    );
 
     public static final Pose2d ZERO_POSE = new Pose2d();
   }

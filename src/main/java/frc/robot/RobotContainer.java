@@ -31,7 +31,7 @@ public class RobotContainer {
 
   private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
   private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
-  private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem(LimelightConstants.llone);
+  private final LimelightSubsystem llone = new LimelightSubsystem(LimelightConstants.llone);
 
   private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
   private final SwerveCmd joystickSwerve = new SwerveCmd(
