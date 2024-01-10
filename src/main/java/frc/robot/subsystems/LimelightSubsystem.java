@@ -12,7 +12,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
   private final NetworkTable networkTable;
 
-  private final double[] emptyArray = new double[7]; 
+  private final double[] emptyArray = new double[6]; 
 
   public LimelightSubsystem(String limelightName) {
     this.alliance = DriverStation.getAlliance();
@@ -44,10 +44,10 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    System.out.println(getTx());
+    // System.out.println(getTx());
 
-    /* for (int i = 0; i < getPose().length; i++) {
-      System.out.println(getPose()[i]);
+    /* for (int i = 0; i < emptyArray.length; i++) {
+      System.out.print(getPose()[i] + " | ");
     } */
   }
 
