@@ -2,35 +2,33 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
+import frc.robot.Constants.LimelightConstants;
+
 import frc.robot.LimelightHelpers;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.math.geometry.Pose2d;
 
 public class LimelightSubsystem extends SubsystemBase {
-  private final String limelightName;
-
   private final DriverStation.Alliance alliance;
 
-  public LimelightSubsystem(String limelightName) {
+  public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance();
-
-    this.limelightName = limelightName;
   }
 
-  public double getTX() {
+  public double getTX(String limelightName) {
     return LimelightHelpers.getTX(limelightName);
   }
 
-  public double getTY() {
+  public double getTY(String limelightName) {
     return LimelightHelpers.getTY(limelightName);
   }
 
-  public double getTA() {
+  public double getTA(String limelightName) {
     return LimelightHelpers.getTA(limelightName);
   }
 
-  public Pose2d getPose() { // Needs Testing
+  public Pose2d getPose(String limelightName) {
     if (alliance == DriverStation.Alliance.Blue) {
       return LimelightHelpers.getBotPose2d_wpiBlue(limelightName);
     }
@@ -39,17 +37,19 @@ public class LimelightSubsystem extends SubsystemBase {
     }   
   }
 
-  public double getFiducialID() {
+  public double getFiducialID(String limelightName) {
     return LimelightHelpers.getFiducialID(limelightName);
   }
 
-  public double getPipeline() {
+  public double getPipeline(String limelightName) {
     return LimelightHelpers.getCurrentPipelineIndex(limelightName);
   }
 
   @Override
   public void periodic() {
-    System.out.println("Pose; " + getPose() + " | " + "ID; " + getFiducialID() + " | " + "Pipe; " + getPipeline());
+    System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
+        "ID; " + getFiducialID(LimelightConstants.llone) + " | " + 
+        "Pipe; " + getPipeline(LimelightConstants.llone));
   }
 
   @Override
