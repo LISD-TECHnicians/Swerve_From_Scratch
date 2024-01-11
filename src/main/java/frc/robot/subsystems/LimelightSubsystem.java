@@ -2,8 +2,6 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
-import frc.robot.Constants.LimelightConstants;
-
 import frc.robot.LimelightHelpers;
 import edu.wpi.first.wpilibj.DriverStation;
 
@@ -47,9 +45,9 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
+    /* System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
         "ID; " + getFiducialID(LimelightConstants.llone) + " | " + 
-        "Pipe; " + getPipeline(LimelightConstants.llone));
+        "Pipe; " + getPipeline(LimelightConstants.llone)); */
   }
 
   @Override
