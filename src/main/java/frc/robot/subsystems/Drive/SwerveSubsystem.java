@@ -6,11 +6,11 @@ import frc.robot.Constants.DriveConstants;
 
 import com.ctre.phoenix.sensors.Pigeon2;
 
+import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
 import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Rotation2d;
 import edu.wpi.first.math.kinematics.ChassisSpeeds;
 import edu.wpi.first.math.kinematics.SwerveDriveKinematics;
-import edu.wpi.first.math.kinematics.SwerveDriveOdometry;
 import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
@@ -78,8 +78,10 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition[] swervePositions = {frontLeftPosition, frontRightPosition, rearRightPosition, rearLeftPosition};
 
   // Declare Swerve Odometry
-  private final SwerveDriveOdometry swerveOdometry = new SwerveDriveOdometry(swerve, Rotation2d.fromRadians(0.0), 
-      swervePositions/*, initialPose*/);
+  private final Pose2d initialPose = new Pose2d(); 
+
+  private final SwerveDrivePoseEstimator swervePoseEstimator = new SwerveDrivePoseEstimator(swerve, Rotation2d.fromRadians(0.0), 
+      swervePositions, initialPose);
 
   private final Pigeon2 pigeon = new Pigeon2(DriveConstants.PIGEON_ID, "canivore"); // Declare IMU
 
@@ -137,11 +139,11 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public void setPose(Pose2d pose) {
-    swerveOdometry.resetPosition(Rotation2d.fromRadians(getYaw()), swervePositions, pose);
+    swervePoseEstimator.resetPosition(Rotation2d.fromRadians(getYaw()), swervePositions, pose);
   }
   
   public Pose2d getPose() {
-    return swerveOdometry.getPoseMeters();
+    return swervePoseEstimator.getEstimatedPosition();
   }
 
   public double getYaw() {
@@ -184,7 +186,7 @@ public class SwerveSubsystem extends SubsystemBase {
     rearLeftPosition.distanceMeters = rearLeftSwerve.getDrivePosition();
     rearLeftPosition.angle = rearLeftSwerve.getSwerveState().angle;
 
-    swerveOdometry.update(Rotation2d.fromRadians(getYaw()), swervePositions);
+    swervePoseEstimator.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
     yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
     speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
