@@ -78,7 +78,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private SwerveModulePosition[] swervePositions = {frontLeftPosition, frontRightPosition, rearRightPosition, rearLeftPosition};
 
   // Declare Swerve Odometry
-  private final Pose2d initialPose = new Pose2d(); 
+  private final Pose2d initialPose = new Pose2d(3, 8, Rotation2d.fromRadians(0)); 
 
   private final SwerveDrivePoseEstimator swervePoseEstimator = new SwerveDrivePoseEstimator(swerve, Rotation2d.fromRadians(0.0), 
       swervePositions, initialPose);

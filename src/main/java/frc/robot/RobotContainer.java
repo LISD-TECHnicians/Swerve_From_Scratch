@@ -28,9 +28,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 public class RobotContainer {
   private final CommandPS4Controller controller = new CommandPS4Controller(ControllerConstants.CONTROLLER_PORT);
 
-  public static final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
-  public static final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
-  public static final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
+  private final SwerveSubsystem swerveSubsystem = new SwerveSubsystem();
+  private final PneumaticsSubsystem pneumaticSubsystem = new PneumaticsSubsystem();
+  private final LimelightSubsystem limelightSubsystem = new LimelightSubsystem();
 
   private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
   private final SwerveCmd joystickSwerve = new SwerveCmd(
