@@ -186,7 +186,7 @@ public class SwerveSubsystem extends SubsystemBase {
     rearLeftPosition.distanceMeters = rearLeftSwerve.getDrivePosition();
     rearLeftPosition.angle = rearLeftSwerve.getSwerveState().angle;
 
-    swervePoseEstimator.update(Rotation2d.fromRadians(-getYaw()), swervePositions);
+    swervePoseEstimator.update(Rotation2d.fromRadians(getYaw()), swervePositions);
 
     yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
     speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 

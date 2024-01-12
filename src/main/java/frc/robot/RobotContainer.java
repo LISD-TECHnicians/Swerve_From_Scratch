@@ -37,7 +37,7 @@ public class RobotContainer {
     swerveSubsystem, 
     () -> controller.getLeftX(), 
     () -> controller.getLeftY(), 
-    () -> -controller.getRightX(),
+    () -> controller.getRightX(),
     controller.L1(),
     controller.L2());
   private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.ZERO_POSE);
