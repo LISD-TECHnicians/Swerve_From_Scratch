@@ -3,6 +3,7 @@ package frc.robot.subsystems;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 import frc.robot.LimelightHelpers;
+import frc.robot.Constants.LimelightConstants;
 import edu.wpi.first.wpilibj.DriverStation;
 
 import edu.wpi.first.math.geometry.Pose2d;
@@ -39,15 +40,19 @@ public class LimelightSubsystem extends SubsystemBase {
     return LimelightHelpers.getFiducialID(limelightName);
   }
 
+  public void setPipeline(String limelightName, int pipeline) {
+    LimelightHelpers.setPipelineIndex(limelightName, pipeline);
+  }
+
   public double getPipeline(String limelightName) {
     return LimelightHelpers.getCurrentPipelineIndex(limelightName);
   }
 
   @Override
   public void periodic() {
-    /* System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
+    System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
         "ID; " + getFiducialID(LimelightConstants.llone) + " | " + 
-        "Pipe; " + getPipeline(LimelightConstants.llone)); */
+        "Pipe; " + getPipeline(LimelightConstants.llone));
   }
 
   @Override
