@@ -2,8 +2,6 @@ package frc.robot.subsystems.Drive;
 
 import frc.robot.Constants.DriveConstants;
 
-import edu.wpi.first.math.util.Units;
-
 import edu.wpi.first.math.MathUtil;
 
 import com.ctre.phoenix6.hardware.CANcoder;
@@ -75,11 +73,11 @@ public class SwerveModule {
   }
 
   public double getRotationPosition() { // Returns radians
-    return (Units.rotationsToRadians(rotationEncoder.getAbsolutePosition().getValueAsDouble()) - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
+    return (rotationEncoder.getAbsolutePosition().getValueAsDouble() - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
   }
 
   public double getRotationVelocity() { // Returns radians per second
-    return Units.rotationsToRadians(rotationEncoder.getVelocity().getValueAsDouble()) * (rotationEncoderInvert ? -1 : 1);
+    return rotationEncoder.getVelocity().getValueAsDouble() * (rotationEncoderInvert ? -1 : 1);
   }
 
   public SwerveModuleState getSwerveState() {

@@ -129,9 +129,9 @@ public class SwerveSubsystem extends SubsystemBase {
 
     // Set each Swerve State, Inverse of the way locations were passed into Swerve Kinematic Object, Not sure why inverse order    
     frontLeftSwerve.setSwerveState(swerveModuleStates[0]); 
-    rearLeftSwerve.setSwerveState(swerveModuleStates[1]);
+    frontRightSwerve.setSwerveState(swerveModuleStates[1]);
     rearRightSwerve.setSwerveState(swerveModuleStates[2]);
-    frontRightSwerve.setSwerveState(swerveModuleStates[3]);
+    rearLeftSwerve.setSwerveState(swerveModuleStates[3]);
   }
 
   public ChassisSpeeds getChassisSpeeds() {
@@ -147,15 +147,15 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public double getYaw() {
-    return -Units.degreesToRadians(pigeon.getYaw().getValueAsDouble()); // Negative makes clockwise positive
+    return pigeon.getYaw().getValueAsDouble(); // Negative makes clockwise positive
   }
 
   public double getPitch() {
-    return Units.degreesToRadians(pigeon.getPitch().getValueAsDouble());
+    return pigeon.getPitch().getValueAsDouble();
   }
 
   public double getRoll() {
-    return Units.degreesToRadians(pigeon.getRoll().getValueAsDouble());
+    return pigeon.getRoll().getValueAsDouble();
   }
 
   public void setDriveBrake() {
@@ -186,7 +186,7 @@ public class SwerveSubsystem extends SubsystemBase {
     rearLeftPosition.distanceMeters = rearLeftSwerve.getDrivePosition();
     rearLeftPosition.angle = rearLeftSwerve.getSwerveState().angle;
 
-    swervePoseEstimator.update(Rotation2d.fromRadians(getYaw()), swervePositions);
+    swervePoseEstimator.update(Rotation2d.fromRadians(-getYaw()), swervePositions);
 
     yawEntry.setDouble(Units.radiansToDegrees(getYaw())); 
     speedEntry.setDouble(Math.sqrt(Math.pow(getChassisSpeeds().vxMetersPerSecond, 2) + 
