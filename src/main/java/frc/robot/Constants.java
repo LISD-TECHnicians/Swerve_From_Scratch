@@ -107,9 +107,12 @@ public final class Constants {
 
   public static class LimelightConstants {
     public static final String llone = "limelight-llone";
+    // public static final String lltwo = "limelight-lltwo";
   }
 
   public final class PneumaticsConstants {
     public static final int LA_BIMBA_PORT = 0;
+
+    public static final int aimPipeline = 0;
   }
 }
