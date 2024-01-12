@@ -41,7 +41,7 @@ public class LimelightSubsystem extends SubsystemBase {
     return LimelightHelpers.getFiducialID(limelightName);
   }
 
-  public void setPipelineIndex(String limelightName, int pipelineIndex) {
+  public void setPipeline(String limelightName, int pipelineIndex) {
     LimelightHelpers.setPipelineIndex(limelightName, pipelineIndex);
   }
 
