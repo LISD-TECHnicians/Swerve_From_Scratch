@@ -113,6 +113,7 @@ public final class Constants {
   public final class PneumaticsConstants {
     public static final int LA_BIMBA_PORT = 0;
 
-    public static final int aimPipeline = 0;
+    public static final int POSE_ESTIMATOR_PIPELINE = 0;
+    public static final int AIM_PIPELINE = 1;
   }
 }
