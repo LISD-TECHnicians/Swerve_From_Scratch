@@ -24,6 +24,10 @@ public class LimelightSubsystem extends SubsystemBase {
     return LimelightHelpers.getTY(limelightName);
   }
 
+  public boolean getTV(String limelightName) {
+    return LimelightHelpers.getTV(limelightName);
+  }
+
   public double getTA(String limelightName) {
     return LimelightHelpers.getTA(limelightName);
   }
