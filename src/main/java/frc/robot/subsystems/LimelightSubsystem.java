@@ -27,8 +27,12 @@ public class LimelightSubsystem extends SubsystemBase {
   public double getTA(String limelightName) {
     return LimelightHelpers.getTA(limelightName);
   }
+
+  public double getNeuralID(String limelightName) {
+    return LimelightHelpers.getNeuralClassID(limelightName);
+  }
   
-  public boolean getTV(String limelightName) {
+  public boolean getValidTag(String limelightName) {
     return LimelightHelpers.getTV(limelightName);
   }
 
