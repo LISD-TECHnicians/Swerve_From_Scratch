@@ -59,9 +59,9 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    /* System.out.println("Pose; " + getPose(LimelightConstants.llone) + " | " + 
-        "ID; " + getFiducialID(LimelightConstants.llone) + " | " + 
-        "Pipe; " + getPipeline(LimelightConstants.llone)); */
+    /* System.out.println("Pose; " + getPose(LimelightConstants.LL_ONE) + " | " + 
+        "ID; " + getFiducialID(LimelightConstants.LL_ONE) + " | " + 
+        "Pipe; " + getPipeline(LimelightConstants.LL_ONE)); */
   }
 
   @Override

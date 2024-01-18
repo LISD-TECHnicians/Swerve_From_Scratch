@@ -8,11 +8,11 @@ import edu.wpi.first.math.geometry.Pose2d;
 import edu.wpi.first.math.geometry.Translation2d;
 
 public final class Constants {
-  public final class ControllerConstants {
+  public static class ControllerConstants {
     public static final int CONTROLLER_PORT = 3;
   }
 
-  public static final class DriveConstants {
+  public static class DriveConstants {
     public static final int FRONT_LEFT_DRIVE_ID = 8;
     public static final int FRONT_LEFT_ROTATION_ID = 12;
     public static final int FRONT_LEFT_ROTATION_ENCODER_ID = 4;
@@ -106,14 +106,15 @@ public final class Constants {
   }
 
   public static class LimelightConstants {
-    public static final String llone = "limelight-llone";
-    // public static final String lltwo = "limelight-lltwo";
+    public static final String LL_ONE = "limelight-llone";
+    // public static final String LL_TWO = "limelight-lltwo";
   }
 
-  public final class PneumaticsConstants {
+  public static class PneumaticsConstants {
     public static final int LA_BIMBA_PORT = 0;
 
     public static final int POSE_ESTIMATOR_PIPELINE = 0;
     public static final int AIM_PIPELINE = 1;
+    public static final int NOTE_DETECTION_PIPELINE = 2;
   }
 }
