@@ -96,7 +96,7 @@ public class SwerveModule {
     rotationSpeed = DriveConstants.NOMINAL_VOLTAGE * MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
         DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
 
-    driveMotor.setVoltage(driveSpeed);;
+    driveMotor.setVoltage(driveSpeed);
     rotationMotor.setVoltage(rotationSpeed);
   }
 
