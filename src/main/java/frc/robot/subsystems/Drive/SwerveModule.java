@@ -4,10 +4,13 @@ import frc.robot.Constants.DriveConstants;
 
 import edu.wpi.first.math.MathUtil;
 
+import com.ctre.phoenix6.configs.CANcoderConfiguration;
+import com.ctre.phoenix6.configs.TalonFXConfiguration;
 import com.ctre.phoenix6.hardware.CANcoder;
 import com.ctre.phoenix6.hardware.TalonFX;
 import com.ctre.phoenix6.signals.NeutralModeValue;
 import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkBase.IdleMode;
 import com.revrobotics.CANSparkLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
@@ -41,17 +44,13 @@ public class SwerveModule {
     rotationEncoder = new CANcoder(rotationEncoderID, "rio");
 
     // Clear any left over settings from previous uses
-    // driveMotor.configFactoryDefault();
-    // rotationMotor.restoreFactoryDefaults();
+    driveMotor.getConfigurator().apply(new TalonFXConfiguration());
+    rotationMotor.restoreFactoryDefaults();
 
-    // rotationEncoder.configFactoryDefault();
-
-    // Set max voltage to motors so 100% is the same regardless ofexact battery charge
-    // driveMotor.configVoltageCompSaturation(DriveConstants.NOMINAL_VOLTAGE);
-    // rotationMotor.enableVoltageCompensation(DriveConstants.NOMINAL_VOLTAGE);
+    rotationEncoder.getConfigurator().apply(new CANcoderConfiguration());
 
     driveMotor.setNeutralMode(NeutralModeValue.Coast);
-    // rotationMotor.setIdleMode(IdleMode.kBrake);
+    rotationMotor.setIdleMode(IdleMode.kBrake);
 
     this.rotationEncoderInvert = rotationEncoderInvert;
 
@@ -91,14 +90,14 @@ public class SwerveModule {
     swerveModuleState = SwerveModuleState.optimize(swerveModuleState, getSwerveState().angle);
 
     double driveSpeed = driveLimiter.calculate(swerveModuleState.speedMetersPerSecond);
-    driveSpeed = driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
+    driveSpeed = DriveConstants.NOMINAL_VOLTAGE * driveSpeed / DriveConstants.MAX_DRIVE_SPEED;
 
     double rotationSpeed = rotationPID.calculate(getRotationPosition(), swerveModuleState.angle.getRadians());
-    rotationSpeed = MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
+    rotationSpeed = DriveConstants.NOMINAL_VOLTAGE * MathUtil.clamp(rotationSpeed, -DriveConstants.ROTATION_SPEED_SCALE_FACTOR, 
         DriveConstants.ROTATION_SPEED_SCALE_FACTOR);
 
-    driveMotor.set(driveSpeed);
-    rotationMotor.set(rotationSpeed);
+    driveMotor.setVoltage(driveSpeed);;
+    rotationMotor.setVoltage(rotationSpeed);
   }
 
   public void setDriveBrake() {
