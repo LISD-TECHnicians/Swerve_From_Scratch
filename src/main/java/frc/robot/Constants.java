@@ -108,13 +108,13 @@ public final class Constants {
   public static class LimelightConstants {
     public static final String LL_ONE = "limelight-llone";
     // public static final String LL_TWO = "limelight-lltwo";
+    
+    public static final int POSE_ESTIMATOR_PIPELINE = 0;
+    public static final int AIM_PIPELINE = 1;
+    public static final int NOTE_DETECTION_PIPELINE = 2;
   }
 
   public static class PneumaticsConstants {
     public static final int LA_BIMBA_PORT = 0;
-
-    public static final int POSE_ESTIMATOR_PIPELINE = 0;
-    public static final int AIM_PIPELINE = 1;
-    public static final int NOTE_DETECTION_PIPELINE = 2;
   }
 }
