@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 import frc.robot.Constants.DriveConstants;
 
+import com.ctre.phoenix6.configs.MountPoseConfigs;
+import com.ctre.phoenix6.configs.Pigeon2Configuration;
 import com.ctre.phoenix6.hardware.Pigeon2;
 
 import edu.wpi.first.math.estimator.SwerveDrivePoseEstimator;
@@ -114,9 +116,9 @@ public class SwerveSubsystem extends SubsystemBase {
       this
     ); */
 
-    // pigeon.configFactoryDefault();
+    pigeon.getConfigurator().apply(new Pigeon2Configuration());
 
-    // pigeon.configMountPose(0, 0, 0);
+    pigeon.getConfigurator().apply(new MountPoseConfigs());
   }
 
   public void setChassisSpeeds(ChassisSpeeds chassisSpeeds) {
