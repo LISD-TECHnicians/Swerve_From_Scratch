@@ -149,15 +149,15 @@ public class SwerveSubsystem extends SubsystemBase {
   }
 
   public double getYaw() {
-    return pigeon.getYaw().getValueAsDouble(); // Negative makes clockwise positive
+    return Units.degreesToRadians(pigeon.getYaw().getValueAsDouble()); // Negative makes clockwise positive
   }
 
   public double getPitch() {
-    return pigeon.getPitch().getValueAsDouble();
+    return Units.degreesToRadians(pigeon.getPitch().getValueAsDouble());
   }
 
   public double getRoll() {
-    return pigeon.getRoll().getValueAsDouble();
+    return Units.degreesToRadians(pigeon.getRoll().getValueAsDouble());
   }
 
   public void setDriveBrake() {
