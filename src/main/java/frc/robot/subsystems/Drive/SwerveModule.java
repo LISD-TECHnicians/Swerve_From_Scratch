@@ -19,6 +19,8 @@ import edu.wpi.first.math.geometry.Rotation2d;
 
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 
+import edu.wpi.first.math.util.Units;
+
 public class SwerveModule {
   private final TalonFX driveMotor;
   private final CANSparkMax rotationMotor;
@@ -64,19 +66,19 @@ public class SwerveModule {
   }
 
   public double getDrivePosition() { // Returns meters
-    return driveMotor.getPosition().getValueAsDouble() * DriveConstants.DRIVE_MOTOR_POSITION_TO_METERS;
+    return driveMotor.getRotorPosition().getValueAsDouble() * DriveConstants.DRIVE_MOTOR_POSITION_TO_METERS;
   }
 
   public double getDriveVelocity() { // Returns meters per second
-    return driveMotor.getVelocity().getValueAsDouble() * DriveConstants.DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND; 
+    return driveMotor.getRotorVelocity().getValueAsDouble() * DriveConstants.DRIVE_MOTOR_VELOCITY_TO_METERS_SECOND; 
   }
 
   public double getRotationPosition() { // Returns radians
-    return (rotationEncoder.getAbsolutePosition().getValueAsDouble() - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
+    return Units.rotationsToRadians(rotationEncoder.getAbsolutePosition().getValueAsDouble() - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
   }
 
   public double getRotationVelocity() { // Returns radians per second
-    return rotationEncoder.getVelocity().getValueAsDouble() * (rotationEncoderInvert ? -1 : 1);
+    return Units.rotationsToRadians(rotationEncoder.getVelocity().getValueAsDouble()) * (rotationEncoderInvert ? -1 : 1);
   }
 
   public SwerveModuleState getSwerveState() {
