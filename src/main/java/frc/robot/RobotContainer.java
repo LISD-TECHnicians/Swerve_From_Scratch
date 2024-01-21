@@ -48,7 +48,7 @@ public class RobotContainer {
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
-  private SendableChooser<Command> autoChooser;
+  private SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
     configureBindings();
