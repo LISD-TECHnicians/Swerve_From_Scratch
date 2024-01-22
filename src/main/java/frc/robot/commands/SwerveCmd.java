@@ -2,6 +2,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.Command;
 import frc.robot.subsystems.Drive.SwerveSubsystem;
+
+import frc.robot.Constants.ControllerConstants;
 import frc.robot.Constants.DriveConstants;
 
 import java.util.function.BooleanSupplier;
@@ -48,11 +50,15 @@ public class SwerveCmd extends Command {
 
   @Override
   public void execute() {
-    double xSpeed = xController.getAsDouble() * DriveConstants.MAX_DRIVE_SPEED;
-    double ySpeed = yController.getAsDouble() * DriveConstants.MAX_DRIVE_SPEED;
+    double xSpeed = Math.abs(xController.getAsDouble()) > ControllerConstants.DEADBAND ? xController.getAsDouble() * 
+        DriveConstants.MAX_DRIVE_SPEED : 0;
+    double ySpeed = Math.abs(yController.getAsDouble()) > ControllerConstants.DEADBAND ? yController.getAsDouble() * 
+        DriveConstants.MAX_DRIVE_SPEED : 0;
 
-    double rotationSpeed = rotationController.getAsDouble() * DriveConstants.MAX_SET_ROTATION_SPEED;
-    double rotationPosition = rotationController.getAsDouble() * Math.PI;
+    double rotationSpeed = Math.abs(rotationController.getAsDouble()) > ControllerConstants.DEADBAND ? 
+        rotationController.getAsDouble() * DriveConstants.MAX_SET_ROTATION_SPEED : 0;
+    double rotationPosition = Math.abs(rotationController.getAsDouble()) > ControllerConstants.DEADBAND ? 
+        rotationController.getAsDouble() * Math.PI : 0;
 
     if (robotOriented.getAsBoolean()) {
       swerveSpeeds.vxMetersPerSecond = xSpeed;

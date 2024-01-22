@@ -10,6 +10,8 @@ import edu.wpi.first.math.geometry.Translation2d;
 public final class Constants {
   public static class ControllerConstants {
     public static final int CONTROLLER_PORT = 0;
+
+    public static final double DEADBAND = 0.2; 
   }
 
   public static class DriveConstants {
