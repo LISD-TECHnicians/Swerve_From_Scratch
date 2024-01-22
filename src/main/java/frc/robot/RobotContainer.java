@@ -35,9 +35,9 @@ public class RobotContainer {
   private final ToggleSolenoidCmd toggleSolenoid = new ToggleSolenoidCmd(pneumaticSubsystem);
   private final SwerveCmd joystickSwerve = new SwerveCmd(
     swerveSubsystem, 
-    () -> controller.getLeftX(), 
-    () -> controller.getLeftY(), 
-    () -> controller.getRightX(),
+    () -> -controller.getLeftY(), 
+    () -> -controller.getLeftX(), 
+    () -> -controller.getRightX(),
     controller.L1(),
     controller.L2());
   private final SetPoseCmd resetPose = new SetPoseCmd(swerveSubsystem, DriveConstants.ZERO_POSE);

@@ -52,7 +52,7 @@ public class SwerveCmd extends Command {
     double ySpeed = yController.getAsDouble() * DriveConstants.MAX_DRIVE_SPEED;
 
     double rotationSpeed = rotationController.getAsDouble() * DriveConstants.MAX_SET_ROTATION_SPEED;
-    double rotationPosition = -rotationController.getAsDouble() * Math.PI;
+    double rotationPosition = rotationController.getAsDouble() * Math.PI;
 
     if (robotOriented.getAsBoolean()) {
       swerveSpeeds.vxMetersPerSecond = xSpeed;
