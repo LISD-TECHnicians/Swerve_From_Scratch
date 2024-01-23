@@ -19,6 +19,7 @@ import frc.robot.commands.SetPoseCmd;
 import frc.robot.commandgroups.SolenoidPoseCmdGrp;
 
 // import com.pathplanner.lib.auto.AutoBuilder;
+// import com.pathplanner.lib.auto.NamedCommands;
 
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
 import edu.wpi.first.wpilibj.shuffleboard.ShuffleboardTab;
@@ -51,6 +52,9 @@ public class RobotContainer {
   private SendableChooser<Command> autoChooser = new SendableChooser<>();
 
   public RobotContainer() {
+    // NamedCommands.registerCommand("Brake", new SetDriveBrakeCmd(swerveSubsystem));
+    // NamedCommands.registerCommand("Coast", new SetDriveCoastCmd(swerveSubsystem));
+
     configureBindings();
 
     swerveSubsystem.setDefaultCommand(joystickSwerve);
@@ -61,7 +65,7 @@ public class RobotContainer {
     // autoChooser = AutoBuilder.buildAutoChooser();
 
     robotStatus.add("Auto Chooser", autoChooser);
-    // SmartDashboard.putData("Auto Mode", autoChooser);
+    // SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   private void configureBindings() {
