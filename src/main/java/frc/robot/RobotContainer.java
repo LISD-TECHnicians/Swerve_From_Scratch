@@ -18,6 +18,7 @@ import frc.robot.commands.ToggleSolenoidCmd;
 import frc.robot.commands.VisionPoseUpdateCmd;
 import frc.robot.commands.SetDriveBrakeCmd;
 import frc.robot.commands.SetDriveCoastCmd;
+import frc.robot.commands.SetPipelineCmd;
 import frc.robot.commands.SetPoseCmd;
 
 import frc.robot.commandgroups.SolenoidPoseCmdGrp;
@@ -49,11 +50,13 @@ public class RobotContainer {
   private final SetDriveBrakeCmd setDriveBrake = new SetDriveBrakeCmd(swerveSubsystem);
   private final SetDriveCoastCmd setDriveCoast = new SetDriveCoastCmd(swerveSubsystem);
   // private final VisionPoseUpdateCmd visionPoseUpdate = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
+  // private final SetPipelineCmd setPipelineLL2PoseEstimator = new SetPipelineCmd(limelightSubsystem, LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
 
   private final SolenoidPoseCmdGrp solenoidPose = new SolenoidPoseCmdGrp(swerveSubsystem, pneumaticSubsystem);
 
   // private final Trigger visionPoseUpdateTrigger = new Trigger(() -> (limelightSubsystem.getValidTag(LimelightConstants.LL_TWO) && 
-  //     limelightSubsystem.getTA(LimelightConstants.LL_TWO) > LimelightConstants.VALID_TA_THRESHOLD));
+  //     limelightSubsystem.getTA(LimelightConstants.LL_TWO) > LimelightConstants.VALID_TA_THRESHOLD) &&
+  //     limelightSubsystem.getPipeline(LimelightConstants.LL_TWO) == LimelightConstants.POSE_ESTIMATOR_PIPELINE);
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
