@@ -4,7 +4,6 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.RobotContainer;
 
 import frc.robot.Constants.DriveConstants;
-// import frc.robot.Constants.LimelightConstants;
 
 import com.ctre.phoenix6.configs.MountPoseConfigs;
 import com.ctre.phoenix6.configs.Pigeon2Configuration;
@@ -19,10 +18,10 @@ import edu.wpi.first.math.kinematics.SwerveModulePosition;
 import edu.wpi.first.math.kinematics.SwerveModuleState;
 import edu.wpi.first.math.util.Units;
 
-// import com.pathplanner.lib.auto.AutoBuilder;
+import com.pathplanner.lib.auto.AutoBuilder;
 
 import edu.wpi.first.networktables.GenericEntry;
-// import edu.wpi.first.wpilibj.DriverStation;
+import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.smartdashboard.Field2d;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -154,6 +153,10 @@ public class SwerveSubsystem extends SubsystemBase {
     return swervePoseEstimator.getEstimatedPosition();
   }
 
+  public void visionPoseUpdate(Pose2d visionPose, double timeStamp) {
+    swervePoseEstimator.addVisionMeasurement(visionPose, timeStamp);
+  }
+
   public double getYaw() {
     return Units.degreesToRadians(pigeon.getYaw().getValueAsDouble()); // Negative makes clockwise positive
   }
@@ -202,8 +205,6 @@ public class SwerveSubsystem extends SubsystemBase {
 
     fieldLayout.setRobotPose(getPose()); // Test
     SmartDashboard.putData("Field Layout", fieldLayout);
-
-    // swervePoseEstimator.addVisionMeasurement(limelightSubsystem.getPose(), limelightSubsystem.getTimeStamp());
 
     // System.out.println("Cancoder FL; " + frontLeftSwerve.getRotationPosition());
     // System.out.println("Cancoder FR; " + frontRightSwerve.getRotationPosition());
