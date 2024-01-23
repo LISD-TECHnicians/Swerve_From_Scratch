@@ -74,7 +74,7 @@ public class SwerveModule {
   }
 
   public double getRotationPosition() { // Returns radians
-    return Units.rotationsToRadians(rotationEncoder.getAbsolutePosition().getValueAsDouble() - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
+    return (Units.rotationsToRadians(rotationEncoder.getAbsolutePosition().getValueAsDouble()) - angleOffset) * (rotationEncoderInvert ? -1 : 1); 
   }
 
   public double getRotationVelocity() { // Returns radians per second
