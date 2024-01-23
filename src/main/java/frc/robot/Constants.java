@@ -73,7 +73,6 @@ public final class Constants {
     public static final double WHEEL_DIAMETER = 0.102;
     public static final double WHEEL_CIRCUMFERENCE = WHEEL_DIAMETER * Math.PI;
 
-    public static final double TICKS_PER_REVOLUTION_FALCON = 2048;
     public static final double DRIVE_GEAR_RATIO = 1/6.75;
 
     public static final double DRIVE_MOTOR_POSITION_TO_METERS = DRIVE_GEAR_RATIO * WHEEL_CIRCUMFERENCE;
