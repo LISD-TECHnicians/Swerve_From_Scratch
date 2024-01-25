@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj2.command.Command;
 
 import frc.robot.subsystems.LimelightSubsystem;
 
+import frc.robot.Constants.LimelightConstants;
+
 public class SetPipelineCmd extends Command {
   private final LimelightSubsystem limelightSubsystem;
 
@@ -28,7 +30,9 @@ public class SetPipelineCmd extends Command {
   public void execute() {}
 
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    limelightSubsystem.setPipeline(limelightName, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
+  }
 
   @Override
   public boolean isFinished() {
