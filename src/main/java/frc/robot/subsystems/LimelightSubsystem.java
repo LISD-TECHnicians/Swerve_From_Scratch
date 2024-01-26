@@ -16,7 +16,6 @@ public class LimelightSubsystem extends SubsystemBase {
   public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance().get();
 
-    // setPipeline(LimelightConstants.LL_ONE, LimelightConstants.NOTE_DETECTION_PIPELINE);
     // setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
 
@@ -69,9 +68,7 @@ public class LimelightSubsystem extends SubsystemBase {
 
   @Override
   public void periodic() {
-    /* System.out.println("Pose; " + getPose(LimelightConstants.LL_ONE) + " | " + 
-        "ID; " + getFiducialID(LimelightConstants.LL_ONE) + " | " + 
-        "Pipe; " + getPipeline(LimelightConstants.LL_ONE)); */
+    // System.out.println(getPipeline(LimelightConstants.LL_TWO));
   }
 
   @Override
