@@ -63,7 +63,8 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   public double getTimeStamp(String limelightName) {
-    return Timer.getFPGATimestamp() - (LimelightHelpers.getLatency_Capture(limelightName) + LimelightHelpers.getLatency_Pipeline(limelightName)) / 1000;
+    return Timer.getFPGATimestamp() - (LimelightHelpers.getLatency_Capture(limelightName) + 
+        LimelightHelpers.getLatency_Pipeline(limelightName)) / 1000;
   }
 
   @Override

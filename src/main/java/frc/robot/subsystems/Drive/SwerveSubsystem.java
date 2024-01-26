@@ -28,44 +28,44 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class SwerveSubsystem extends SubsystemBase {
   // Declare all Swerve Modules
   private final SwerveModule frontLeftSwerve = new SwerveModule(    
-    DriveConstants.FRONT_LEFT_DRIVE_ID, 
-    DriveConstants.FRONT_LEFT_ROTATION_ID, 
-    DriveConstants.FRONT_LEFT_ROTATION_ENCODER_ID, 
-    DriveConstants.FRONT_LEFT_ANGLE_OFFSET,
-    DriveConstants.FRONT_LEFT_DRIVE_MOTOR_INVERT,
-    DriveConstants.FRONT_LEFT_ROTATION_MOTOR_INVERT,
-    DriveConstants.FRONT_LEFT_ROTATION_ENCODER_INVERT);
+      DriveConstants.FRONT_LEFT_DRIVE_ID, 
+      DriveConstants.FRONT_LEFT_ROTATION_ID, 
+      DriveConstants.FRONT_LEFT_ROTATION_ENCODER_ID, 
+      DriveConstants.FRONT_LEFT_ANGLE_OFFSET,
+      DriveConstants.FRONT_LEFT_DRIVE_MOTOR_INVERT,
+      DriveConstants.FRONT_LEFT_ROTATION_MOTOR_INVERT,
+      DriveConstants.FRONT_LEFT_ROTATION_ENCODER_INVERT);
   private final SwerveModule frontRightSwerve = new SwerveModule(
-    DriveConstants.FRONT_RIGHT_DRIVE_ID, 
-    DriveConstants.FRONT_RIGHT_ROTATION_ID, 
-    DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_ID, 
-    DriveConstants.FRONT_RIGHT_ANGLE_OFFSET,
-    DriveConstants.FRONT_RIGHT_DRIVE_MOTOR_INVERT,
-    DriveConstants.FRONT_RIGHT_ROTATION_MOTOR_INVERT,
-    DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_INVERT);
+      DriveConstants.FRONT_RIGHT_DRIVE_ID, 
+      DriveConstants.FRONT_RIGHT_ROTATION_ID, 
+      DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_ID, 
+      DriveConstants.FRONT_RIGHT_ANGLE_OFFSET,
+      DriveConstants.FRONT_RIGHT_DRIVE_MOTOR_INVERT,
+      DriveConstants.FRONT_RIGHT_ROTATION_MOTOR_INVERT,
+      DriveConstants.FRONT_RIGHT_ROTATION_ENCODER_INVERT);
   private final SwerveModule rearRightSwerve = new SwerveModule(
-    DriveConstants.REAR_RIGHT_DRIVE_ID, 
-    DriveConstants.REAR_RIGHT_ROTATION_ID, 
-    DriveConstants.REAR_RIGHT_ROTATION_ENCODER_ID, 
-    DriveConstants.REAR_RIGHT_ANGLE_OFFSET,
-    DriveConstants.REAR_RIGHT_DRIVE_MOTOR_INVERT,
-    DriveConstants.REAR_RIGHT_ROTATION_MOTOR_INVERT,
-    DriveConstants.REAR_RIGHT_ROTATION_ENCODER_INVERT);
+      DriveConstants.REAR_RIGHT_DRIVE_ID, 
+      DriveConstants.REAR_RIGHT_ROTATION_ID, 
+      DriveConstants.REAR_RIGHT_ROTATION_ENCODER_ID, 
+      DriveConstants.REAR_RIGHT_ANGLE_OFFSET,
+      DriveConstants.REAR_RIGHT_DRIVE_MOTOR_INVERT,
+      DriveConstants.REAR_RIGHT_ROTATION_MOTOR_INVERT,
+      DriveConstants.REAR_RIGHT_ROTATION_ENCODER_INVERT);
   private final SwerveModule rearLeftSwerve = new SwerveModule(    
-    DriveConstants.REAR_LEFT_DRIVE_ID, 
-    DriveConstants.REAR_LEFT_ROTATION_ID, 
-    DriveConstants.REAR_LEFT_ROTATION_ENCODER_ID, 
-    DriveConstants.REAR_LEFT_ANGLE_OFFSET,
-    DriveConstants.REAR_LEFT_DRIVE_MOTOR_INVERT,
-    DriveConstants.REAR_LEFT_ROTATION_MOTOR_INVERT,
-    DriveConstants.REAR_LEFT_ROTATION_ENCODER_INVERT);
+      DriveConstants.REAR_LEFT_DRIVE_ID, 
+      DriveConstants.REAR_LEFT_ROTATION_ID, 
+      DriveConstants.REAR_LEFT_ROTATION_ENCODER_ID, 
+      DriveConstants.REAR_LEFT_ANGLE_OFFSET,
+      DriveConstants.REAR_LEFT_DRIVE_MOTOR_INVERT,
+      DriveConstants.REAR_LEFT_ROTATION_MOTOR_INVERT,
+      DriveConstants.REAR_LEFT_ROTATION_ENCODER_INVERT);
 
   // Declare Swerve Kinematics using Swerve Module locations
   private final SwerveDriveKinematics swerve = new SwerveDriveKinematics( 
-    DriveConstants.FRONT_LEFT_LOCATION, 
-    DriveConstants.FRONT_RIGHT_LOCATION, 
-    DriveConstants.REAR_RIGHT_LOCATION, 
-    DriveConstants.REAR_LEFT_LOCATION);
+      DriveConstants.FRONT_LEFT_LOCATION, 
+      DriveConstants.FRONT_RIGHT_LOCATION, 
+      DriveConstants.REAR_RIGHT_LOCATION, 
+      DriveConstants.REAR_LEFT_LOCATION);
 
   private ChassisSpeeds swerveSpeeds = new ChassisSpeeds(); // Declare Chassis Speed for use in methods
   
