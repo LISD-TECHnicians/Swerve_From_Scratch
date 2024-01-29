@@ -50,13 +50,13 @@ public class RobotContainer {
   private final SetDriveBrakeCmd setDriveBrake = new SetDriveBrakeCmd(swerveSubsystem);
   private final SetDriveCoastCmd setDriveCoast = new SetDriveCoastCmd(swerveSubsystem);
   private final VisionPoseUpdateCmd visionPoseUpdate = new VisionPoseUpdateCmd(swerveSubsystem, limelightSubsystem);
-  // private final SetPipelineCmd setPipelineLL2Aim = new SetPipelineCmd(limelightSubsystem, LimelightConstants.LL_TWO, LimelightConstants.AIM_PIPELINE);
+  private final SetPipelineCmd setPipelineLL2Aim = new SetPipelineCmd(limelightSubsystem, LimelightConstants.LL_TWO, LimelightConstants.AIM_PIPELINE);
 
   private final SolenoidPoseCmdGrp solenoidPose = new SolenoidPoseCmdGrp(swerveSubsystem, pneumaticSubsystem);
 
   private final Trigger visionPoseUpdateTrigger = new Trigger(() -> (limelightSubsystem.getValidTag(LimelightConstants.LL_TWO) && 
-      limelightSubsystem.getTA(LimelightConstants.LL_TWO) > LimelightConstants.VALID_TA_THRESHOLD) /* &&
-      limelightSubsystem.getPipeline(LimelightConstants.LL_TWO) == LimelightConstants.POSE_ESTIMATOR_PIPELINE */);
+      limelightSubsystem.getTA(LimelightConstants.LL_TWO) > LimelightConstants.VALID_TA_THRESHOLD) &&
+      limelightSubsystem.getPipeline(LimelightConstants.LL_TWO) == LimelightConstants.POSE_ESTIMATOR_PIPELINE);
 
   public static ShuffleboardTab robotStatus = Shuffleboard.getTab("Robot");
   
@@ -75,8 +75,7 @@ public class RobotContainer {
 
     // autoChooser = AutoBuilder.buildAutoChooser();
 
-    robotStatus.add("Auto Chooser", autoChooser);
-    // SmartDashboard.putData("Auto Chooser", autoChooser);
+    SmartDashboard.putData("Auto Chooser", autoChooser);
   }
 
   private void configureBindings() {
@@ -89,7 +88,7 @@ public class RobotContainer {
 
     controller.button(3).onTrue(solenoidPose);
 
-    // controller.button(4).whileTrue(setPipelineLL2Aim);
+    controller.button(4).whileTrue(setPipelineLL2Aim);
 
     visionPoseUpdateTrigger.whileTrue(visionPoseUpdate);
   }

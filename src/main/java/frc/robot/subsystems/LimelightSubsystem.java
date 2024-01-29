@@ -16,7 +16,7 @@ public class LimelightSubsystem extends SubsystemBase {
   public LimelightSubsystem() {
     this.alliance = DriverStation.getAlliance().get();
 
-    // setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
+    setPipeline(LimelightConstants.LL_TWO, LimelightConstants.POSE_ESTIMATOR_PIPELINE);
   }
 
   public double getTX(String limelightName) {
@@ -68,9 +68,7 @@ public class LimelightSubsystem extends SubsystemBase {
   }
 
   @Override
-  public void periodic() {
-    // System.out.println(getPipeline(LimelightConstants.LL_TWO));
-  }
+  public void periodic() {}
 
   @Override
   public void simulationPeriodic() {}
