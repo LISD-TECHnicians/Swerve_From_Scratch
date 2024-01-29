@@ -63,7 +63,7 @@ public class RobotContainer {
   private SendableChooser<Command> autoChooser;// = new SendableChooser<>();
 
   public RobotContainer() {
-    // NamedCommands.registerCommand("Solenoid", new ToggleSolenoidCmd(pneumaticSubsystem));
+    NamedCommands.registerCommand("Solenoid", new ToggleSolenoidCmd(pneumaticSubsystem));
 
     configureBindings();
 
