@@ -101,7 +101,7 @@ public class SwerveSubsystem extends SubsystemBase {
   private final Field2d fieldLayout = new Field2d();
 
   public SwerveSubsystem() {
-    /* AutoBuilder.configureHolonomic(
+    AutoBuilder.configureHolonomic(
       this::getPose, 
       this::setPose, 
       this::getChassisSpeeds, 
@@ -119,7 +119,7 @@ public class SwerveSubsystem extends SubsystemBase {
           return false;
       },
       this
-    ); */
+    );
 
     pigeon.getConfigurator().apply(new Pigeon2Configuration());
 

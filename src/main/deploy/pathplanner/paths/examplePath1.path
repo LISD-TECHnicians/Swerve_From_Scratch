@@ -3,25 +3,25 @@
   "waypoints": [
     {
       "anchor": {
-        "x": 1.3337957445145674,
-        "y": 3.226490299134445
+        "x": 1.2337167531477924,
+        "y": 3.2543996516564464
       },
       "prevControl": null,
       "nextControl": {
-        "x": 3.333795744514571,
-        "y": 3.226490299134445
+        "x": 3.2337167531477986,
+        "y": 3.2543996516564464
       },
       "isLocked": false,
       "linkedName": null
     },
     {
       "anchor": {
-        "x": 6.027359483290395,
-        "y": 2.3455132624550967
+        "x": 2.377154468594652,
+        "y": 3.049167241191626
       },
       "prevControl": {
-        "x": 5.207515116328934,
-        "y": 0.4234336910232266
+        "x": 0.8525708479988396,
+        "y": 3.795390030340501
       },
       "nextControl": null,
       "isLocked": false,
@@ -30,7 +30,18 @@
   ],
   "rotationTargets": [],
   "constraintZones": [],
-  "eventMarkers": [],
+  "eventMarkers": [
+    {
+      "name": "Solenoid",
+      "waypointRelativePos": 0.15,
+      "command": {
+        "type": "parallel",
+        "data": {
+          "commands": []
+        }
+      }
+    }
+  ],
   "globalConstraints": {
     "maxVelocity": 4.97,
     "maxAcceleration": 10.0,
